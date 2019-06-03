@@ -38,11 +38,9 @@ public class GestionClient
             if (clients.existe(idClient))
                 throw new IFT287Exception("Client existe déjà: " + idClient);
 
-            // Ajout du client.
+            // Ajout du client
             if (clients.ajouter(idClient, prenom, nom, age) == 0)
             	throw new IFT287Exception("Erreur lors de l'ajout d'un client à la table.");
-            
-            
             
             // Commit
             cx.commit();
@@ -70,8 +68,7 @@ public class GestionClient
 	                throw new IFT287Exception("Client " + idClient + " a des réservations");
 
 	            // Suppression du membre
-	            int nb = clients.supprimer(idClient);
-	            if (nb == 0)
+	            if (clients.supprimer(idClient) == 0)
 	                throw new IFT287Exception("Erreur lors de la suppression d'un client.");
 	            
 	            // Commit
