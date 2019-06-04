@@ -5,14 +5,18 @@ public class TupleChambre
 
 	private int idChambre;
 	private String nom;
-	private String type;
+	private String typeLit;
 	private int prix;
 	
-	public TupleChambre(int idChambre, String nom, String type, int prix) 
+	public TupleChambre()
+	{
+	}
+	
+	public TupleChambre(int idChambre, String nom, String typeLit, int prix) 
 	{
 		this.setIdChambre(idChambre);
 		this.setNom(nom);
-		this.setType(type);
+		this.setTypeLit(typeLit);
 		this.setPrix(prix);
 	}
 
@@ -36,14 +40,14 @@ public class TupleChambre
 		this.nom = nom;
 	}
 
-	public String getType() 
+	public String getTypeLit() 
 	{
-		return type;
+		return typeLit;
 	}
 
-	public void setType(String type) 
+	public void setTypeLit(String typeLit) 
 	{
-		this.type = type;
+		this.typeLit = typeLit;
 	}
 
 	public int getPrix() 

@@ -7,6 +7,10 @@ public class TupleCommodite
 	private String description;
 	private int prix;
 	
+	public TupleCommodite()
+	{
+	}
+	
 	public TupleCommodite(int idCommodite, String description, int prix) 
 	{
 		this.setIdCommodite(idCommodite);

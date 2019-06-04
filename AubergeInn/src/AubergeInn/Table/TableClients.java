@@ -16,9 +16,9 @@ public class TableClients
 	{
 		this.cx = cx;
 		stmExist = cx.getConnection().prepareStatement(
-				"select idClient, Prenom, Nom, Age from Client where idClient = ?");
+				"select idClient, prenom, nom, age from Client where idClient = ?");
 		stmInsert = cx.getConnection().prepareStatement(
-				"insert into Client (idClient, Prenom, Nom, Age) values (?,?,?,?)");
+				"insert into Client (idClient, prenom, nom, age) values (?,?,?,?)");
 		stmDelete = cx.getConnection().prepareStatement(
 				"delete from Client where idClient = ?");
 	}
