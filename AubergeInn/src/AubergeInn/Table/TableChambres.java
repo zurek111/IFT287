@@ -7,8 +7,11 @@ import AubergeInn.Tuple.TupleChambre;
 public class TableChambres 
 {
     private PreparedStatement stmExist;
+    private PreparedStatement stmCommoditeExist;
+    private PreparedStatement stmRemoveCommodite;
     private PreparedStatement stmInsert;
     private PreparedStatement stmDelete;
+    private PreparedStatement stmInclude;
 
     private Connexion cx;
     
@@ -20,7 +23,13 @@ public class TableChambres
 		stmInsert = cx.getConnection().prepareStatement(
 				"insert into Chambre (idChambre, nom, typeLit, prix) values (?,?,?,?)");
 		stmDelete = cx.getConnection().prepareStatement(
-				"delete from Chambre where idChambre = ?");
+				"delete from Chambre where idChambre = ?");	
+		stmInclude = cx.getConnection().prepareStatement(
+				"insert into CommoditeOfferte (idChambre, idCommodite) values (?,?)");
+		stmCommoditeExist = cx.getConnection().prepareStatement(
+				"select * from CommoditeOfferte where idChambre = ? and idCommodite = ?");
+		stmRemoveCommodite = cx.getConnection().prepareStatement(
+				"delete from CommoditeOfferte where idChambre = ? and idCommodite = ?");
 	}
 	
     public Connexion getConnexion()
@@ -36,6 +45,17 @@ public class TableChambres
     	rst.close();
     	
     	return chambreExist;
+    }
+    
+    public boolean commoditeExiste(int idChambre, int idCommodite) throws SQLException
+    {
+    	stmCommoditeExist.setInt(1, idChambre);
+    	stmCommoditeExist.setInt(2, idCommodite);
+    	ResultSet rst = stmCommoditeExist.executeQuery();
+    	boolean commoditeChambreExist = rst.next();
+    	rst.close();
+    	
+    	return commoditeChambreExist;
     }
     
     public TupleChambre getChambre(int idChambre) throws SQLException
@@ -72,5 +92,19 @@ public class TableChambres
     {
     	stmDelete.setInt(1, idChambre);
     	return stmDelete.executeUpdate();
+    }
+    
+    public int inclureCommodite(int idChambre,int idCommodite) throws SQLException
+    {
+    	stmInclude.setInt(1, idChambre);
+    	stmInclude.setInt(2, idCommodite);
+    	return stmInclude.executeUpdate();
+    }
+    
+    public int enleverCommodite(int idChambre,int idCommodite) throws SQLException
+    {
+    	stmRemoveCommodite.setInt(1, idChambre);
+    	stmRemoveCommodite.setInt(2, idCommodite);
+    	return stmRemoveCommodite.executeUpdate();
     }
 }

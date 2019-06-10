@@ -29,7 +29,7 @@ CREATE TABLE Commodite(
 
 DROP TABLE CommoditeOfferte CASCADE;
 CREATE TABLE CommoditeOfferte(
-	idCommoditeOfferte INTEGER,
+	idCommoditeOfferte INTEGER AUTO_INCREMENT,
 	idChambre          INTEGER NOT NULL,
 	idCommodite        INTEGER NOT NULL,
 	
@@ -41,9 +41,9 @@ CREATE TABLE CommoditeOfferte(
 
 DROP TABLE Reservation CASCADE;
 CREATE TABLE Reservation(
-	idReservation INTEGER,
-	idChambre     INTEGER NOT NULL,
+	idReservation SERIAL,
 	idClient      INTEGER NOT NULL,
+	idChambre     INTEGER NOT NULL,
 	dateDebut     DATE    NOT NULL,
 	dateFin       DATE    NOT NULL,
 	prixTotal     INTEGER NOT NULL CHECK(prixTotal >= 0),

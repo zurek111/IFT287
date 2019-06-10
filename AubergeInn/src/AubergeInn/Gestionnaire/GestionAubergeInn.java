@@ -20,7 +20,6 @@ public class GestionAubergeInn
     private TableClients clients;
     private TableReservations reservations;
     private TableCommodites commodites;
-    private TableCommoditesOffertes commoditesOffertes;
     
     public GestionAubergeInn(String serveur, String bd, String user, String password)
             throws IFT287Exception, SQLException
@@ -30,10 +29,9 @@ public class GestionAubergeInn
         clients = new TableClients(cx);
         reservations = new TableReservations(cx);
         commodites = new TableCommodites(cx);
-        commoditesOffertes = new TableCommoditesOffertes(cx);
 
         setGestionInteraction(new GestionInteraction(cx));
-        setGestionChambre(new GestionChambre(chambres, commodites, commoditesOffertes, reservations));
+        setGestionChambre(new GestionChambre(chambres, commodites, reservations));
         setGestionClient(new GestionClient(clients, reservations));
         setGestionReservation(new GestionReservation(chambres, reservations, clients));
         setGestionCommodite(new GestionCommodite(commodites));

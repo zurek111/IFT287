@@ -1,23 +1,30 @@
 package AubergeInn.Table;
 
-import java.sql.*;
 import AubergeInn.Connexion;
 import AubergeInn.Tuple.TupleReservation;
+import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TableReservations 
 {
-    private PreparedStatement stmClientExiste;
-    private PreparedStatement stmChambreExiste;
+    private PreparedStatement stmReservationClient;
+    private PreparedStatement stmReservationChambre;
+    private PreparedStatement stmInsert;
+
 
     private Connexion cx;
     
 	public TableReservations(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
-		stmClientExiste = cx.getConnection().prepareStatement(
+		stmReservationClient = cx.getConnection().prepareStatement(
 				"select * from Reservation where idClient = ?");
-		stmChambreExiste = cx.getConnection().prepareStatement(
+		stmReservationChambre = cx.getConnection().prepareStatement(
 				"select * from Reservation where idChambre = ?");
+		stmInsert = cx.getConnection().prepareStatement(
+				"insert into Reservation "
+				+ "(idClient, idChambre, dateDebut, dateFin, prixTotal) values (?,?,?,?,?)");
 	}
 	
 	public Connexion getConnexion()
@@ -25,11 +32,13 @@ public class TableReservations
         return cx;
     }
 	
-	public TupleReservation getReservationsClient(int idClient) throws SQLException
+	public List<TupleReservation> getReservationsClient(int idClient) throws SQLException
 	{
-		stmClientExiste.setInt(1, idClient);
-		ResultSet rst = stmClientExiste.executeQuery();
-		if (rst.next())
+		stmReservationClient.setInt(1, idClient);
+		ResultSet rst = stmReservationClient.executeQuery();
+        List<TupleReservation> listeReservations = new LinkedList<TupleReservation>();
+
+		while (rst.next())
 		{
             TupleReservation tupleReservation = new TupleReservation();
             tupleReservation.setIdReservation(rst.getInt(1));
@@ -38,20 +47,20 @@ public class TableReservations
             tupleReservation.setDateDebut(rst.getDate(4));
             tupleReservation.setDateFin(rst.getDate(5));
             tupleReservation.setPrixTotal(rst.getInt(6));
-
-            return tupleReservation;
+            
+            listeReservations.add(tupleReservation);
 		}
-		else
-		{
-			return null;
-		}
+		
+		return listeReservations;
 	}
 	
-	public TupleReservation getReservationsChambre(int idChambre) throws SQLException
+	public List<TupleReservation> getReservationsChambre(int idChambre) throws SQLException
 	{
-		stmChambreExiste.setInt(1, idChambre);
-		ResultSet rst = stmChambreExiste.executeQuery();
-		if (rst.next())
+		stmReservationChambre.setInt(1, idChambre);
+		ResultSet rst = stmReservationChambre.executeQuery();
+        List<TupleReservation> listeReservations = new LinkedList<TupleReservation>();
+
+		while (rst.next())
 		{
             TupleReservation tupleReservation = new TupleReservation();
             tupleReservation.setIdReservation(rst.getInt(1));
@@ -60,12 +69,21 @@ public class TableReservations
             tupleReservation.setDateDebut(rst.getDate(4));
             tupleReservation.setDateFin(rst.getDate(5));
             tupleReservation.setPrixTotal(rst.getInt(6));
-
-            return tupleReservation;
-		}
-		else
-		{
-			return null;
-		}
+            
+            listeReservations.add(tupleReservation);
+		}	
+		
+		return listeReservations;
+	}
+	
+	public int ajouter(int idClient, int idChambre, Date dateDebut, Date dateFin, int prixTotal) throws SQLException
+	{
+    	stmInsert.setInt(1, idClient);
+    	stmInsert.setInt(2, idChambre);
+    	stmInsert.setDate(3, dateDebut);
+    	stmInsert.setDate(4, dateFin);
+    	stmInsert.setInt(5, prixTotal);
+    	
+    	return stmInsert.executeUpdate();
 	}
 }

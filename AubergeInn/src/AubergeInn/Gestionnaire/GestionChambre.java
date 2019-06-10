@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableChambres;
-import AubergeInn.Table.TableCommoditesOffertes;
 import AubergeInn.Table.TableCommodites;
 import AubergeInn.Table.TableReservations;
 import AubergeInn.Tuple.TupleChambre;
@@ -14,25 +13,20 @@ public class GestionChambre
 {
 	private Connexion cx;
 	private TableChambres chambres;
-	private TableCommoditesOffertes commoditesOffertes;
 	private TableCommodites commodites;
 	private TableReservations reservations;
 	
-	public GestionChambre(TableChambres chambres, TableCommodites commodites, TableCommoditesOffertes commoditesOffertes, TableReservations reservations) throws IFT287Exception
+	public GestionChambre(TableChambres chambres, TableCommodites commodites, TableReservations reservations) throws IFT287Exception
 	{
 		this.cx = chambres.getConnexion();
 		
 		if (cx != commodites.getConnexion())
             throw new IFT287Exception("Les instances de TableChambres et de TableCommodites n'utilisent pas la même connexion au serveur");
 		
-		if (cx != commoditesOffertes.getConnexion())
-            throw new IFT287Exception("Les instances de TableChambres et de TableCommoditesOffertes n'utilisent pas la même connexion au serveur");
-        
 		if (cx != reservations.getConnexion())
             throw new IFT287Exception("Les instances de TableChambres et de TableReservations n'utilisent pas la même connexion au serveur");
 
 		this.chambres = chambres;
-		this.commoditesOffertes = commoditesOffertes;
 		this.commodites = commodites;
         this.reservations = reservations;
 	}
@@ -98,12 +92,54 @@ public class GestionChambre
 	}
 	
 	public void inclureCommodite(int idChambre, int idCommodite)
+			throws SQLException, IFT287Exception
 	{
-		// Cette commande ajoute une commodité à une chambre.
+		try
+		{
+			if (!chambres.existe(idChambre))
+	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
+	        
+	        if (!commodites.existe(idCommodite))
+	            throw new IFT287Exception("La commodité n'existe pas : " + idCommodite);
+	        
+	        if (chambres.commoditeExiste(idChambre, idCommodite))
+	            throw new IFT287Exception("La chambre " + idChambre + " possède déjà la commodité " + idCommodite + ".");
+	        
+            if (chambres.inclureCommodite(idChambre, idCommodite) == 0)
+                throw new IFT287Exception("Erreur lors de l'ajout d'une commodité à la chambre.");
+            
+            // Commit
+            cx.commit();
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 	}
 	
 	public void enleverCommodite(int idChambre, int idCommodite)
+			throws SQLException, IFT287Exception
 	{
-		// Cette commande enlève une commodité d’une chambre.
+		try
+		{
+			if (!chambres.existe(idChambre))
+	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
+	        
+	        if (!commodites.existe(idCommodite))
+	            throw new IFT287Exception("La commodité n'existe pas : " + idCommodite);
+	        
+	        if (!chambres.commoditeExiste(idChambre, idCommodite))
+	            throw new IFT287Exception("La chambre " + idChambre + " ne possède pas la commodité " + idCommodite + ".");
+            
+	        if (chambres.enleverCommodite(idChambre, idCommodite) == 0)
+	        	throw new IFT287Exception("Erreur lors du retrait d'une commodité à une chambre.");
+            
+	        // Commit
+            cx.commit();
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 	}
 }
