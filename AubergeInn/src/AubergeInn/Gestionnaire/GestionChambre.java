@@ -152,4 +152,17 @@ public class GestionChambre
 			throw e;
 		}
 	}
+	
+	public TupleChambre getChambre(int idChambre)
+			throws SQLException
+	{
+		try
+		{
+			return chambres.getChambre(idChambre);
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+	}
 }

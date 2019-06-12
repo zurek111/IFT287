@@ -1,10 +1,12 @@
 package AubergeInn.Gestionnaire;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableCommodites;
+import AubergeInn.Tuple.TupleCommodite;
 
 public class GestionCommodite 
 {
@@ -45,5 +47,19 @@ public class GestionCommodite
             cx.rollback();
             throw e;
         }
+	}
+	
+	public List<TupleCommodite> getCommoditesOffertes(int idChambre)
+			throws SQLException
+	{
+		try
+		{	
+			return commodites.getCommoditesChambre(idChambre);
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		// Cette commande affiche les informations sur une chambre, incluant les commodités offertes.
 	}
 }

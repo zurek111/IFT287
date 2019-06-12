@@ -8,8 +8,10 @@ import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableChambres;
 import AubergeInn.Table.TableClients;
+import AubergeInn.Table.TableCommodites;
 import AubergeInn.Table.TableReservations;
 import AubergeInn.Tuple.TupleChambre;
+import AubergeInn.Tuple.TupleCommodite;
 import AubergeInn.Tuple.TupleReservation;
 
 public class GestionReservation 
@@ -18,8 +20,9 @@ public class GestionReservation
 	private TableChambres chambres;
 	private TableReservations reservations;
 	private TableClients clients;
+	private TableCommodites commodites;
 	
-	public GestionReservation(TableChambres chambres, TableReservations reservations, TableClients clients) throws IFT287Exception
+	public GestionReservation(TableChambres chambres, TableReservations reservations, TableClients clients, TableCommodites commodites) throws IFT287Exception
 	{
 		this.cx = reservations.getConnexion();
 		
@@ -28,10 +31,14 @@ public class GestionReservation
 		
 		if (cx != clients.getConnexion())
             throw new IFT287Exception("Les instances de TableReservations et de TableClients n'utilisent pas la même connexion au serveur");
+		
+		if (cx != commodites.getConnexion())
+            throw new IFT287Exception("Les instances de TableReservations et de TableCommodites n'utilisent pas la même connexion au serveur");
         
 		this.chambres = chambres;
         this.reservations = reservations;
         this.clients = clients;
+        this.commodites = commodites;
 	}
 	
 	public void reserver(int idClient, int idChambre, Date dateDebut, Date dateFin)
@@ -60,7 +67,17 @@ public class GestionReservation
 				}
 			}
 			
-			// TODO - Calculer prixTotal
+			// Liste des commodites pour la chambre, permet d'obtenir le prix total
+			List<TupleCommodite> listeCommodite = commodites.getCommoditesChambre(idChambre);
+			if (listeCommodite != null)
+			{
+				int prixCommodites = 0;
+				
+				for (TupleCommodite commodite : listeCommodite)
+					prixCommodites += commodite.getPrix();	
+				
+				tupleChambre.setPrix(tupleChambre.getPrix() + prixCommodites);
+			}
 			
 			// Ajout d'une réservation, erreur si la requête retourne 0
 			if (reservations.ajouter(idClient, idChambre, dateDebut, dateFin, tupleChambre.getPrix()) == 0)
