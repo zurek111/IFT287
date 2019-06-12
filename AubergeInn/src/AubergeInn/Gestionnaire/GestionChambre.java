@@ -34,21 +34,25 @@ public class GestionChambre
 	public void ajouterChambre(int idChambre, String nom, String type, int prix)
 			throws SQLException, IFT287Exception
 	{
-		// Cette commande ajoute une nouvelle chambre au système.
 		try
         {
-			// Vérifie les informations de la chambre
+			// Vérifie le prix de la chambre
 			if (prix < 0)
                 throw new IFT287Exception("Le prix de la chambre doit être supérieur ou égal à zéro.");
 			
+			// Vérifie que le nom est valide
 			if (nom.isEmpty() || type.isEmpty())
-                throw new IFT287Exception("La chambre doit avoir des informations valides.");
+                throw new IFT287Exception("Le nom de la chambre doit être valide.");
             
+			// Vérifie que le type est valide
+			if (type.isEmpty())
+                throw new IFT287Exception("Le type de la chambre doit être valide.");
+			
 			// Vérifie si la chambre existe déja
             if (chambres.existe(idChambre))
                 throw new IFT287Exception("La chambre existe déjà: " + idChambre);
 
-            // Ajout de la chambre
+            // Ajout de la chambre, erreur si la requête retourne 0
             if (chambres.ajouter(idChambre, nom, type, prix) == 0)
             	throw new IFT287Exception("Erreur lors de l'ajout d'une chambre à la table.");
             
@@ -66,14 +70,12 @@ public class GestionChambre
 			throws SQLException, IFT287Exception
 	{
 		try
-        {
-            TupleChambre tupleChambre = chambres.getChambre(idChambre);
-            
+        {    
             // Verifie si la chambre est existant
-            if (tupleChambre == null)
+            if (chambres.existe(idChambre))
                 throw new IFT287Exception("Chambre inexistante: " + idChambre);
             
-            // Verifie si la chambre a des reservations
+            // Verifie si la chambre a des réservations
             if (reservations.getReservationsChambre(idChambre) != null)
                 throw new IFT287Exception("Chambre " + idChambre + " a des réservations");
 
@@ -96,15 +98,19 @@ public class GestionChambre
 	{
 		try
 		{
+			// Vérifie si la chambre existe
 			if (!chambres.existe(idChambre))
 	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
 	        
+			// Vérifie si la commodité existe
 	        if (!commodites.existe(idCommodite))
 	            throw new IFT287Exception("La commodité n'existe pas : " + idCommodite);
 	        
-	        if (chambres.commoditeExiste(idChambre, idCommodite))
+	        // Vérifie si la chambre 
+	        if (chambres.commoditeIncluse(idChambre, idCommodite))
 	            throw new IFT287Exception("La chambre " + idChambre + " possède déjà la commodité " + idCommodite + ".");
 	        
+	        // Inclus la commodité à la chambre, erreur si la requête retourne 0
             if (chambres.inclureCommodite(idChambre, idCommodite) == 0)
                 throw new IFT287Exception("Erreur lors de l'ajout d'une commodité à la chambre.");
             
@@ -122,18 +128,22 @@ public class GestionChambre
 	{
 		try
 		{
+			// Vérifie si la chambre existe
 			if (!chambres.existe(idChambre))
 	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
 	        
+			// Vérifie si la commodité existe
 	        if (!commodites.existe(idCommodite))
 	            throw new IFT287Exception("La commodité n'existe pas : " + idCommodite);
 	        
-	        if (!chambres.commoditeExiste(idChambre, idCommodite))
+	        // Vérifie si la chambre offre la commodité
+	        if (!chambres.commoditeIncluse(idChambre, idCommodite))
 	            throw new IFT287Exception("La chambre " + idChambre + " ne possède pas la commodité " + idCommodite + ".");
             
+	        // Enlève la commodite de la chambre
 	        if (chambres.enleverCommodite(idChambre, idCommodite) == 0)
 	        	throw new IFT287Exception("Erreur lors du retrait d'une commodité à une chambre.");
-            
+            	        
 	        // Commit
             cx.commit();
 		}

@@ -40,24 +40,29 @@ public class GestionReservation
 		try
 		{
 			TupleChambre tupleChambre = chambres.getChambre(idChambre);
+			
+			// Vérifie si la chambre existe
 			if (tupleChambre == null)
 	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
  
+			// Vérifie si le client existe
 			if (!clients.existe(idClient))
 	            throw new IFT287Exception("Le client n'existe pas : " + idClient);
 
-			
+			// Liste des réservations sur la chambre
 			List<TupleReservation> tupleReservation = reservations.getReservationsChambre(idChambre);
 			if (tupleReservation != null)
 			{
 				for (TupleReservation reservation : tupleReservation)
 				{
 					if (dateDebut.before(reservation.getDateDebut()) || dateFin.after(reservation.getDateFin()))
-							throw new IFT287Exception("Chambre déjà réservé pendnt ces dates.");
+							throw new IFT287Exception("Chambre déjà réservé pendant ces dates.");
 				}
 			}
 			
 			// TODO - Calculer prixTotal
+			
+			// Ajout d'une réservation, erreur si la requête retourne 0
 			if (reservations.ajouter(idClient, idChambre, dateDebut, dateFin, tupleChambre.getPrix()) == 0)
 				throw new IFT287Exception("Erreur lors de l'ajout de la réservation.");
 	       

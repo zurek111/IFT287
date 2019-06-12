@@ -7,7 +7,7 @@ import AubergeInn.Tuple.TupleChambre;
 public class TableChambres 
 {
     private PreparedStatement stmExist;
-    private PreparedStatement stmCommoditeExist;
+    private PreparedStatement stmCommoditeIncluse;
     private PreparedStatement stmRemoveCommodite;
     private PreparedStatement stmInsert;
     private PreparedStatement stmDelete;
@@ -26,7 +26,7 @@ public class TableChambres
 				"delete from Chambre where idChambre = ?");	
 		stmInclude = cx.getConnection().prepareStatement(
 				"insert into CommoditeOfferte (idChambre, idCommodite) values (?,?)");
-		stmCommoditeExist = cx.getConnection().prepareStatement(
+		stmCommoditeIncluse = cx.getConnection().prepareStatement(
 				"select * from CommoditeOfferte where idChambre = ? and idCommodite = ?");
 		stmRemoveCommodite = cx.getConnection().prepareStatement(
 				"delete from CommoditeOfferte where idChambre = ? and idCommodite = ?");
@@ -47,11 +47,11 @@ public class TableChambres
     	return chambreExist;
     }
     
-    public boolean commoditeExiste(int idChambre, int idCommodite) throws SQLException
+    public boolean commoditeIncluse(int idChambre, int idCommodite) throws SQLException
     {
-    	stmCommoditeExist.setInt(1, idChambre);
-    	stmCommoditeExist.setInt(2, idCommodite);
-    	ResultSet rst = stmCommoditeExist.executeQuery();
+    	stmCommoditeIncluse.setInt(1, idChambre);
+    	stmCommoditeIncluse.setInt(2, idCommodite);
+    	ResultSet rst = stmCommoditeIncluse.executeQuery();
     	boolean commoditeChambreExist = rst.next();
     	rst.close();
     	

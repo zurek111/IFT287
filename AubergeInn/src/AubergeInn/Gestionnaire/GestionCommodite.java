@@ -20,7 +20,6 @@ public class GestionCommodite
 	public void ajouterCommodite(int idCommodite, String description, int prix)
 			throws SQLException, IFT287Exception
 	{
-		// Cette commande ajoute un nouveau service offert par l’entreprise.
 		try
         {
 			// Vérifie les informations de la commodité

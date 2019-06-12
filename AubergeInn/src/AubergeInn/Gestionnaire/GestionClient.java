@@ -63,7 +63,7 @@ public class GestionClient
 	            if (tupleClient == null)
 	                throw new IFT287Exception("Client inexistant: " + idClient);
 	            
-	            // Verifie si le client a des reservations
+	            // Verifie si le client a des réservations
 	            if (reservations.getReservationsClient(idClient) != null)
 	                throw new IFT287Exception("Client " + idClient + " a des réservations");
 
