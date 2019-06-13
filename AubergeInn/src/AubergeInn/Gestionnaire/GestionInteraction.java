@@ -5,58 +5,33 @@ import java.util.List;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
-import AubergeInn.Table.TableChambres;
-import AubergeInn.Table.TableCommodites;
 import AubergeInn.Tuple.TupleChambre;
 import AubergeInn.Tuple.TupleCommodite;
+import AubergeInn.Tuple.TupleReservation;
+import AubergeInn.Tuple.TupleClient;
 
 public class GestionInteraction 
 {
 	private Connexion cx;
-	private TableChambres chambres;
-	private TableCommodites commodites;
 
-	public GestionInteraction(Connexion cx, TableChambres chambres, TableCommodites commodites) 
+	public GestionInteraction(Connexion cx) 
 			throws IFT287Exception
 	{
 		 this.cx = cx;
-		 
-		 if (cx != chambres.getConnexion())
-	            throw new IFT287Exception("Le gestionnaire d'interaction n'utilise pas la même connexion au serveur que l'instance TableChambres");
-
-		 if (cx != commodites.getConnexion())
-	            throw new IFT287Exception("Le gestionnaire d'interaction n'utilise pas la même connexion au serveur que l'instance TableCommodites");
-		 
-		 this.chambres = chambres;
-		 this.commodites = commodites;
 	}
 
-	public void afficherChambre(int idChambre)
+	public void afficherChambre(int idChambre, GestionAubergeInn gestionAubergeInn)
 			throws SQLException, IFT287Exception
 	{
 		try
 		{	
-			TupleChambre c = chambres.getChambre(idChambre);
-			if (c == null)
-				throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
-			
-			List<TupleCommodite> listeCommodites = commodites.getCommoditesChambre(idChambre);
-			if (listeCommodites != null)
-			{
-				int prixCommodites = 0;
-				
-				for (TupleCommodite commodite : listeCommodites)
-					prixCommodites += commodite.getPrix();
-				
-				c.setPrix(c.getPrix() + prixCommodites);
-			}
+			TupleChambre c = gestionAubergeInn.getGestionChambre().getChambre(idChambre);
 
-			System.out.println("");
 			System.out.println("idChambre nom typeLit prix");
 			System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrix());
 			
 			System.out.println("Commodités offertes : ");
-			for (TupleCommodite commodite : listeCommodites)
+			for (TupleCommodite commodite : c.getCommodites())
 				System.out.println(commodite.getDescription());
 			
 	        // Commit
@@ -68,16 +43,52 @@ public class GestionInteraction
 		}
 	}
 	
-	public void afficherChambresLibres()
+	public void afficherChambresLibres(GestionAubergeInn gestionAubergeInn)
+			throws SQLException, IFT287Exception
 	{
-		// Cette commande affiche toutes les chambres qui sont disponibles. L’affichage
-		// doit inclure le prix de location de la chambre (prix de base, plus les commodités).
+		try
+		{
+			List<TupleChambre> listeChambres = gestionAubergeInn.getGestionChambre().getChambresLibres();
+			
+			System.out.println("idChambre nom typeLit prixTotal");
+
+			for (TupleChambre c : listeChambres)
+				System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrix());
+
+	        // Commit
+            cx.commit();		
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 	}
 	
-	public void afficherClient(int idClient)
+	public void afficherClient(int idClient, GestionAubergeInn gestionAubergeInn)
+			throws SQLException, IFT287Exception
 	{
-		// Cette commande affiche toutes les informations sur un client, incluant
-		// les réservations présentes et passées. Les réservations contiennent le
-		// prix total de la réservation, sans les taxes.
+		try
+		{
+			TupleClient c = gestionAubergeInn.getGestionClient().getClient(idClient);
+			
+			System.out.println("idClient prenom nom age");
+			System.out.println(c.getIdClient() + " " + c.getPrenom() + " " + c.getNom() + " " + c.getAge());
+			
+			if (c.getReservations().isEmpty())
+				System.out.println("Le client n'a jamais fait de réservation");
+			else
+			{
+				System.out.println("Réservations :");
+				
+				for (TupleReservation r : c.getReservations())
+				{
+					System.out.printf("Chambre #%d - %d$ | %tF au %tF %n", r.getIdChambre(), r.getPrixTotal(), r.getDateDebut(), r.getDateFin());
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 	}
 }

@@ -160,16 +160,16 @@ public class AubergeInn
                 else if (command.equals("afficherChambre"))
                 {
                 	int idChambre = readInt(tokenizer);
-                	gestionAubergeInn.getGestionInteraction().afficherChambre(idChambre);
+                	gestionAubergeInn.getGestionInteraction().afficherChambre(idChambre, gestionAubergeInn);
                 }
                 else if (command.equals("afficherChambresLibree"))
                 {
-                	gestionAubergeInn.getGestionInteraction().afficherChambresLibres();
+                	gestionAubergeInn.getGestionInteraction().afficherChambresLibres(gestionAubergeInn);
                 }
                 else if (command.equals("afficherClient"))
                 {
                 	int idClient = readInt(tokenizer);
-                	gestionAubergeInn.getGestionInteraction().afficherClient(idClient);
+                	gestionAubergeInn.getGestionInteraction().afficherClient(idClient, gestionAubergeInn);
                 }
                 else
                 {

@@ -1,5 +1,7 @@
 package AubergeInn.Tuple;
 
+import java.util.List;
+
 public class TupleClient 
 {
 
@@ -7,6 +9,7 @@ public class TupleClient
 	private String prenom;
 	private String nom;
 	private int age;
+	private List<TupleReservation> reservations;
 	
 	public TupleClient()
 	{
@@ -66,6 +69,16 @@ public class TupleClient
 	public void setAge(int age) 
 	{
 		this.age = age;
+	}
+
+	public List<TupleReservation> getReservations() 
+	{
+		return reservations;
+	}
+
+	public void setReservations(List<TupleReservation> reservations) 
+	{
+		this.reservations = reservations;
 	}
 
 }

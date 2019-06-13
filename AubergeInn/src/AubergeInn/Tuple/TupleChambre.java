@@ -1,5 +1,7 @@
 package AubergeInn.Tuple;
 
+import java.util.List;
+
 public class TupleChambre 
 {
 
@@ -7,6 +9,7 @@ public class TupleChambre
 	private String nom;
 	private String typeLit;
 	private int prix;
+	private List<TupleCommodite> commodites;
 	
 	public TupleChambre()
 	{
@@ -58,6 +61,16 @@ public class TupleChambre
 	public void setPrix(int prix) 
 	{
 		this.prix = prix;
+	}
+
+	public List<TupleCommodite> getCommodites() 
+	{
+		return commodites;
+	}
+
+	public void setCommodites(List<TupleCommodite> commodites) 
+	{
+		this.commodites = commodites;
 	}
 
 }

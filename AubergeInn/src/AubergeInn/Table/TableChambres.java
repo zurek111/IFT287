@@ -1,11 +1,15 @@
 package AubergeInn.Table;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
+
 import AubergeInn.Connexion;
 import AubergeInn.Tuple.TupleChambre;
 
 public class TableChambres 
 {
+    private PreparedStatement stmSelect;
     private PreparedStatement stmExist;
     private PreparedStatement stmCommoditeIncluse;
     private PreparedStatement stmRemoveCommodite;
@@ -18,8 +22,11 @@ public class TableChambres
 	public TableChambres(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
+		
+		stmSelect = cx.getConnection().prepareStatement(
+				"select * from Chambre");
 		stmExist = cx.getConnection().prepareStatement(
-				"select idChambre, nom, typeLit, prix from Chambre where idChambre = ?");
+				"select * from Chambre where idChambre = ?");
 		stmInsert = cx.getConnection().prepareStatement(
 				"insert into Chambre (idChambre, nom, typeLit, prix) values (?,?,?,?)");
 		stmDelete = cx.getConnection().prepareStatement(
@@ -56,6 +63,23 @@ public class TableChambres
     	rst.close();
     	
     	return commoditeChambreExist;
+    }
+    
+    public List<TupleChambre> getAllChambre() throws SQLException
+    {
+    	ResultSet rset = stmSelect.executeQuery();
+    	List<TupleChambre> listeChambres = new LinkedList<TupleChambre>();
+        while (rset.next())
+        {
+        	TupleChambre chambre = new TupleChambre(rset.getInt("idChambre"),
+                                                    rset.getString("nom"),
+                                                    rset.getString("typeLit"),
+                                                    rset.getInt("prix"));
+            
+        	listeChambres.add(chambre);
+        }
+        rset.close();
+        return listeChambres;
     }
     
     public TupleChambre getChambre(int idChambre) throws SQLException

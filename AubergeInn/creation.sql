@@ -29,7 +29,7 @@ CREATE TABLE Commodite(
 
 DROP TABLE CommoditeOfferte CASCADE;
 CREATE TABLE CommoditeOfferte(
-	idCommoditeOfferte INTEGER AUTO_INCREMENT,
+	idCommoditeOfferte SERIAL,
 	idChambre          INTEGER NOT NULL,
 	idCommodite        INTEGER NOT NULL,
 	

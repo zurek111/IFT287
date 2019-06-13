@@ -52,6 +52,26 @@ public class GestionClient
         }
 	}
 	
+	public TupleClient getClient(int idClient)
+			throws SQLException, IFT287Exception
+	{
+		try
+		{
+			TupleClient tupleClient = clients.getClient(idClient);
+			
+			if (tupleClient == null)
+				throw new IFT287Exception("Le client n'existe pas : " + idClient);
+
+			tupleClient.setReservations(reservations.getReservationsClient(idClient));
+			
+			return tupleClient;
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+	}	
+	
 	public void supprimerClient(int idClient)
 			throws SQLException, IFT287Exception, Exception
 	{
@@ -64,7 +84,7 @@ public class GestionClient
 	                throw new IFT287Exception("Client inexistant: " + idClient);
 	            
 	            // Verifie si le client a des réservations
-	            if (reservations.getReservationsClient(idClient) != null)
+	            if (!reservations.getReservationsClient(idClient).isEmpty())
 	                throw new IFT287Exception("Client " + idClient + " a des réservations");
 
 	            // Suppression du membre

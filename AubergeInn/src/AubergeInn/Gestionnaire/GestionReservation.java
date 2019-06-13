@@ -46,6 +46,10 @@ public class GestionReservation
 	{
 		try
 		{
+			// Vérifie que les date sont des dates valides
+			if (dateDebut.after(dateFin))
+	            throw new IFT287Exception("La date de début doit être avant la date de fin.");
+			
 			TupleChambre tupleChambre = chambres.getChambre(idChambre);
 			
 			// Vérifie si la chambre existe
@@ -62,8 +66,8 @@ public class GestionReservation
 			{
 				for (TupleReservation reservation : tupleReservation)
 				{
-					if (dateDebut.before(reservation.getDateDebut()) || dateFin.after(reservation.getDateFin()))
-							throw new IFT287Exception("Chambre déjà réservé pendant ces dates.");
+					if (!(dateDebut.after(reservation.getDateFin()) || dateFin.before(reservation.getDateDebut())))
+						throw new IFT287Exception("Chambre déjà réservé pendant ces dates.");		
 				}
 			}
 			

@@ -30,7 +30,7 @@ public class GestionAubergeInn
         reservations = new TableReservations(cx);
         commodites = new TableCommodites(cx);
 
-        setGestionInteraction(new GestionInteraction(cx, chambres, commodites));
+        setGestionInteraction(new GestionInteraction(cx));
         setGestionChambre(new GestionChambre(chambres, commodites, reservations));
         setGestionClient(new GestionClient(clients, reservations));
         setGestionReservation(new GestionReservation(chambres, reservations, clients, commodites));

@@ -19,7 +19,7 @@ public class TableReservations
 	{
 		this.cx = cx;
 		stmReservationClient = cx.getConnection().prepareStatement(
-				"select * from Reservation where idClient = ?");
+				"select * from Reservation where idClient = ? order by dateDebut, dateFin");
 		stmReservationChambre = cx.getConnection().prepareStatement(
 				"select * from Reservation where idChambre = ?");
 		stmInsert = cx.getConnection().prepareStatement(
@@ -42,8 +42,8 @@ public class TableReservations
 		{
             TupleReservation tupleReservation = new TupleReservation();
             tupleReservation.setIdReservation(rst.getInt(1));
-            tupleReservation.setIdChambre(rst.getInt(2));
-            tupleReservation.setIdClient(rst.getInt(3));
+            tupleReservation.setIdClient(rst.getInt(2));
+            tupleReservation.setIdChambre(rst.getInt(3));
             tupleReservation.setDateDebut(rst.getDate(4));
             tupleReservation.setDateFin(rst.getDate(5));
             tupleReservation.setPrixTotal(rst.getInt(6));
@@ -64,8 +64,8 @@ public class TableReservations
 		{
             TupleReservation tupleReservation = new TupleReservation();
             tupleReservation.setIdReservation(rst.getInt(1));
-            tupleReservation.setIdChambre(rst.getInt(2));
-            tupleReservation.setIdClient(rst.getInt(3));
+            tupleReservation.setIdClient(rst.getInt(2));
+            tupleReservation.setIdChambre(rst.getInt(3));
             tupleReservation.setDateDebut(rst.getDate(4));
             tupleReservation.setDateFin(rst.getDate(5));
             tupleReservation.setPrixTotal(rst.getInt(6));
