@@ -219,7 +219,6 @@ public class GestionChambre
 				throw new IFT287Exception("Aucune chambre n'existe");
 
 			Date date = new Date();
-
 			List<TupleReservation> listeReservation = new LinkedList<TupleReservation>();
 
 			for (int i = 0; i < listeChambres.size(); ++i)
