@@ -1,7 +1,8 @@
 package AubergeInn.Gestionnaire;
 
 import java.sql.SQLException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -85,7 +86,8 @@ public class GestionChambre
             
             for (TupleReservation reservation : listeReservations)
             {
-            	Date date = new Date();
+            	LocalDate localDate = LocalDate.now();
+    			Date date = Date.valueOf(localDate);
             	if (!reservation.getDateFin().before(date))
             		throw new IFT287Exception("Chambre " + idChambre + " a des réservations");
             }
@@ -217,8 +219,9 @@ public class GestionChambre
 
 			if (listeChambres.isEmpty())
 				throw new IFT287Exception("Aucune chambre n'existe");
-
-			Date date = new Date();
+			
+			LocalDate localDate = LocalDate.now();
+			Date date = Date.valueOf(localDate);
 			List<TupleReservation> listeReservation = new LinkedList<TupleReservation>();
 
 			for (int i = 0; i < listeChambres.size(); ++i)
