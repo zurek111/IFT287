@@ -1,4 +1,4 @@
-DROP TABLE Client CASCADE;
+DROP TABLE IF EXISTS Client CASCADE;
 CREATE TABLE Client(
 	idClient INTEGER,
 	prenom   VARCHAR(255) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE Client(
 	CONSTRAINT pk_idClient PRIMARY KEY (idClient)
 );
 
-DROP TABLE Chambre CASCADE;
+DROP TABLE IF EXISTS Chambre CASCADE;
 CREATE TABLE Chambre(
 	idChambre INTEGER,
 	nom       VARCHAR(255) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE Chambre(
 	CONSTRAINT pk_idChambre PRIMARY KEY (idChambre)
 );
 
-DROP TABLE Commodite CASCADE;
+DROP TABLE IF EXISTS Commodite CASCADE;
 CREATE TABLE Commodite(
 	idCommodite INTEGER,
 	description VARCHAR(255) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE Commodite(
 	CONSTRAINT pk_idCommodite PRIMARY KEY (idCommodite)
 );
 
-DROP TABLE CommoditeOfferte CASCADE;
+DROP TABLE IF EXISTS CommoditeOfferte CASCADE;
 CREATE TABLE CommoditeOfferte(
 	idCommoditeOfferte SERIAL,
 	idChambre          INTEGER NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE CommoditeOfferte(
 	CONSTRAINT fk_idCommodite          FOREIGN KEY (idCommodite) REFERENCES Commodite
 );
 
-DROP TABLE Reservation CASCADE;
+DROP TABLE IF EXISTS Reservation CASCADE;
 CREATE TABLE Reservation(
 	idReservation SERIAL,
 	idClient      INTEGER NOT NULL,

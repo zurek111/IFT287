@@ -162,7 +162,7 @@ public class AubergeInn
                 	int idChambre = readInt(tokenizer);
                 	gestionAubergeInn.getGestionInteraction().afficherChambre(idChambre, gestionAubergeInn);
                 }
-                else if (command.equals("afficherChambresLibree"))
+                else if (command.equals("afficherChambresLibres"))
                 {
                 	gestionAubergeInn.getGestionInteraction().afficherChambresLibres(gestionAubergeInn);
                 }
