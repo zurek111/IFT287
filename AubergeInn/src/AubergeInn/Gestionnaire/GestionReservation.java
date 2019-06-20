@@ -66,7 +66,7 @@ public class GestionReservation
 			{
 				for (TupleReservation reservation : tupleReservation)
 				{
-					if (!(dateDebut.after(reservation.getDateFin()) || dateFin.before(reservation.getDateDebut())))
+					if (!(dateFin.compareTo(reservation.getDateDebut()) <= 0 || dateDebut.compareTo(reservation.getDateFin()) >= 0))
 						throw new IFT287Exception("Chambre déjà réservé pendant ces dates.");		
 				}
 			}

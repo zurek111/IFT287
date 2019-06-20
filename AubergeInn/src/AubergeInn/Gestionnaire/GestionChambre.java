@@ -230,7 +230,7 @@ public class GestionChambre
 				
 				for (TupleReservation reservation : listeReservation)
 				{
-					if (!(date.after(reservation.getDateFin()) || date.before(reservation.getDateDebut())))
+					if (!(date.compareTo(reservation.getDateFin()) >= 0))
 					{
 						listeChambres.remove(i);
 						--i;
