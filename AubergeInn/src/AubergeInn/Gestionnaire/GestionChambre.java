@@ -22,6 +22,7 @@ public class GestionChambre
 	private TableCommodites commodites;
 	private TableReservations reservations;
 	
+	// Fonction de connexion pour la chambre
 	public GestionChambre(TableChambres chambres, TableCommodites commodites, TableReservations reservations) throws IFT287Exception
 	{
 		this.cx = chambres.getConnexion();
@@ -37,6 +38,15 @@ public class GestionChambre
         this.reservations = reservations;
 	}
 	
+	/**
+	 * Fonction pour ajouter une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param nom  le nom de la chambre.
+	 * @param type  le type de la chambre.
+	 * @param prix  le prix de la chambre.
+	 * 
+     */
 	public void ajouterChambre(int idChambre, String nom, String type, int prix)
 			throws SQLException, IFT287Exception
 	{
@@ -72,6 +82,12 @@ public class GestionChambre
         }
 	}
 	
+	/**
+	 * Fonction pour supprimer une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * 
+     */
 	public void supprimerChambre(int idChambre)
 			throws SQLException, IFT287Exception
 	{
@@ -106,6 +122,13 @@ public class GestionChambre
         }
 	}
 	
+	/**
+	 * Fonction pour ajouter une commodité dans une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+     */
 	public void inclureCommodite(int idChambre, int idCommodite)
 			throws SQLException, IFT287Exception
 	{
@@ -136,6 +159,13 @@ public class GestionChambre
 		}
 	}
 	
+	/**
+	 * Fonction pour enlever une commodité dans une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+     */
 	public void enleverCommodite(int idChambre, int idCommodite)
 			throws SQLException, IFT287Exception
 	{
@@ -166,6 +196,13 @@ public class GestionChambre
 		}
 	}
 	
+	/**
+	 * Fonction pour aller chercher une chambre dans la BD.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * 
+	 * @return le tuple de la chambre contenant les données de celle-ci.
+     */
 	public TupleChambre getChambre(int idChambre)
 			throws SQLException, IFT287Exception
 	{
@@ -192,6 +229,11 @@ public class GestionChambre
 		}
 	}
 	
+	/**
+	 * Fonction pour aller chercher toutes les chambres dans la BD.
+	 * 
+	 * @return la listes des chambres et les données de celles-ci.
+     */
 	public List<TupleChambre> getAllChambres()
 			throws SQLException, IFT287Exception
 	{
@@ -210,6 +252,11 @@ public class GestionChambre
 		}
 	}
 	
+	/**
+	 * Fonction pour trouver les chambres libres en date d'aujourd'hui.
+	 * 
+	 * @return la listes des chambres libres.
+     */
 	public List<TupleChambre> getChambresLibres()
 			throws SQLException, IFT287Exception
 	{

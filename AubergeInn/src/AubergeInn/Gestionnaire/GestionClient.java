@@ -25,6 +25,15 @@ public class GestionClient
         this.reservations = reservations;
 	}
 	
+	/**
+	 * Fonction pour ajouter un client.
+	 * 
+	 * @param idClient  l'id du client.
+	 * @param prenom  le nom du client.
+	 * @param nom  le prenom du client.
+	 * @param age  l'age du client.
+	 * 
+     */
 	public void ajouterClient(int idClient, String prenom, String nom, int age)
 			throws SQLException, IFT287Exception
 	{
@@ -52,6 +61,13 @@ public class GestionClient
         }
 	}
 	
+	/**
+	 * Fonction pour obtenir un client de la BD.
+	 * 
+	 * @param idClient  l'id du client.
+	 * 
+	 * @return Le tuple du client contenant ses données.
+     */
 	public TupleClient getClient(int idClient)
 			throws SQLException, IFT287Exception
 	{
@@ -72,6 +88,12 @@ public class GestionClient
 		}
 	}	
 	
+	/**
+	 * Fonction pour supprimer un client de la BD.
+	 * 
+	 * @param idClient  l'id du client.
+	 * 
+     */
 	public void supprimerClient(int idClient)
 			throws SQLException, IFT287Exception, Exception
 	{

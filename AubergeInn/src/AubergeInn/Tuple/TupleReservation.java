@@ -2,6 +2,7 @@ package AubergeInn.Tuple;
 
 import java.sql.Date;
 
+// Classe de données pour une réservation.
 public class TupleReservation 
 {
 	private int idReservation;

@@ -15,6 +15,7 @@ public class TableCommodites
 
     private Connexion cx;
     
+    // Fonction de connexion.
 	public TableCommodites(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
@@ -35,6 +36,12 @@ public class TableCommodites
         return cx;
     }
     
+    /**
+	 * Fonction pour savoir si une chambre possède une commodité.
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+	 * @return Vrai si elle fait partie de la chambre, faux sinon..
+     */
     public boolean existe(int idCommodite) throws SQLException
     {
     	stmExist.setInt(1, idCommodite);
@@ -45,6 +52,12 @@ public class TableCommodites
     	return commoditeExist;
     }
     
+    /**
+	 * Fonction pour aller chercher une commodité en BD.
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+	 * @return un tuple de la commodité contenant les données de celle-ci.
+     */
     public TupleCommodite getCommodite(int idCommodite) throws SQLException
     {
     	stmExist.setInt(1, idCommodite);
@@ -65,6 +78,12 @@ public class TableCommodites
         }
     }
     
+    /**
+	 * Fonction pour connaitre les commodités incluses dans une chambre.
+	 * @param idChambre  l'id de la chambre qu'on veut savoir les commodités.
+	 * 
+	 * @return une liste des commodités inclues avec la chambre.
+     */
     public List<TupleCommodite> getCommoditesChambre(int idChambre) throws SQLException
     {
     	stmListeCommodites.setInt(1, idChambre);
@@ -83,11 +102,19 @@ public class TableCommodites
         return listeCommodites;
     }
     
-    public int ajouter(int idCommodite, String description, int age) throws SQLException
+    /**
+	 * Fonction pour ajouter une commodité.
+	 * @param idCommodite  l'id de la commodité.
+	 * @param description  la description de la commodité.
+	 * @param prix  le prix de la commodité.
+	 * 
+	 * @return une liste des commodités inclues avec la chambre.
+     */
+    public int ajouter(int idCommodite, String description, int prix) throws SQLException
     {
     	stmInsert.setInt(1, idCommodite);
     	stmInsert.setString(2, description);
-    	stmInsert.setInt(3, age);
+    	stmInsert.setInt(3, prix);
     	return stmInsert.executeUpdate();
     }
 }

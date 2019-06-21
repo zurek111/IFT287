@@ -15,6 +15,7 @@ public class TableReservations
 
     private Connexion cx;
     
+    // Fonction de connexion
 	public TableReservations(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
@@ -32,6 +33,12 @@ public class TableReservations
         return cx;
     }
 	
+	/**
+	 * Fonction pour obtenir la liste des réservations d'un client.
+	 * @param idClient  l'id du client.
+	 * 
+	 * @return La liste des réservations.
+     */
 	public List<TupleReservation> getReservationsClient(int idClient) throws SQLException
 	{
 		stmReservationClient.setInt(1, idClient);
@@ -54,6 +61,12 @@ public class TableReservations
 		return listeReservations;
 	}
 	
+	/**
+	 * Fonction pour obtenir la liste des réservations d'une chambre.
+	 * @param idChambre  l'id de la chambre.
+	 * 
+	 * @return La liste des réservations.
+     */
 	public List<TupleReservation> getReservationsChambre(int idChambre) throws SQLException
 	{
 		stmReservationChambre.setInt(1, idChambre);
@@ -75,7 +88,16 @@ public class TableReservations
 		
 		return listeReservations;
 	}
-	
+	/**
+	 * Fonction pour ajouter une réservation.
+	 * @param idClient  l'id du client.
+	 * @param idChambre  l'id de la chambre.
+	 * @param dateDebut  date du début de la réservation.
+	 * @param dateFin  date de fin de la réservation.
+	 * @param prixTotal  Prix de la réservation.
+	 * 
+	 * @return Le nombre de lignes ajoutées.
+     */
 	public int ajouter(int idClient, int idChambre, Date dateDebut, Date dateFin, int prixTotal) throws SQLException
 	{
     	stmInsert.setInt(1, idClient);

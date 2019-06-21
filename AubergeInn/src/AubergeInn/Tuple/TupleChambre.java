@@ -2,6 +2,7 @@ package AubergeInn.Tuple;
 
 import java.util.List;
 
+//Classe de données pour une chambre.
 public class TupleChambre 
 {
 

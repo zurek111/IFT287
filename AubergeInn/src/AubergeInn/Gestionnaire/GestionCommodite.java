@@ -19,6 +19,12 @@ public class GestionCommodite
 		this.commodites = commodites;
 	}
 	
+	/**
+	 * Fonction pour ajouter une commodité dans la BD.
+	 * 
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+     */
 	public void ajouterCommodite(int idCommodite, String description, int prix)
 			throws SQLException, IFT287Exception
 	{
@@ -49,6 +55,13 @@ public class GestionCommodite
         }
 	}
 	
+	/**
+	 * Fonction pour obtenir les commodités offertes dans une chambres.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * 
+	 * @return La liste des commodités inclut dans la chambre.
+     */
 	public List<TupleCommodite> getCommoditesOffertes(int idChambre)
 			throws SQLException
 	{
@@ -60,6 +73,5 @@ public class GestionCommodite
 		{
 			throw e;
 		}
-		// Cette commande affiche les informations sur une chambre, incluant les commodités offertes.
 	}
 }

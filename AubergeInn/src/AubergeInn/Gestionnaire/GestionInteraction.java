@@ -19,7 +19,14 @@ public class GestionInteraction
 	{
 		 this.cx = cx;
 	}
-
+	
+	/**
+	 * Fonction pour afficher une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param gestionAubergeInn  gestionnaire de l'auberge.
+	 * 
+     */
 	public void afficherChambre(int idChambre, GestionAubergeInn gestionAubergeInn)
 			throws SQLException, IFT287Exception
 	{
@@ -43,6 +50,12 @@ public class GestionInteraction
 		}
 	}
 	
+	/**
+	 * Fonction pour afficher la liste des chambres libres.
+	 * 
+	 * @param gestionAubergeInn  gestionnaire de l'auberge.
+	 * 
+     */
 	public void afficherChambresLibres(GestionAubergeInn gestionAubergeInn)
 			throws SQLException, IFT287Exception
 	{
@@ -64,6 +77,13 @@ public class GestionInteraction
 		}
 	}
 	
+	/**
+	 * Fonction pour afficher un client.
+	 * 
+	 * @param idClient  l'id du client.
+	 * @param gestionAubergeInn  gestionnaire de l'auberge.
+	 * 
+     */
 	public void afficherClient(int idClient, GestionAubergeInn gestionAubergeInn)
 			throws SQLException, IFT287Exception
 	{

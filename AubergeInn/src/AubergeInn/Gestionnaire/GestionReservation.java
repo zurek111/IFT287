@@ -41,6 +41,15 @@ public class GestionReservation
         this.commodites = commodites;
 	}
 	
+	/**
+	 * Fonction pour reserver une chambre à un client.
+	 * 
+	 * @param idClient  l'id du client.
+	 * @param idChambre  l'id de la chambre.
+	 * @param dateDebut  La date de début de la réservation.
+	 * @param dateFin  La date de fin de la réservation.
+	 * 
+     */
 	public void reserver(int idClient, int idChambre, Date dateDebut, Date dateFin)
 			throws SQLException, IFT287Exception
 	{

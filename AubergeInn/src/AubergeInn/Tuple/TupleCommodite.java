@@ -1,5 +1,7 @@
 package AubergeInn.Tuple;
 
+
+// Classe de données pour une commodité.
 public class TupleCommodite 
 {
 

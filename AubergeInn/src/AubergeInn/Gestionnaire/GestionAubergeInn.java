@@ -21,15 +21,18 @@ public class GestionAubergeInn
     private TableReservations reservations;
     private TableCommodites commodites;
     
+    // Fonction de connection qui initialise les tables.
     public GestionAubergeInn(String serveur, String bd, String user, String password)
             throws IFT287Exception, SQLException
     {
         cx = new Connexion(serveur, bd, user, password);
+        // initialisation des tables
         chambres = new TableChambres(cx);
         clients = new TableClients(cx);
         reservations = new TableReservations(cx);
         commodites = new TableCommodites(cx);
-
+        
+        // passe les tables aux gestionnaires.
         setGestionInteraction(new GestionInteraction(cx));
         setGestionChambre(new GestionChambre(chambres, commodites, reservations));
         setGestionClient(new GestionClient(clients, reservations));

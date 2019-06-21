@@ -28,6 +28,13 @@ public class TableClients
         return cx;
     }
     
+    /**
+	 * Fonction pour savoir si un client fait parti de la BD.
+	 * 
+	 * @param idClient  l'id du client.
+	 * 
+	 * @return Vrai si le client existe, faux sinon.
+     */
     public boolean existe(int idClient) throws SQLException
     {
     	stmExist.setInt(1, idClient);
@@ -38,6 +45,13 @@ public class TableClients
     	return clientExist;
     }
     
+    /**
+	 * Fonction pour obtenir un client de la BD.
+	 * 
+	 * @param idClient  l'id du client.
+	 * 
+	 * @return Le tuple du client contenant ses données.
+     */
     public TupleClient getClient(int idClient) throws SQLException
     {
     	stmExist.setInt(1, idClient);
@@ -59,6 +73,16 @@ public class TableClients
         }
     }
     
+    /**
+	 * Fonction pour ajouter un client dans la BD.
+	 * 
+	 * @param idClient  l'id du client.
+	 * @param prenom  le nom du client.
+	 * @param nom  le prenom du client.
+	 * @param age  l'age du client.
+	 * 
+	 * @return Le nombre de lignes ajoutées dans la BD.
+     */
     public int ajouter(int idClient, String prenom, String nom, int age) throws SQLException
     {
     	stmInsert.setInt(1, idClient);
@@ -68,6 +92,16 @@ public class TableClients
     	return stmInsert.executeUpdate();
     }
     
+    /**
+	 * Fonction pour supprimer un client de la BD.
+	 * 
+	 * @param idClient  l'id du client.
+	 * @param prenom  le nom du client.
+	 * @param nom  le prenom du client.
+	 * @param age  l'age du client.
+	 * 
+	 * @return Le nombre de lignes supprimées dans la BD.
+     */
     public int supprimer(int idClient) throws SQLException
     {
     	stmDelete.setInt(1, idClient);

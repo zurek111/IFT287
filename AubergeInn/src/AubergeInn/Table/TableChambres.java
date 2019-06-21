@@ -19,6 +19,7 @@ public class TableChambres
 
     private Connexion cx;
     
+    // fonctions de connexion
 	public TableChambres(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
@@ -44,6 +45,13 @@ public class TableChambres
         return cx;
     }
     
+	/**
+	 * Fonction pour savoir si une chambre existe dans la BD.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * 
+	 * @return Vrai si la chambre existe, faux sinon.
+     */
     public boolean existe(int idChambre) throws SQLException
     {
     	stmExist.setInt(1, idChambre);
@@ -54,6 +62,14 @@ public class TableChambres
     	return chambreExist;
     }
     
+    /**
+	 * Fonction pour savoir si une commodité est incluse dans une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+	 * @return Vrai si la commodité est incluse dans la chambre, faux sinon.
+     */
     public boolean commoditeIncluse(int idChambre, int idCommodite) throws SQLException
     {
     	stmCommoditeIncluse.setInt(1, idChambre);
@@ -64,7 +80,11 @@ public class TableChambres
     	
     	return commoditeChambreExist;
     }
-    
+    /**
+	 * Fonction pour obtenir toutes les chambres de la BD.
+	 * 
+	 * @return La liste des chambres.
+     */
     public List<TupleChambre> getAllChambre() throws SQLException
     {
     	ResultSet rset = stmSelect.executeQuery();
@@ -82,6 +102,13 @@ public class TableChambres
         return listeChambres;
     }
     
+    /**
+	 * Fonction pour obtenir une chambre de la BD avec son id.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * 
+	 * @return Le tuple de la chambre qui contient les données de celle-ci.
+     */
     public TupleChambre getChambre(int idChambre) throws SQLException
     {
     	stmExist.setInt(1, idChambre);
@@ -103,6 +130,16 @@ public class TableChambres
         }
     }
     
+    /**
+	 * Fonction pour ajouter une chambre dans la BD.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param nom  le nom de la chambre.
+	 * @param typeLit  le type de lit de la chambre.
+	 * @param prix  le prix de la chambre.
+	 * 
+	 * @return Le nombre de lignes ajoutées dans la BD.
+     */
     public int ajouter(int idChambre, String nom, String typeLit, int prix) throws SQLException
     {
     	stmInsert.setInt(1, idChambre);
@@ -112,12 +149,27 @@ public class TableChambres
     	return stmInsert.executeUpdate();
     }
     
+    /**
+	 * Fonction pour supprimer une chambre dans la BD.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * 
+	 * @return Le nombre de lignes supprimées dans la BD.
+     */
     public int supprimer(int idChambre) throws SQLException
     {
     	stmDelete.setInt(1, idChambre);
     	return stmDelete.executeUpdate();
     }
     
+    /**
+	 * Fonction pour inclure une commodité dans une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+	 * @return Le nombre de lignes ajoutées dans la BD.
+     */
     public int inclureCommodite(int idChambre,int idCommodite) throws SQLException
     {
     	stmInclude.setInt(1, idChambre);
@@ -125,6 +177,14 @@ public class TableChambres
     	return stmInclude.executeUpdate();
     }
     
+    /**
+	 * Fonction pour retirer une commodité d'une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre.
+	 * @param idCommodite  l'id de la commodité.
+	 * 
+	 * @return Le nombre de lignes supprimées dans la BD.
+     */
     public int enleverCommodite(int idChambre,int idCommodite) throws SQLException
     {
     	stmRemoveCommodite.setInt(1, idChambre);
