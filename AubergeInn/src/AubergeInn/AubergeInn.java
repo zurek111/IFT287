@@ -1,6 +1,6 @@
-// Travail fait par :
+// Travail fait par : 
 //   Simon Cesare-Zurek - 18 068 546
-//   NomEquipier2 - Matricule
+//   Maxime Paré - 07 207 569
 
 package AubergeInn;
 
