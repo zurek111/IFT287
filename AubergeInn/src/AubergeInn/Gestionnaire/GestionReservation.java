@@ -47,8 +47,8 @@ public class GestionReservation
 		try
 		{
 			// Vérifie que les date sont des dates valides
-			if (dateDebut.after(dateFin))
-	            throw new IFT287Exception("La date de début doit être avant la date de fin.");
+			if (dateDebut.compareTo(dateFin) >= 0)
+	            throw new IFT287Exception("La date de début doit être au moins un jour avant la date de fin.");
 			
 			TupleChambre tupleChambre = chambres.getChambre(idChambre);
 			
