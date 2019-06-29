@@ -2,14 +2,23 @@ package AubergeInn.Tuple;
 
 import java.util.List;
 
+import javax.persistence.*;
+
 // Classe de données pour un client.
+@Entity
 public class TupleClient 
 {
-
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	private int idClient;
 	private String prenom;
 	private String nom;
 	private int age;
+	
+	@OneToMany(mappedBy = "client")
+	@OrderBy("dateDebut")
 	private List<TupleReservation> reservations;
 	
 	public TupleClient()
@@ -71,7 +80,17 @@ public class TupleClient
 	{
 		this.age = age;
 	}
-
+	
+	public void ajouterReservation (TupleReservation reservation)
+	{
+		reservations.add(reservation);
+	}
+	
+	public void enleverReservation (TupleReservation reservation)
+	{
+		reservations.remove(reservation);
+	}
+	
 	public List<TupleReservation> getReservations() 
 	{
 		return reservations;

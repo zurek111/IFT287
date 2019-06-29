@@ -18,7 +18,7 @@ public class TableClients
 	{
 		this.cx = cx;
 		stmClient = cx.getConnection().createQuery(
-				"select c from Client where c.c_idClient = :idClient",TupleClient.class);
+				"select c from Client where c.idClient = :idClient",TupleClient.class);
 	}
 	
     public Connexion getConnexion()

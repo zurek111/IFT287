@@ -39,6 +39,7 @@ public class GestionClient
 	{
 		try
         {
+			cx.demarreTransaction();
 			// Vérifie les informations du client
 			if (age < 0 || prenom.isEmpty() || nom.isEmpty())
                 throw new IFT287Exception("Le client doit avoir des informations personnelles valides.");
@@ -46,9 +47,10 @@ public class GestionClient
 			// Vérifie si le membre existe déja
             if (clients.existe(idClient))
                 throw new IFT287Exception("Client existe déjà: " + idClient);
-
+            
+            TupleClient newClient = new TupleClient(idClient,prenom,nom,age);
             // Ajout du client
-            if (clients.ajouter(idClient, prenom, nom, age) == 0)
+            if (clients.ajouter(newClient) != newClient)
             	throw new IFT287Exception("Erreur lors de l'ajout d'un client à la table.");
             
             // Commit
@@ -105,12 +107,13 @@ public class GestionClient
 	            if (tupleClient == null)
 	                throw new IFT287Exception("Client inexistant: " + idClient);
 	            
+	            //TODO: CHANGER LA CONDITION
 	            // Verifie si le client a des réservations
 	            if (!reservations.getReservationsClient(idClient).isEmpty())
 	                throw new IFT287Exception("Client " + idClient + " a des réservations");
 
 	            // Suppression du membre
-	            if (clients.supprimer(idClient) == 0)
+	            if (!clients.supprimer(tupleClient))
 	                throw new IFT287Exception("Erreur lors de la suppression d'un client.");
 	            
 	            // Commit

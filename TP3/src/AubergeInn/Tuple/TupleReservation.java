@@ -7,7 +7,7 @@ public class TupleReservation
 {
 	private int idReservation;
 	private int idChambre;
-	private int idClient;
+	private TupleClient client;
 	private Date dateDebut;
 	private Date dateFin;
 	private int prixTotal;
@@ -16,11 +16,11 @@ public class TupleReservation
 	{
 	}
 	
-	public TupleReservation(int idReservation, int idChambre, int idClient, Date dateDebut, Date dateFin, int prixTotal)
+	public TupleReservation(int idReservation, int idChambre, TupleClient client, Date dateDebut, Date dateFin, int prixTotal)
 	{
 		this.setIdReservation(idReservation);
 		this.setIdChambre(idChambre);
-		this.setIdClient(idClient);
+		this.setClient(client);
 		this.setDateDebut(dateDebut);
 		this.setDateFin(dateFin);
 		this.setPrixTotal(prixTotal);
@@ -44,16 +44,6 @@ public class TupleReservation
 	public void setIdChambre(int idChambre) 
 	{
 		this.idChambre = idChambre;
-	}
-
-	public int getIdClient() 
-	{
-		return idClient;
-	}
-
-	public void setIdClient(int idClient) 
-	{
-		this.idClient = idClient;
 	}
 
 	public Date getDateDebut() 
@@ -84,6 +74,14 @@ public class TupleReservation
 	public void setPrixTotal(int prixTotal) 
 	{
 		this.prixTotal = prixTotal;
+	}
+
+	public TupleClient getClient() {
+		return client;
+	}
+
+	public void setClient(TupleClient client) {
+		this.client = client;
 	}
 
 }
