@@ -2,11 +2,20 @@ package AubergeInn.Tuple;
 
 import java.sql.Date;
 
+import javax.persistence.*;
+
 // Classe de données pour une réservation.
+@Entity
 public class TupleReservation 
 {
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	private int idReservation;
-	private int idChambre;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private TupleChambre chambre;
+	@ManyToOne(fetch = FetchType.LAZY)
 	private TupleClient client;
 	private Date dateDebut;
 	private Date dateFin;
@@ -16,10 +25,10 @@ public class TupleReservation
 	{
 	}
 	
-	public TupleReservation(int idReservation, int idChambre, TupleClient client, Date dateDebut, Date dateFin, int prixTotal)
+	public TupleReservation(int idReservation, TupleChambre chambre, TupleClient client, Date dateDebut, Date dateFin, int prixTotal)
 	{
 		this.setIdReservation(idReservation);
-		this.setIdChambre(idChambre);
+		this.setChambre(chambre);
 		this.setClient(client);
 		this.setDateDebut(dateDebut);
 		this.setDateFin(dateFin);
@@ -36,14 +45,14 @@ public class TupleReservation
 		this.idReservation = idReservation;
 	}
 
-	public int getIdChambre() 
+	public TupleChambre getChambre() 
 	{
-		return idChambre;
+		return chambre;
 	}
 
-	public void setIdChambre(int idChambre) 
+	public void setChambre(TupleChambre chambre) 
 	{
-		this.idChambre = idChambre;
+		this.chambre = chambre;
 	}
 
 	public Date getDateDebut() 

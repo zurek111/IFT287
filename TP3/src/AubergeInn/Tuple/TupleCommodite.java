@@ -1,9 +1,14 @@
 package AubergeInn.Tuple;
 
+import javax.persistence.*;
 
 // Classe de données pour une commodité.
+@Entity
 public class TupleCommodite 
 {
+	@Id
+	@GeneratedValue
+	private long id;
 
 	private int idCommodite;
 	private String description;

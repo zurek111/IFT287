@@ -2,15 +2,29 @@ package AubergeInn.Tuple;
 
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+
 //Classe de données pour une chambre.
 public class TupleChambre 
 {
+	@Id
+	@GeneratedValue
+	private long id;
 
 	private int idChambre;
 	private String nom;
 	private String typeLit;
 	private int prix;
 	private List<TupleCommodite> commodites;
+	//
+	// Necessary?
+	//
+	@OneToMany(mappedBy = "chambre")
+	@OrderBy("dateDebut")
+	private List<TupleReservation> reservations;
 	
 	public TupleChambre()
 	{
