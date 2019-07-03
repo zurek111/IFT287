@@ -19,9 +19,7 @@ public class TupleChambre
 	private String typeLit;
 	private int prix;
 	private List<TupleCommodite> commodites;
-	//
-	// Necessary?
-	//
+
 	@OneToMany(mappedBy = "chambre")
 	@OrderBy("dateDebut")
 	private List<TupleReservation> reservations;
