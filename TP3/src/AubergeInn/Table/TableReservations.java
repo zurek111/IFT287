@@ -2,9 +2,6 @@ package AubergeInn.Table;
 
 import AubergeInn.Connexion;
 import AubergeInn.Tuple.TupleReservation;
-import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
 
 public class TableReservations 
 {
@@ -16,7 +13,7 @@ public class TableReservations
     private Connexion cx;
     
     // Fonction de connexion
-	public TableReservations(Connexion cx) throws SQLException 
+	public TableReservations(Connexion cx) 
 	{
 		this.cx = cx;
 		

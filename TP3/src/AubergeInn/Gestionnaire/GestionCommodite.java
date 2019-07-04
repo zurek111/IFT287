@@ -1,6 +1,5 @@
 package AubergeInn.Gestionnaire;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import AubergeInn.Connexion;
@@ -26,7 +25,7 @@ public class GestionCommodite
 	 * 
      */
 	public void ajouterCommodite(int idCommodite, String description, int prix)
-			throws SQLException, IFT287Exception
+			throws IFT287Exception
 	{
 		try
         {
@@ -63,7 +62,6 @@ public class GestionCommodite
 	 * @return La liste des commodités inclut dans la chambre.
      */
 	public List<TupleCommodite> getCommoditesOffertes(int idChambre)
-			throws SQLException
 	{
 		try
 		{	

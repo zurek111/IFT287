@@ -1,7 +1,6 @@
 package AubergeInn.Gestionnaire;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 
 import AubergeInn.Connexion;
@@ -51,7 +50,7 @@ public class GestionReservation
 	 * 
      */
 	public void reserver(int idClient, int idChambre, Date dateDebut, Date dateFin)
-			throws SQLException, IFT287Exception
+			throws IFT287Exception
 	{
 		try
 		{

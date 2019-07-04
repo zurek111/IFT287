@@ -1,7 +1,5 @@
 package AubergeInn.Gestionnaire;
 
-import java.sql.SQLException;
-
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.*;
@@ -23,7 +21,7 @@ public class GestionAubergeInn
     
     // Fonction de connection qui initialise les tables.
     public GestionAubergeInn(String serveur, String bd, String user, String password)
-            throws IFT287Exception, SQLException
+            throws IFT287Exception
     {
         cx = new Connexion(serveur, bd, user, password);
         // initialisation des tables
@@ -40,7 +38,7 @@ public class GestionAubergeInn
         setGestionCommodite(new GestionCommodite(commodites));
     }
     
-    public void fermer() throws SQLException
+    public void fermer()
     {
         // Fermeture de la connexion
         cx.fermer();

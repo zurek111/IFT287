@@ -1,12 +1,14 @@
 package AubergeInn.Gestionnaire;
 
-import java.sql.SQLException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableClients;
 import AubergeInn.Table.TableReservations;
 import AubergeInn.Tuple.TupleClient;
+import AubergeInn.Tuple.TupleReservation;
 
 public class GestionClient 
 {
@@ -35,7 +37,7 @@ public class GestionClient
 	 * 
      */
 	public void ajouterClient(int idClient, String prenom, String nom, int age)
-			throws SQLException, IFT287Exception
+			throws IFT287Exception
 	{
 		try
         {
@@ -71,17 +73,17 @@ public class GestionClient
 	 * @return Le tuple du client contenant ses données.
      */
 	public TupleClient getClient(int idClient)
-			throws SQLException, IFT287Exception
+			throws IFT287Exception
 	{
 		try
 		{
+			cx.demarreTransaction();
 			TupleClient tupleClient = clients.getClient(idClient);
 			
 			if (tupleClient == null)
 				throw new IFT287Exception("Le client n'existe pas : " + idClient);
 
-			tupleClient.setReservations(reservations.getReservationsClient(idClient));
-			
+			cx.commit();
 			return tupleClient;
 		}
 		catch(Exception e)
@@ -97,10 +99,11 @@ public class GestionClient
 	 * 
      */
 	public void supprimerClient(int idClient)
-			throws SQLException, IFT287Exception, Exception
+			throws IFT287Exception
 	{
 		 try
 	        {
+			 	cx.demarreTransaction();
 	            TupleClient tupleClient = clients.getClient(idClient);
 	            
 	            // Verifie si le client est existant
@@ -109,8 +112,13 @@ public class GestionClient
 	            
 	            //TODO: CHANGER LA CONDITION
 	            // Verifie si le client a des réservations
-	            if (!reservations.getReservationsClient(idClient).isEmpty())
-	                throw new IFT287Exception("Client " + idClient + " a des réservations");
+	            for (TupleReservation reservation : tupleClient.getReservations())
+	            {
+	            	LocalDate localDate = LocalDate.now();
+	    			Date date = Date.valueOf(localDate);
+	            	if (!reservation.getDateFin().before(date))
+	            		throw new IFT287Exception("Client " + idClient + " a des réservations");
+	            }
 
 	            // Suppression du membre
 	            if (!clients.supprimer(tupleClient))

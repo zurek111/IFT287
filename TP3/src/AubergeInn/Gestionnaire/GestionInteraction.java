@@ -1,6 +1,5 @@
 package AubergeInn.Gestionnaire;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import AubergeInn.Connexion;
@@ -28,7 +27,7 @@ public class GestionInteraction
 	 * 
      */
 	public void afficherChambre(int idChambre, GestionAubergeInn gestionAubergeInn)
-			throws SQLException, IFT287Exception
+			throws IFT287Exception
 	{
 		try
 		{	
@@ -57,7 +56,7 @@ public class GestionInteraction
 	 * 
      */
 	public void afficherChambresLibres(GestionAubergeInn gestionAubergeInn)
-			throws SQLException, IFT287Exception
+			throws IFT287Exception
 	{
 		try
 		{
@@ -85,7 +84,7 @@ public class GestionInteraction
 	 * 
      */
 	public void afficherClient(int idClient, GestionAubergeInn gestionAubergeInn)
-			throws SQLException, IFT287Exception
+			throws IFT287Exception
 	{
 		try
 		{

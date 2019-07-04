@@ -85,5 +85,25 @@ public class TupleChambre
 	{
 		this.commodites = commodites;
 	}
+	
+	public void ajouterCommodite(TupleCommodite commodite)
+	{
+		this.commodites.add(commodite);
+	}
+	
+	public void enleverCommodite(TupleCommodite commodite)
+	{
+		this.commodites.remove(commodite);
+	}
+	
+	public List<TupleReservation> getReservations() 
+	{
+		return reservations;
+	}
+
+	public void setReservations(List<TupleReservation> reservations) 
+	{
+		this.reservations = reservations;
+	}
 
 }
