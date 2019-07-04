@@ -1,34 +1,29 @@
 package AubergeInn.Table;
 
-import java.sql.*;
-import java.util.LinkedList;
 import java.util.List;
+
+import javax.persistence.TypedQuery;
 
 import AubergeInn.Connexion;
 import AubergeInn.Tuple.TupleCommodite;
 
 public class TableCommodites 
 {
-    private PreparedStatement stmExist;
-    private PreparedStatement stmInsert;
-    private PreparedStatement stmListeCommodites;
+    private TypedQuery<TupleCommodite> stmExist;
 
     private Connexion cx;
     
     // Fonction de connexion.
-	public TableCommodites(Connexion cx) throws SQLException 
+	public TableCommodites(Connexion cx) 
 	{
 		this.cx = cx;
-		stmExist = cx.getConnection().prepareStatement(
-				"select idCommodite, description, prix from Commodite where idCommodite = ?");
+		stmExist = cx.getConnection().createQuery(
+				"select c from Commodite c where c.idCommodite = :idCommodite", TupleCommodite.class);
 		
-		stmInsert = cx.getConnection().prepareStatement(
-				"insert into Commodite (idCommodite, description, prix) values (?,?,?)");
-		
-		stmListeCommodites = cx.getConnection().prepareStatement(
+		/*stmListeCommodites = cx.getConnection().prepareStatement(
 				"select c.idCommodite, c.description, c.prix FROM Commodite as c\r\n" + 
 				"INNER JOIN CommoditeOfferte as co ON c.idCommodite = co.idCommodite\r\n" + 
-				"where idChambre = ?");
+				"where idChambre = ?");*/
 	}
 	
     public Connexion getConnexion()
@@ -42,14 +37,11 @@ public class TableCommodites
 	 * 
 	 * @return Vrai si elle fait partie de la chambre, faux sinon..
      */
-    public boolean existe(int idCommodite) throws SQLException
+    public boolean existe(int idCommodite)
     {
-    	stmExist.setInt(1, idCommodite);
-    	ResultSet rst = stmExist.executeQuery(); 	
-    	boolean commoditeExist = rst.next();
-    	rst.close();
+    	stmExist.setParameter("idCommodite", idCommodite);
    
-    	return commoditeExist;
+    	return !stmExist.getResultList().isEmpty();
     }
     
     /**
@@ -58,19 +50,13 @@ public class TableCommodites
 	 * 
 	 * @return un tuple de la commodité contenant les données de celle-ci.
      */
-    public TupleCommodite getCommodite(int idCommodite) throws SQLException
+    public TupleCommodite getCommodite(int idCommodite)
     {
-    	stmExist.setInt(1, idCommodite);
-        ResultSet rst = stmExist.executeQuery();
-        if (rst.next())
+    	stmExist.setParameter("idCommodite", idCommodite);
+    	List<TupleCommodite> commodites = stmExist.getResultList();
+        if (!commodites.isEmpty())
         {
-        	TupleCommodite tupleCommodite = new TupleCommodite();
-        	tupleCommodite.setIdCommodite(idCommodite);
-        	tupleCommodite.setDescription(rst.getString(2));
-        	tupleCommodite.setPrix(rst.getInt(3));
-            rst.close();
-            
-            return tupleCommodite;
+            return commodites.get(0);
         }
         else
         {
@@ -84,7 +70,7 @@ public class TableCommodites
 	 * 
 	 * @return une liste des commodités inclues avec la chambre.
      */
-    public List<TupleCommodite> getCommoditesChambre(int idChambre) throws SQLException
+    /*public List<TupleCommodite> getCommoditesChambre(int idChambre) throws SQLException
     {
     	stmListeCommodites.setInt(1, idChambre);
     	ResultSet rset = stmListeCommodites.executeQuery();
@@ -100,7 +86,7 @@ public class TableCommodites
         }
         rset.close();
         return listeCommodites;
-    }
+    }*/
     
     /**
 	 * Fonction pour ajouter une commodité.
@@ -108,13 +94,11 @@ public class TableCommodites
 	 * @param description  la description de la commodité.
 	 * @param prix  le prix de la commodité.
 	 * 
-	 * @return une liste des commodités inclues avec la chambre.
+	 * @return retourne la commodité.
      */
-    public int ajouter(int idCommodite, String description, int prix) throws SQLException
+    public TupleCommodite ajouter(TupleCommodite commodite)
     {
-    	stmInsert.setInt(1, idCommodite);
-    	stmInsert.setString(2, description);
-    	stmInsert.setInt(3, prix);
-    	return stmInsert.executeUpdate();
+    	cx.getConnection().persist(commodite);
+    	return commodite;
     }
 }

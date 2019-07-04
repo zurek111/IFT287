@@ -8,9 +8,9 @@ import java.util.List;
 
 public class TableReservations 
 {
-    private PreparedStatement stmReservationClient;
+    /*private TypedQuery<TupleReservation> stmReservationClient;
     private PreparedStatement stmReservationChambre;
-    private PreparedStatement stmInsert;
+    private PreparedStatement stmInsert;*/
 
 
     private Connexion cx;
@@ -19,13 +19,7 @@ public class TableReservations
 	public TableReservations(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
-		stmReservationClient = cx.getConnection().prepareStatement(
-				"select * from Reservation where idClient = ? order by dateDebut, dateFin");
-		stmReservationChambre = cx.getConnection().prepareStatement(
-				"select * from Reservation where idChambre = ?");
-		stmInsert = cx.getConnection().prepareStatement(
-				"insert into Reservation "
-				+ "(idClient, idChambre, dateDebut, dateFin, prixTotal) values (?,?,?,?,?)");
+		
 	}
 	
 	public Connexion getConnexion()
@@ -39,7 +33,7 @@ public class TableReservations
 	 * 
 	 * @return La liste des réservations.
      */
-	public List<TupleReservation> getReservationsClient(int idClient) throws SQLException
+	/*public List<TupleReservation> getReservationsClient(int idClient) throws SQLException
 	{
 		stmReservationClient.setInt(1, idClient);
 		ResultSet rst = stmReservationClient.executeQuery();
@@ -59,7 +53,7 @@ public class TableReservations
 		}
 		
 		return listeReservations;
-	}
+	}*/
 	
 	/**
 	 * Fonction pour obtenir la liste des réservations d'une chambre.
@@ -67,7 +61,7 @@ public class TableReservations
 	 * 
 	 * @return La liste des réservations.
      */
-	public List<TupleReservation> getReservationsChambre(int idChambre) throws SQLException
+	/*public List<TupleReservation> getReservationsChambre(int idChambre) throws SQLException
 	{
 		stmReservationChambre.setInt(1, idChambre);
 		ResultSet rst = stmReservationChambre.executeQuery();
@@ -87,7 +81,7 @@ public class TableReservations
 		}	
 		
 		return listeReservations;
-	}
+	}*/
 	/**
 	 * Fonction pour ajouter une réservation.
 	 * @param idClient  l'id du client.
@@ -96,16 +90,12 @@ public class TableReservations
 	 * @param dateFin  date de fin de la réservation.
 	 * @param prixTotal  Prix de la réservation.
 	 * 
-	 * @return Le nombre de lignes ajoutées.
+	 * @return La reservation ajoutée.
      */
-	public int ajouter(int idClient, int idChambre, Date dateDebut, Date dateFin, int prixTotal) throws SQLException
+	public TupleReservation ajouter(TupleReservation reservation)
 	{
-    	stmInsert.setInt(1, idClient);
-    	stmInsert.setInt(2, idChambre);
-    	stmInsert.setDate(3, dateDebut);
-    	stmInsert.setDate(4, dateFin);
-    	stmInsert.setInt(5, prixTotal);
+    	cx.getConnection().persist(reservation);
     	
-    	return stmInsert.executeUpdate();
+    	return reservation;
 	}
 }

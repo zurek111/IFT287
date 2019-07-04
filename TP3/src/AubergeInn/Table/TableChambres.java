@@ -1,6 +1,5 @@
 package AubergeInn.Table;
 
-import java.sql.*;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -121,7 +120,7 @@ public class TableChambres
 	 * 
 	 * @return vrai si supprimées dans la BD faux sinon.
      */
-    public boolean supprimer(TupleChambre chambre) throws SQLException
+    public boolean supprimer(TupleChambre chambre)
     {
     	if (chambre != null)
     	{
