@@ -101,7 +101,7 @@ public class GestionInteraction
 				
 				for (TupleReservation r : c.getReservations())
 				{
-					System.out.printf("Chambre #%d - %d$ | %tF au %tF %n", r.getIdChambre(), r.getPrixTotal(), r.getDateDebut(), r.getDateFin());
+					System.out.printf("Chambre #%d - %d$ | %tF au %tF %n", r.getChambre().getIdChambre(), r.getPrixTotal(), r.getDateDebut(), r.getDateFin());
 				}
 			}
 		}

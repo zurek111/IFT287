@@ -39,9 +39,9 @@ public class GestionCommodite
 			// Vérifie si la commodité existe déja
             if (commodites.existe(idCommodite))
                 throw new IFT287Exception("La commodite existe déjà: " + idCommodite);
-
+            TupleCommodite commodite = new TupleCommodite(idCommodite,description,prix);
             // Ajout de la commodité
-            if (commodites.ajouter(idCommodite, description, prix) == 0)
+            if (commodites.ajouter(commodite) != commodite)
             	throw new IFT287Exception("Erreur lors de l'ajout d'une commodité à la table.");
             
             // Commit
@@ -61,7 +61,7 @@ public class GestionCommodite
 	 * 
 	 * @return La liste des commodités inclut dans la chambre.
      */
-	public List<TupleCommodite> getCommoditesOffertes(int idChambre)
+	/*public List<TupleCommodite> getCommoditesOffertes(int idChambre)
 	{
 		try
 		{	
@@ -73,5 +73,5 @@ public class GestionCommodite
 		{
 			throw e;
 		}
-	}
+	}*/
 }
