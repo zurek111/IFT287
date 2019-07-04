@@ -106,4 +106,11 @@ public class TupleChambre
 		this.reservations = reservations;
 	}
 
+	public int getPrixTotal() {
+		int prixTotal = this.prix;
+		for (TupleCommodite commodite : this.commodites)
+			prixTotal += commodite.getPrix();
+		return prixTotal;
+	}
+
 }

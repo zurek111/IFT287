@@ -204,7 +204,7 @@ public class GestionChambre
 	 * 
 	 * @return le tuple de la chambre contenant les données de celle-ci.
      */
-	public TupleChambre getChambreAndTotalPrice(int idChambre)
+	public TupleChambre getChambre(int idChambre)
 			throws IFT287Exception
 	{
 		try
@@ -214,12 +214,6 @@ public class GestionChambre
 			if (tupleChambre == null)
 				throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
 			
-			int prixCommodites = 0;
-			
-			for (TupleCommodite commodite : tupleChambre.getCommodites())
-				prixCommodites += commodite.getPrix();
-			
-			tupleChambre.setPrix(tupleChambre.getPrix() + prixCommodites);
 			cx.commit();
 			return tupleChambre;
 		}

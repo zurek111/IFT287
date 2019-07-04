@@ -65,6 +65,8 @@ public class GestionCommodite
 	{
 		try
 		{	
+			cx.demarreTransaction();
+			
 			return commodites.getCommoditesChambre(idChambre);
 		}
 		catch(Exception e)

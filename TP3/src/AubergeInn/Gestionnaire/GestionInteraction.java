@@ -34,7 +34,7 @@ public class GestionInteraction
 			TupleChambre c = gestionAubergeInn.getGestionChambre().getChambre(idChambre);
 
 			System.out.println("idChambre nom typeLit prix");
-			System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrix());
+			System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrixTotal());
 			
 			System.out.println("Commodités offertes : ");
 			for (TupleCommodite commodite : c.getCommodites())
