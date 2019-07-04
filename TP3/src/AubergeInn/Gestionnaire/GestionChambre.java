@@ -8,7 +8,6 @@ import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableChambres;
 import AubergeInn.Table.TableCommodites;
-import AubergeInn.Table.TableReservations;
 import AubergeInn.Tuple.TupleChambre;
 import AubergeInn.Tuple.TupleCommodite;
 import AubergeInn.Tuple.TupleReservation;
@@ -18,22 +17,17 @@ public class GestionChambre
 	private Connexion cx;
 	private TableChambres chambres;
 	private TableCommodites commodites;
-	private TableReservations reservations;
 	
 	// Fonction de connexion pour la chambre
-	public GestionChambre(TableChambres chambres, TableCommodites commodites, TableReservations reservations) throws IFT287Exception
+	public GestionChambre(TableChambres chambres, TableCommodites commodites) throws IFT287Exception
 	{
 		this.cx = chambres.getConnexion();
 		
 		if (cx != commodites.getConnexion())
             throw new IFT287Exception("Les instances de TableChambres et de TableCommodites n'utilisent pas la même connexion au serveur");
 		
-		if (cx != reservations.getConnexion())
-            throw new IFT287Exception("Les instances de TableChambres et de TableReservations n'utilisent pas la même connexion au serveur");
-
 		this.chambres = chambres;
 		this.commodites = commodites;
-        this.reservations = reservations;
 	}
 	
 	/**

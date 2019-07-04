@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableClients;
-import AubergeInn.Table.TableReservations;
 import AubergeInn.Tuple.TupleClient;
 import AubergeInn.Tuple.TupleReservation;
 
@@ -14,17 +13,12 @@ public class GestionClient
 {
 	private Connexion cx;
 	private TableClients clients;
-	private TableReservations reservations;
 	
-	public GestionClient(TableClients clients, TableReservations reservations) throws IFT287Exception
+	public GestionClient(TableClients clients) throws IFT287Exception
 	{
 		this.cx = clients.getConnexion();
-		
-		if (cx != reservations.getConnexion())
-            throw new IFT287Exception("Les instances de TableClients et de TableReservations n'utilisent pas la même connexion au serveur");
         
 		this.clients = clients;
-        this.reservations = reservations;
 	}
 	
 	/**
@@ -110,7 +104,6 @@ public class GestionClient
 	            if (tupleClient == null)
 	                throw new IFT287Exception("Client inexistant: " + idClient);
 	            
-	            //TODO: CHANGER LA CONDITION
 	            // Verifie si le client a des réservations
 	            for (TupleReservation reservation : tupleClient.getReservations())
 	            {

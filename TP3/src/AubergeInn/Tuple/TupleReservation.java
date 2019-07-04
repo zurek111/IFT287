@@ -12,7 +12,6 @@ public class TupleReservation
 	@GeneratedValue
 	private long id;
 	
-	private int idReservation;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TupleChambre chambre;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -25,24 +24,13 @@ public class TupleReservation
 	{
 	}
 	
-	public TupleReservation(int idReservation, TupleChambre chambre, TupleClient client, Date dateDebut, Date dateFin, int prixTotal)
+	public TupleReservation( TupleClient client, TupleChambre chambre, Date dateDebut, Date dateFin)
 	{
-		this.setIdReservation(idReservation);
 		this.setChambre(chambre);
 		this.setClient(client);
 		this.setDateDebut(dateDebut);
 		this.setDateFin(dateFin);
-		this.setPrixTotal(prixTotal);
-	}
-
-	public int getIdReservation() 
-	{
-		return idReservation;
-	}
-
-	public void setIdReservation(int idReservation) 
-	{
-		this.idReservation = idReservation;
+		this.setPrixTotal(chambre.getPrixTotal());
 	}
 
 	public TupleChambre getChambre() 

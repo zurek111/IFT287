@@ -32,9 +32,9 @@ public class GestionAubergeInn
         
         // passe les tables aux gestionnaires.
         setGestionInteraction(new GestionInteraction(cx));
-        setGestionChambre(new GestionChambre(chambres, commodites, reservations));
-        setGestionClient(new GestionClient(clients, reservations));
-        setGestionReservation(new GestionReservation(chambres, reservations, clients, commodites));
+        setGestionChambre(new GestionChambre(chambres, commodites));
+        setGestionClient(new GestionClient(clients));
+        setGestionReservation(new GestionReservation(chambres, reservations, clients));
         setGestionCommodite(new GestionCommodite(commodites));
     }
     

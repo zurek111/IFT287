@@ -113,4 +113,16 @@ public class TupleChambre
 		return prixTotal;
 	}
 
+	public void ajouterReservation(TupleReservation reservation) 
+	{
+		this.reservations.add(reservation); 
+		
+	}
+	
+	public void enleverReservation(TupleReservation reservation) 
+	{
+		this.reservations.remove(reservation); 
+		
+	}
+
 }

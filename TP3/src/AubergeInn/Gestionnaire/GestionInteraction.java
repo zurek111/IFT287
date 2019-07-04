@@ -31,6 +31,7 @@ public class GestionInteraction
 	{
 		try
 		{	
+			cx.demarreTransaction();
 			TupleChambre c = gestionAubergeInn.getGestionChambre().getChambre(idChambre);
 
 			System.out.println("idChambre nom typeLit prix");
@@ -60,6 +61,7 @@ public class GestionInteraction
 	{
 		try
 		{
+			cx.demarreTransaction();
 			List<TupleChambre> listeChambres = gestionAubergeInn.getGestionChambre().getChambresLibres();
 			
 			System.out.println("idChambre nom typeLit prixTotal");
@@ -88,6 +90,7 @@ public class GestionInteraction
 	{
 		try
 		{
+			cx.demarreTransaction();
 			TupleClient c = gestionAubergeInn.getGestionClient().getClient(idClient);
 			
 			System.out.println("idClient prenom nom age");
@@ -104,6 +107,7 @@ public class GestionInteraction
 					System.out.printf("Chambre #%d - %d$ | %tF au %tF %n", r.getChambre().getIdChambre(), r.getPrixTotal(), r.getDateDebut(), r.getDateFin());
 				}
 			}
+			cx.commit();
 		}
 		catch(Exception e)
 		{

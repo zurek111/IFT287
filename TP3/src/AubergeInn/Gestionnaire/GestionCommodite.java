@@ -1,7 +1,5 @@
 package AubergeInn.Gestionnaire;
 
-import java.util.List;
-
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableCommodites;
