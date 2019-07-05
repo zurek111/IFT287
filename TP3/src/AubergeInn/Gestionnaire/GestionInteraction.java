@@ -2,7 +2,6 @@ package AubergeInn.Gestionnaire;
 
 import java.util.List;
 
-import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Tuple.Chambre;
 import AubergeInn.Tuple.Commodite;
@@ -11,12 +10,11 @@ import AubergeInn.Tuple.Client;
 
 public class GestionInteraction 
 {
-	private Connexion cx;
 
-	public GestionInteraction(Connexion cx) 
+	public GestionInteraction() 
 			throws IFT287Exception
 	{
-		 this.cx = cx;
+
 	}
 	
 	/**
@@ -65,7 +63,7 @@ public class GestionInteraction
 			System.out.println("idChambre nom typeLit prixTotal");
 
 			for (Chambre c : listeChambres)
-				System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrix());	
+				System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrixTotal());	
 		}
 		catch(Exception e)
 		{

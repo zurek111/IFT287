@@ -20,6 +20,8 @@ public class GestionCommodite
 	 * Fonction pour ajouter une commodité dans la BD.
 	 * 
 	 * @param idCommodite  l'id de la commodité.
+	 * @param description  description de la commodité.
+	 * @param prix		   prix de la commodité.
 	 * 
      */
 	public void ajouterCommodite(int idCommodite, String description, int prix)
@@ -54,24 +56,4 @@ public class GestionCommodite
         }
 	}
 	
-	/**
-	 * Fonction pour obtenir les commodités offertes dans une chambres.
-	 * 
-	 * @param idChambre  l'id de la chambre.
-	 * 
-	 * @return La liste des commodités inclut dans la chambre.
-     */
-	/*public List<TupleCommodite> getCommoditesOffertes(int idChambre)
-	{
-		try
-		{	
-			cx.demarreTransaction();
-			
-			return commodites.getCommoditesChambre(idChambre);
-		}
-		catch(Exception e)
-		{
-			throw e;
-		}
-	}*/
 }

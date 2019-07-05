@@ -31,7 +31,7 @@ public class GestionAubergeInn
         commodites = new Commodites(cx);
         
         // passe les tables aux gestionnaires.
-        setGestionInteraction(new GestionInteraction(cx));
+        setGestionInteraction(new GestionInteraction());
         setGestionChambre(new GestionChambre(chambres, commodites));
         setGestionClient(new GestionClient(clients));
         setGestionReservation(new GestionReservation(chambres, reservations, clients));
@@ -49,43 +49,53 @@ public class GestionAubergeInn
     	return cx;
     }
 
-	public GestionInteraction getGestionInteraction() {
+	public GestionInteraction getGestionInteraction() 
+	{
 		return gestionInteraction;
 	}
 
-	public void setGestionInteraction(GestionInteraction gestionInteraction) {
+	public void setGestionInteraction(GestionInteraction gestionInteraction) 
+	{
 		this.gestionInteraction = gestionInteraction;
 	}
 
-	public GestionChambre getGestionChambre() {
+	public GestionChambre getGestionChambre() 
+	{
 		return gestionChambre;
 	}
 
-	public void setGestionChambre(GestionChambre gestionChambre) {
+	public void setGestionChambre(GestionChambre gestionChambre) 
+	{
 		this.gestionChambre = gestionChambre;
 	}
 
-	public GestionClient getGestionClient() {
+	public GestionClient getGestionClient() 
+	{
 		return gestionClient;
 	}
 
-	public void setGestionClient(GestionClient gestionClient) {
+	public void setGestionClient(GestionClient gestionClient) 
+	{
 		this.gestionClient = gestionClient;
 	}
 
-	public GestionReservation getGestionReservation() {
+	public GestionReservation getGestionReservation() 
+	{
 		return gestionReservation;
 	}
 
-	public void setGestionReservation(GestionReservation gestionReservation) {
+	public void setGestionReservation(GestionReservation gestionReservation) 
+	{
 		this.gestionReservation = gestionReservation;
 	}
 
-	public GestionCommodite getGestionCommodite() {
+	public GestionCommodite getGestionCommodite() 
+	{
 		return gestionCommodite;
 	}
 
-	public void setGestionCommodite(GestionCommodite gestionCommodite) {
+	public void setGestionCommodite(GestionCommodite gestionCommodite) 
+	{
 		this.gestionCommodite = gestionCommodite;
 	}
 

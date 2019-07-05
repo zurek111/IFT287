@@ -98,36 +98,36 @@ public class GestionClient
 	public void supprimerClient(int idClient)
 			throws IFT287Exception
 	{
-		 try
-	        {
-			 	cx.demarreTransaction();
-			 	
-	            Client tupleClient = clients.getClient(idClient);
-	            
-	            // Verifie si le client est existant
-	            if (tupleClient == null)
-	                throw new IFT287Exception("Client inexistant: " + idClient);
-	            
-	            // Verifie si le client a des réservations
-	            for (Reservation reservation : tupleClient.getReservations())
-	            {
-	            	LocalDate localDate = LocalDate.now();
-	    			Date date = Date.valueOf(localDate);
-	            	if (!reservation.getDateFin().before(date))
-	            		throw new IFT287Exception("Client " + idClient + " a des réservations");
-	            }
-
-	            // Suppression du membre
-	            if (!clients.supprimer(tupleClient))
-	                throw new IFT287Exception("Erreur lors de la suppression d'un client.");
-	            
-	            // Commit
-	            cx.commit();
-	        }
-	        catch (Exception e)
-	        {
-	            cx.rollback();
-	            throw e;
-	        }
+		try
+		{
+		 	cx.demarreTransaction();
+		 	
+		    Client tupleClient = clients.getClient(idClient);
+		    
+		    // Verifie si le client est existant
+		    if (tupleClient == null)
+		        throw new IFT287Exception("Client inexistant: " + idClient);
+		    
+		    // Verifie si le client a des réservations
+		    for (Reservation reservation : tupleClient.getReservations())
+		    {
+		    	LocalDate localDate = LocalDate.now();
+				Date date = Date.valueOf(localDate);
+		    	if (!reservation.getDateFin().before(date))
+		    		throw new IFT287Exception("Client " + idClient + " a des réservations");
+		    }
+		
+		    // Suppression du membre
+		    if (!clients.supprimer(tupleClient))
+		        throw new IFT287Exception("Erreur lors de la suppression d'un client.");
+		    
+		    // Commit
+		    cx.commit();
+		}
+		catch (Exception e)
+		{
+		    cx.rollback();
+		    throw e;
+		}
 	}
 }

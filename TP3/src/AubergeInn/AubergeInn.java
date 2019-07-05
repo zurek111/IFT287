@@ -94,7 +94,7 @@ public class AubergeInn
     {
         try
         {
-            System.out.print(transaction);
+            System.out.println(transaction);
             // Decoupage de la transaction en mots
             StringTokenizer tokenizer = new StringTokenizer(transaction, " ");
             if (tokenizer.hasMoreTokens())
