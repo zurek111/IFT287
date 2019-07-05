@@ -286,16 +286,6 @@ public class GestionChambre
 			if (listeChambres.isEmpty())
 				throw new IFT287Exception("Aucune chambre n'est libre");
 			
-			/*for (Chambre chambre : listeChambres)
-			{
-
-				int prixCommodites = 0;
-					
-				for (Commodite commodite : chambre.getCommodites())
-					prixCommodites += commodite.getPrix();
-					
-				chambre.setPrix(chambre.getPrix() + prixCommodites);	
-			}*/
 			cx.commit();
 			return listeChambres;
 		}
