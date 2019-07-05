@@ -1,0 +1,742 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 20:28:40 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 2756@DESKTOP-GSNGSAT
+
+[2019-07-04 20:28:40 #2 store] 
+Configuration path: ?
+
+[2019-07-04 20:28:41 #3 type.registry] 
+New type AubergeInn.Tuple.TupleChambre
+
+[2019-07-04 20:28:41 #4 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 20:28:41 #5 type.registry] 
+New type AubergeInn.Tuple.TupleReservation
+
+[2019-07-04 20:28:41 #6 type.registry] 
+New type AubergeInn.Tuple.TupleCommodite
+
+[2019-07-04 20:28:41 #7 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 20:28:41 #8 type.registry] 
+New type AubergeInn.Tuple.TupleClient
+
+[2019-07-04 20:28:41 #9 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 20:28:41 #10 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+[2019-07-04 20:28:46 #11 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 2756@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 20:30:19 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 932@DESKTOP-GSNGSAT
+
+[2019-07-04 20:30:19 #2 store] 
+Configuration path: ?
+
+[2019-07-04 20:30:19 #3 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 20:30:19 #4 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 20:30:19 #5 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 20:30:19 #6 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 20:30:50 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 12636@DESKTOP-GSNGSAT
+
+[2019-07-04 20:30:50 #2 store] 
+Configuration path: ?
+
+[2019-07-04 20:30:50 #3 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 20:30:50 #4 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 20:30:50 #5 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 20:30:50 #6 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 20:37:05 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 9220@DESKTOP-GSNGSAT
+
+[2019-07-04 20:37:05 #2 store] 
+Configuration path: ?
+
+[2019-07-04 20:37:05 #3 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 20:37:05 #4 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 20:37:05 #5 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 20:37:05 #6 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+[2019-07-04 20:37:08 #7 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 9220@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 20:37:14 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 2960@DESKTOP-GSNGSAT
+
+[2019-07-04 20:37:14 #2 store] 
+Configuration path: ?
+
+[2019-07-04 20:37:14 #3 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 20:37:14 #4 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 20:37:14 #5 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 20:37:14 #6 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 20:42:10 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 2016@DESKTOP-GSNGSAT
+
+[2019-07-04 20:42:10 #2 store] 
+Configuration path: ?
+
+[2019-07-04 20:42:10 #3 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 20:42:10 #4 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 20:42:10 #5 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 20:42:10 #6 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+[2019-07-04 20:42:13 #7 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 2016@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 20:54:33 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 8764@DESKTOP-GSNGSAT
+
+[2019-07-04 20:54:33 #2 store] 
+Configuration path: ?
+
+[2019-07-04 20:54:33 #3 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 20:54:33 #4 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 20:54:33 #5 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 20:54:33 #6 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+[2019-07-04 20:54:35 #7 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 8764@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 21:03:22 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 13156@DESKTOP-GSNGSAT
+
+[2019-07-04 21:03:22 #2 store] 
+Configuration path: ?
+
+[2019-07-04 21:03:23 #3 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 21:03:23 #4 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 21:03:23 #5 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 21:03:23 #6 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+[2019-07-04 21:04:02 #7 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 13156@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 21:09:59 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 11468@DESKTOP-GSNGSAT
+
+[2019-07-04 21:09:59 #2 store] 
+Configuration path: ?
+
+[2019-07-04 21:09:59 #3 type.registry] 
+New type AubergeInn.Tuple.TupleChambre
+
+[2019-07-04 21:09:59 #4 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 21:09:59 #5 type.registry] 
+New type AubergeInn.Tuple.TupleReservation
+
+[2019-07-04 21:09:59 #6 type.registry] 
+New type AubergeInn.Tuple.TupleCommodite
+
+[2019-07-04 21:09:59 #7 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 21:09:59 #8 type.registry] 
+New type AubergeInn.Tuple.TupleClient
+
+[2019-07-04 21:09:59 #9 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 21:09:59 #10 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+[2019-07-04 21:10:14 #11 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 11468@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 21:56:31 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 12732@DESKTOP-GSNGSAT
+
+[2019-07-04 21:56:31 #2 store] 
+Configuration path: ?
+
+[2019-07-04 21:56:31 #3 type.registry] 
+New type AubergeInn.Tuple.TupleChambre
+
+[2019-07-04 21:56:31 #4 type] 
+Type AubergeInn.Tuple.TupleChambre is not enhanced.
+
+[2019-07-04 21:56:31 #5 type.registry] 
+New type AubergeInn.Tuple.TupleReservation
+
+[2019-07-04 21:56:31 #6 type.registry] 
+New type AubergeInn.Tuple.TupleCommodite
+
+[2019-07-04 21:56:31 #7 type] 
+Type AubergeInn.Tuple.TupleReservation is not enhanced.
+
+[2019-07-04 21:56:31 #8 type.registry] 
+New type AubergeInn.Tuple.TupleClient
+
+[2019-07-04 21:56:31 #9 type] 
+Type AubergeInn.Tuple.TupleCommodite is not enhanced.
+
+[2019-07-04 21:56:31 #10 type] 
+Type AubergeInn.Tuple.TupleClient is not enhanced.
+
+[2019-07-04 21:56:38 #11 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2019-07-04 21:56:38 #12 type.registry] 
+New type java.util.LinkedList<AubergeInn.Tuple.TupleReservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 22:58:31 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 1-6)
+
+[2019-07-04 22:58:32 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 13268@DESKTOP-GSNGSAT
+
+[2019-07-04 22:58:32 #3 store] 
+Configuration path: ?
+
+[2019-07-04 22:58:32 #4 type.registry] 
+New type AubergeInn.Tuple.Chambre
+
+[2019-07-04 22:58:32 #5 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 22:58:32 #6 type.registry] 
+New type AubergeInn.Tuple.Reservation
+
+[2019-07-04 22:58:32 #7 type.registry] 
+New type AubergeInn.Tuple.Commodite
+
+[2019-07-04 22:58:32 #8 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 22:58:32 #9 type.registry] 
+New type AubergeInn.Tuple.Client
+
+[2019-07-04 22:58:32 #10 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 22:58:32 #11 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+[2019-07-04 22:58:36 #12 type.registry] 
+New type java.util.LinkedList<AubergeInn.Tuple.Reservation>
+
+[2019-07-04 22:58:39 #13 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 13268@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 22:59:33 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 17032@DESKTOP-GSNGSAT
+
+[2019-07-04 22:59:33 #2 store] 
+Configuration path: ?
+
+[2019-07-04 22:59:33 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 22:59:33 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 22:59:33 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 22:59:33 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+[2019-07-04 22:59:35 #7 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2019-07-04 22:59:35 #8 type.registry] 
+New type java.util.ArrayList<AubergeInn.Tuple.Reservation>
+
+[2019-07-04 22:59:35 #9 type.registry] 
+New type com.objectdb.o.LMT
+
+[2019-07-04 22:59:35 #10 type.registry] 
+New type com.objectdb.o.VAL
+
+[2019-07-04 22:59:35 #11 type.registry] 
+New type com.objectdb.o.RFV
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:03:54 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 10-16)
+
+[2019-07-04 23:03:55 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 824@DESKTOP-GSNGSAT
+
+[2019-07-04 23:03:55 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:03:55 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:03:55 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:03:55 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:03:55 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:08:01 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 17-21)
+
+[2019-07-04 23:08:01 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 8436@DESKTOP-GSNGSAT
+
+[2019-07-04 23:08:01 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:08:01 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:08:01 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:08:01 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:08:01 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:08:11 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 15704@DESKTOP-GSNGSAT
+
+[2019-07-04 23:08:11 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:08:11 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:08:11 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:08:11 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:08:11 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:12:36 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 22-25)
+
+[2019-07-04 23:12:36 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 2188@DESKTOP-GSNGSAT
+
+[2019-07-04 23:12:36 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:12:36 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:12:36 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:12:36 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:12:36 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:19:34 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 2732@DESKTOP-GSNGSAT
+
+[2019-07-04 23:19:34 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:19:34 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:19:34 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:19:34 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:19:34 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:28:58 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 15380@DESKTOP-GSNGSAT
+
+[2019-07-04 23:28:58 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:28:58 #3 type.registry] 
+New type AubergeInn.Tuple.Chambre
+
+[2019-07-04 23:28:58 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:28:58 #5 type.registry] 
+New type AubergeInn.Tuple.Reservation
+
+[2019-07-04 23:28:58 #6 type.registry] 
+New type AubergeInn.Tuple.Commodite
+
+[2019-07-04 23:28:58 #7 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:28:58 #8 type.registry] 
+New type AubergeInn.Tuple.Client
+
+[2019-07-04 23:28:58 #9 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:28:58 #10 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:33:49 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 1-3)
+
+[2019-07-04 23:33:49 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 8616@DESKTOP-GSNGSAT
+
+[2019-07-04 23:33:49 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:33:49 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:33:49 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:33:49 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:33:49 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+[2019-07-04 23:34:27 #8 type.registry] 
+New type java.util.LinkedList<java.lang.Object>
+
+[2019-07-04 23:34:27 #9 type.registry] 
+New type java.util.LinkedList<AubergeInn.Tuple.Reservation>
+
+[2019-07-04 23:34:47 #10 type.registry] 
+New type java.util.LinkedList<AubergeInn.Tuple.Commodite>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:35:54 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 4-20)
+
+[2019-07-04 23:35:55 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 1244@DESKTOP-GSNGSAT
+
+[2019-07-04 23:35:55 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:35:55 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:35:55 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:35:55 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:35:55 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:37:28 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 8668@DESKTOP-GSNGSAT
+
+[2019-07-04 23:37:28 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:37:28 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:37:28 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:37:28 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:37:28 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+[2019-07-04 23:37:29 #7 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2019-07-04 23:37:29 #8 type.registry] 
+New type java.util.ArrayList<AubergeInn.Tuple.Reservation>
+
+[2019-07-04 23:37:29 #9 type.registry] 
+New type com.objectdb.o.LMT
+
+[2019-07-04 23:37:29 #10 type.registry] 
+New type com.objectdb.o.VAL
+
+[2019-07-04 23:37:29 #11 type.registry] 
+New type com.objectdb.o.RFV
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:37:58 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 21-23)
+
+[2019-07-04 23:37:58 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 10904@DESKTOP-GSNGSAT
+
+[2019-07-04 23:37:58 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:37:58 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:37:58 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:37:58 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:37:58 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:38:27 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 2676@DESKTOP-GSNGSAT
+
+[2019-07-04 23:38:27 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:38:27 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:38:27 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:38:27 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:38:27 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:39:12 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 4248@DESKTOP-GSNGSAT
+
+[2019-07-04 23:39:12 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:39:12 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:39:12 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:39:12 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:39:12 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:39:54 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 6104@DESKTOP-GSNGSAT
+
+[2019-07-04 23:39:54 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:39:54 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:39:54 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:39:54 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:39:54 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:40:18 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 6088@DESKTOP-GSNGSAT
+
+[2019-07-04 23:40:18 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:40:18 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:40:18 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:40:18 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:40:18 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+[2019-07-04 23:40:27 #7 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is closed by 6088@DESKTOP-GSNGSAT
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:40:46 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 12052@DESKTOP-GSNGSAT
+
+[2019-07-04 23:40:46 #2 store] 
+Configuration path: ?
+
+[2019-07-04 23:40:46 #3 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:40:46 #4 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:40:46 #5 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:40:46 #6 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:45:31 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 24-25)
+
+[2019-07-04 23:45:31 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 12240@DESKTOP-GSNGSAT
+
+[2019-07-04 23:45:31 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:45:31 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:45:31 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:45:31 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:45:31 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
+[2019-07-04 23:45:33 #8 type.registry] 
+New type java.util.ArrayList<AubergeInn.Tuple.Commodite>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2019-07-04 23:46:24 #1 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' has been recovered (tr. 26-27)
+
+[2019-07-04 23:46:24 #2 store] 
+Database 'E:\UDES - SESSION COURANTE\IFT287\TP3\ift287_13db.odb' is opened by 10088@DESKTOP-GSNGSAT
+
+[2019-07-04 23:46:24 #3 store] 
+Configuration path: ?
+
+[2019-07-04 23:46:24 #4 type] 
+Type AubergeInn.Tuple.Chambre is not enhanced.
+
+[2019-07-04 23:46:24 #5 type] 
+Type AubergeInn.Tuple.Reservation is not enhanced.
+
+[2019-07-04 23:46:24 #6 type] 
+Type AubergeInn.Tuple.Commodite is not enhanced.
+
+[2019-07-04 23:46:24 #7 type] 
+Type AubergeInn.Tuple.Client is not enhanced.
+
