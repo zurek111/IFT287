@@ -4,10 +4,10 @@ import java.util.List;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
-import AubergeInn.Tuple.TupleChambre;
-import AubergeInn.Tuple.TupleCommodite;
-import AubergeInn.Tuple.TupleReservation;
-import AubergeInn.Tuple.TupleClient;
+import AubergeInn.Tuple.Chambre;
+import AubergeInn.Tuple.Commodite;
+import AubergeInn.Tuple.Reservation;
+import AubergeInn.Tuple.Client;
 
 public class GestionInteraction 
 {
@@ -30,19 +30,18 @@ public class GestionInteraction
 			throws IFT287Exception
 	{
 		try
-		{	
-			cx.demarreTransaction();
-			TupleChambre c = gestionAubergeInn.getGestionChambre().getChambre(idChambre);
+		{		
+			Chambre c = gestionAubergeInn.getGestionChambre().getChambre(idChambre);
 
 			System.out.println("idChambre nom typeLit prix");
 			System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrixTotal());
 			
 			System.out.println("Commodités offertes : ");
-			for (TupleCommodite commodite : c.getCommodites())
+			if (c.getCommodites().isEmpty())
+				System.out.println("Aucune");
+
+			for (Commodite commodite : c.getCommodites())
 				System.out.println(commodite.getDescription());
-			
-	        // Commit
-            cx.commit();
 		}
 		catch(Exception e)
 		{
@@ -60,17 +59,13 @@ public class GestionInteraction
 			throws IFT287Exception
 	{
 		try
-		{
-			cx.demarreTransaction();
-			List<TupleChambre> listeChambres = gestionAubergeInn.getGestionChambre().getChambresLibres();
+		{			
+			List<Chambre> listeChambres = gestionAubergeInn.getGestionChambre().getChambresLibres();
 			
 			System.out.println("idChambre nom typeLit prixTotal");
 
-			for (TupleChambre c : listeChambres)
-				System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrix());
-
-	        // Commit
-            cx.commit();		
+			for (Chambre c : listeChambres)
+				System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrix());	
 		}
 		catch(Exception e)
 		{
@@ -90,8 +85,7 @@ public class GestionInteraction
 	{
 		try
 		{
-			cx.demarreTransaction();
-			TupleClient c = gestionAubergeInn.getGestionClient().getClient(idClient);
+			Client c = gestionAubergeInn.getGestionClient().getClient(idClient);
 			
 			System.out.println("idClient prenom nom age");
 			System.out.println(c.getIdClient() + " " + c.getPrenom() + " " + c.getNom() + " " + c.getAge());
@@ -102,12 +96,11 @@ public class GestionInteraction
 			{
 				System.out.println("Réservations :");
 				
-				for (TupleReservation r : c.getReservations())
+				for (Reservation r : c.getReservations())
 				{
 					System.out.printf("Chambre #%d - %d$ | %tF au %tF %n", r.getChambre().getIdChambre(), r.getPrixTotal(), r.getDateDebut(), r.getDateFin());
 				}
 			}
-			cx.commit();
 		}
 		catch(Exception e)
 		{

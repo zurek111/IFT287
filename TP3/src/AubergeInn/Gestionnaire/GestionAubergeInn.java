@@ -14,10 +14,10 @@ public class GestionAubergeInn
     private GestionReservation gestionReservation;
     private GestionCommodite gestionCommodite;
     
-    private TableChambres chambres;
-    private TableClients clients;
-    private TableReservations reservations;
-    private TableCommodites commodites;
+    private Chambres chambres;
+    private Clients clients;
+    private Reservations reservations;
+    private Commodites commodites;
     
     // Fonction de connection qui initialise les tables.
     public GestionAubergeInn(String serveur, String bd, String user, String password)
@@ -25,10 +25,10 @@ public class GestionAubergeInn
     {
         cx = new Connexion(serveur, bd, user, password);
         // initialisation des tables
-        chambres = new TableChambres(cx);
-        clients = new TableClients(cx);
-        reservations = new TableReservations(cx);
-        commodites = new TableCommodites(cx);
+        chambres = new Chambres(cx);
+        clients = new Clients(cx);
+        reservations = new Reservations(cx);
+        commodites = new Commodites(cx);
         
         // passe les tables aux gestionnaires.
         setGestionInteraction(new GestionInteraction(cx));

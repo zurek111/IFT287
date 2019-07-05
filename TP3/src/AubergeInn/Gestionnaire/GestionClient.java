@@ -5,16 +5,16 @@ import java.time.LocalDate;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
-import AubergeInn.Table.TableClients;
-import AubergeInn.Tuple.TupleClient;
-import AubergeInn.Tuple.TupleReservation;
+import AubergeInn.Table.Clients;
+import AubergeInn.Tuple.Client;
+import AubergeInn.Tuple.Reservation;
 
 public class GestionClient 
 {
 	private Connexion cx;
-	private TableClients clients;
+	private Clients clients;
 	
-	public GestionClient(TableClients clients) throws IFT287Exception
+	public GestionClient(Clients clients) throws IFT287Exception
 	{
 		this.cx = clients.getConnexion();
         
@@ -36,6 +36,7 @@ public class GestionClient
 		try
         {
 			cx.demarreTransaction();
+			
 			// Vérifie les informations du client
 			if (age < 0 || prenom.isEmpty() || nom.isEmpty())
                 throw new IFT287Exception("Le client doit avoir des informations personnelles valides.");
@@ -44,7 +45,7 @@ public class GestionClient
             if (clients.existe(idClient))
                 throw new IFT287Exception("Client existe déjà: " + idClient);
             
-            TupleClient newClient = new TupleClient(idClient,prenom,nom,age);
+            Client newClient = new Client(idClient,prenom,nom,age);
             // Ajout du client
             if (clients.ajouter(newClient) != newClient)
             	throw new IFT287Exception("Erreur lors de l'ajout d'un client à la table.");
@@ -66,13 +67,14 @@ public class GestionClient
 	 * 
 	 * @return Le tuple du client contenant ses données.
      */
-	public TupleClient getClient(int idClient)
+	public Client getClient(int idClient)
 			throws IFT287Exception
 	{
 		try
 		{
 			cx.demarreTransaction();
-			TupleClient tupleClient = clients.getClient(idClient);
+			
+			Client tupleClient = clients.getClient(idClient);
 			
 			if (tupleClient == null)
 				throw new IFT287Exception("Le client n'existe pas : " + idClient);
@@ -82,6 +84,7 @@ public class GestionClient
 		}
 		catch(Exception e)
 		{
+			cx.rollback();
 			throw e;
 		}
 	}	
@@ -98,14 +101,15 @@ public class GestionClient
 		 try
 	        {
 			 	cx.demarreTransaction();
-	            TupleClient tupleClient = clients.getClient(idClient);
+			 	
+	            Client tupleClient = clients.getClient(idClient);
 	            
 	            // Verifie si le client est existant
 	            if (tupleClient == null)
 	                throw new IFT287Exception("Client inexistant: " + idClient);
 	            
 	            // Verifie si le client a des réservations
-	            for (TupleReservation reservation : tupleClient.getReservations())
+	            for (Reservation reservation : tupleClient.getReservations())
 	            {
 	            	LocalDate localDate = LocalDate.now();
 	    			Date date = Date.valueOf(localDate);

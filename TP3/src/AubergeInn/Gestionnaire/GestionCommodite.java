@@ -2,15 +2,15 @@ package AubergeInn.Gestionnaire;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
-import AubergeInn.Table.TableCommodites;
-import AubergeInn.Tuple.TupleCommodite;
+import AubergeInn.Table.Commodites;
+import AubergeInn.Tuple.Commodite;
 
 public class GestionCommodite 
 {
 	private Connexion cx;
-	private TableCommodites commodites;
+	private Commodites commodites;
 	
-	public GestionCommodite(TableCommodites commodites) throws IFT287Exception
+	public GestionCommodite(Commodites commodites) throws IFT287Exception
 	{
 		this.cx = commodites.getConnexion();
 		this.commodites = commodites;
@@ -27,6 +27,8 @@ public class GestionCommodite
 	{
 		try
         {
+            cx.demarreTransaction();
+
 			// Vérifie les informations de la commodité
 			if (prix < 0)
                 throw new IFT287Exception("La commodité doit avoir un prix supérieur ou égal à zéro.");
@@ -37,7 +39,7 @@ public class GestionCommodite
 			// Vérifie si la commodité existe déja
             if (commodites.existe(idCommodite))
                 throw new IFT287Exception("La commodite existe déjà: " + idCommodite);
-            TupleCommodite commodite = new TupleCommodite(idCommodite,description,prix);
+            Commodite commodite = new Commodite(idCommodite,description,prix);
             // Ajout de la commodité
             if (commodites.ajouter(commodite) != commodite)
             	throw new IFT287Exception("Erreur lors de l'ajout d'une commodité à la table.");

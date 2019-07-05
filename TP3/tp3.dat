@@ -20,7 +20,7 @@ enleverCommodite 3 3
 reserver 2 3 2019-05-25 2019-07-31
 reserver 4 5 2019-10-02 2019-10-15
 afficherChambre 2
-afficherChambresLibree
+afficherChambresLibres
 afficherClient 4
 afficherClient 3
 quitter

@@ -6,20 +6,20 @@ import java.util.List;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
-import AubergeInn.Table.TableChambres;
-import AubergeInn.Table.TableCommodites;
-import AubergeInn.Tuple.TupleChambre;
-import AubergeInn.Tuple.TupleCommodite;
-import AubergeInn.Tuple.TupleReservation;
+import AubergeInn.Table.Chambres;
+import AubergeInn.Table.Commodites;
+import AubergeInn.Tuple.Chambre;
+import AubergeInn.Tuple.Commodite;
+import AubergeInn.Tuple.Reservation;
 
 public class GestionChambre 
 {
 	private Connexion cx;
-	private TableChambres chambres;
-	private TableCommodites commodites;
+	private Chambres chambres;
+	private Commodites commodites;
 	
 	// Fonction de connexion pour la chambre
-	public GestionChambre(TableChambres chambres, TableCommodites commodites) throws IFT287Exception
+	public GestionChambre(Chambres chambres, Commodites commodites) throws IFT287Exception
 	{
 		this.cx = chambres.getConnexion();
 		
@@ -44,7 +44,9 @@ public class GestionChambre
 	{
 		try
         {
-			TupleChambre chambre = new TupleChambre(idChambre, nom, type, prix);
+            cx.demarreTransaction();
+
+			Chambre chambre = new Chambre(idChambre, nom, type, prix);
 			// Vérifie le prix de la chambre
 			if (prix < 0)
                 throw new IFT287Exception("Le prix de la chambre doit être supérieur ou égal à zéro.");
@@ -87,12 +89,12 @@ public class GestionChambre
 		try
         {    
 			cx.demarreTransaction();
-			TupleChambre chambre = chambres.getChambre(idChambre);
+			Chambre chambre = chambres.getChambre(idChambre);
             // Verifie si la chambre est existant
             if (chambre == null)
                 throw new IFT287Exception("Chambre inexistante: " + idChambre);
             
-            for (TupleReservation reservation : chambre.getReservations())
+            for (Reservation reservation : chambre.getReservations())
             {
             	LocalDate localDate = LocalDate.now();
     			Date date = Date.valueOf(localDate);
@@ -127,12 +129,12 @@ public class GestionChambre
 		try
 		{
 			cx.demarreTransaction();
-			TupleChambre chambre = chambres.getChambre(idChambre);
+			Chambre chambre = chambres.getChambre(idChambre);
 			// Vérifie si la chambre existe
 			if (chambre == null)
 	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
 	        
-			TupleCommodite commodite = commodites.getCommodite(idCommodite);
+			Commodite commodite = commodites.getCommodite(idCommodite);
 			// Vérifie si la commodité existe
 	        if (commodite == null)
 	            throw new IFT287Exception("La commodité n'existe pas : " + idCommodite);
@@ -149,6 +151,7 @@ public class GestionChambre
 		}
 		catch(Exception e)
 		{
+		    cx.rollback();
 			throw e;
 		}
 	}
@@ -166,11 +169,12 @@ public class GestionChambre
 		try
 		{
 			cx.demarreTransaction();
-			TupleChambre chambre = chambres.getChambre(idChambre);
+			
+			Chambre chambre = chambres.getChambre(idChambre);
 			// Vérifie si la chambre existe
 			if (chambre == null)
 	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
-			TupleCommodite commodite = commodites.getCommodite(idCommodite);
+			Commodite commodite = commodites.getCommodite(idCommodite);
 			// Vérifie si la commodité existe
 	        if (commodite == null)
 	            throw new IFT287Exception("La commodité n'existe pas : " + idCommodite);
@@ -187,6 +191,7 @@ public class GestionChambre
 		}
 		catch(Exception e)
 		{
+		    cx.rollback();
 			throw e;
 		}
 	}
@@ -198,13 +203,14 @@ public class GestionChambre
 	 * 
 	 * @return le tuple de la chambre contenant les données de celle-ci.
      */
-	public TupleChambre getChambre(int idChambre)
+	public Chambre getChambre(int idChambre)
 			throws IFT287Exception
 	{
 		try
 		{
 			cx.demarreTransaction();
-			TupleChambre tupleChambre = chambres.getChambre(idChambre);
+			
+			Chambre tupleChambre = chambres.getChambre(idChambre);
 			if (tupleChambre == null)
 				throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
 			
@@ -213,6 +219,7 @@ public class GestionChambre
 		}
 		catch(Exception e)
 		{
+		    cx.rollback();
 			throw e;
 		}
 	}
@@ -222,13 +229,14 @@ public class GestionChambre
 	 * 
 	 * @return la listes des chambres et les données de celles-ci.
      */
-	public List<TupleChambre> getAllChambres()
+	public List<Chambre> getAllChambres()
 			throws IFT287Exception
 	{
 		try
 		{
 			cx.demarreTransaction();
-			List<TupleChambre> listeChambres = chambres.getAllChambre();
+			
+			List<Chambre> listeChambres = chambres.getAllChambre();
 			
 			if (listeChambres.isEmpty())
 				throw new IFT287Exception("Aucune chambre");
@@ -237,6 +245,7 @@ public class GestionChambre
 		}
 		catch(Exception e)
 		{
+		    cx.rollback();
 			throw e;
 		}
 	}
@@ -246,13 +255,14 @@ public class GestionChambre
 	 * 
 	 * @return la listes des chambres libres.
      */
-	public List<TupleChambre> getChambresLibres()
+	public List<Chambre> getChambresLibres()
 			throws IFT287Exception
 	{
 		try
 		{
 			cx.demarreTransaction();
-			List<TupleChambre> listeChambres = chambres.getAllChambre();
+			
+			List<Chambre> listeChambres = chambres.getAllChambre();
 
 			if (listeChambres.isEmpty())
 				throw new IFT287Exception("Aucune chambre n'existe");
@@ -262,7 +272,7 @@ public class GestionChambre
 
 			for (int i = 0; i < listeChambres.size(); ++i)
 			{
-				for (TupleReservation reservation : listeChambres.get(i).getReservations())
+				for (Reservation reservation : listeChambres.get(i).getReservations())
 				{
 					if (!(date.compareTo(reservation.getDateFin()) >= 0))
 					{
@@ -276,12 +286,12 @@ public class GestionChambre
 			if (listeChambres.isEmpty())
 				throw new IFT287Exception("Aucune chambre n'est libre");
 			
-			for (TupleChambre chambre : listeChambres)
+			for (Chambre chambre : listeChambres)
 			{
 
 				int prixCommodites = 0;
 					
-				for (TupleCommodite commodite : chambre.getCommodites())
+				for (Commodite commodite : chambre.getCommodites())
 					prixCommodites += commodite.getPrix();
 					
 				chambre.setPrix(chambre.getPrix() + prixCommodites);	
@@ -291,6 +301,7 @@ public class GestionChambre
 		}
 		catch(Exception e)
 		{
+		    cx.rollback();
 			throw e;
 		}
 	}
