@@ -73,11 +73,13 @@ public class Reservation
 		this.prixTotal = prixTotal;
 	}
 
-	public Client getClient() {
+	public Client getClient() 
+	{
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(Client client) 
+	{
 		this.client = client;
 	}
 

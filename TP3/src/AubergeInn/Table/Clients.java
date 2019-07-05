@@ -42,7 +42,7 @@ public class Clients
 	 * 
 	 * @param idClient  l'id du client.
 	 * 
-	 * @return Le tuple du client contenant ses données.
+	 * @return L'objet client contenant ses données.
      */
     public Client getClient(int idClient)
     {
@@ -61,9 +61,9 @@ public class Clients
     /**
 	 * Fonction pour ajouter un client dans la BD.
 	 * 
-	 * @param Client L'objet client à ajouter dans la BD.
+	 * @param client L'objet client à ajouter dans la BD.
 	 * 
-	 * @return L'objet Client ajouté dans la BD.
+	 * @return L'objet client ajouté dans la BD.
      */
     public Client ajouter(Client client)
     {
@@ -74,7 +74,7 @@ public class Clients
     /**
 	 * Fonction pour supprimer un client de la BD.
 	 * 
-	 * @param Client L'objet client à ajouter dans la BD.
+	 * @param client L'objet client à ajouter dans la BD.
 	 * 
 	 * @return retourne vrai si supprimer dans la BD faux sinon.
      */

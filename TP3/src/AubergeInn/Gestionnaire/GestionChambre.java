@@ -90,7 +90,7 @@ public class GestionChambre
         {    
 			cx.demarreTransaction();
 			Chambre chambre = chambres.getChambre(idChambre);
-            // Verifie si la chambre est existant
+            // Verifie si la chambre est existante
             if (chambre == null)
                 throw new IFT287Exception("Chambre inexistante: " + idChambre);
             
@@ -197,11 +197,11 @@ public class GestionChambre
 	}
 	
 	/**
-	 * Fonction pour aller chercher une chambre dans la BD et calculer son prix total.
+	 * Fonction pour aller chercher une chambre dans la BD.
 	 * 
 	 * @param idChambre  l'id de la chambre.
 	 * 
-	 * @return le tuple de la chambre contenant les données de celle-ci.
+	 * @return un objet chambre contenant les données de celle-ci.
      */
 	public Chambre getChambre(int idChambre)
 			throws IFT287Exception
@@ -210,12 +210,12 @@ public class GestionChambre
 		{
 			cx.demarreTransaction();
 			
-			Chambre tupleChambre = chambres.getChambre(idChambre);
-			if (tupleChambre == null)
+			Chambre chambre = chambres.getChambre(idChambre);
+			if (chambre == null)
 				throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
 			
 			cx.commit();
-			return tupleChambre;
+			return chambre;
 		}
 		catch(Exception e)
 		{
@@ -286,7 +286,7 @@ public class GestionChambre
 			if (listeChambres.isEmpty())
 				throw new IFT287Exception("Aucune chambre n'est libre");
 			
-			for (Chambre chambre : listeChambres)
+			/*for (Chambre chambre : listeChambres)
 			{
 
 				int prixCommodites = 0;
@@ -295,7 +295,7 @@ public class GestionChambre
 					prixCommodites += commodite.getPrix();
 					
 				chambre.setPrix(chambre.getPrix() + prixCommodites);	
-			}
+			}*/
 			cx.commit();
 			return listeChambres;
 		}

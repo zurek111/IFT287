@@ -44,25 +44,7 @@ public class Chambres
     	
     	return !stmExist.getResultList().isEmpty();
     }
-    
-    /**
-	 * Fonction pour savoir si une commodité est incluse dans une chambre.
-	 * 
-	 * @param idChambre  l'id de la chambre.
-	 * @param idCommodite  l'id de la commodité.
-	 * 
-	 * @return Vrai si la commodité est incluse dans la chambre, faux sinon.
-     */
-    /*public boolean commoditeIncluse(int idChambre, int idCommodite) throws SQLException
-    {
-    	stmCommoditeIncluse.setInt(1, idChambre);
-    	stmCommoditeIncluse.setInt(2, idCommodite);
-    	ResultSet rst = stmCommoditeIncluse.executeQuery();
-    	boolean commoditeChambreExist = rst.next();
-    	rst.close();
-    	
-    	return commoditeChambreExist;
-    }*/
+
     /**
 	 * Fonction pour obtenir toutes les chambres de la BD.
 	 * 
@@ -81,7 +63,7 @@ public class Chambres
 	 * 
 	 * @param idChambre  l'id de la chambre.
 	 * 
-	 * @return Le tuple de la chambre qui contient les données de celle-ci.
+	 * @return L'objet chambre qui contient les données de celle-ci.
      */
     public Chambre getChambre(int idChambre)
     {
@@ -100,10 +82,7 @@ public class Chambres
     /**
 	 * Fonction pour ajouter une chambre dans la BD.
 	 * 
-	 * @param idChambre  l'id de la chambre.
-	 * @param nom  le nom de la chambre.
-	 * @param typeLit  le type de lit de la chambre.
-	 * @param prix  le prix de la chambre.
+	 * @param chambre La chambre à ajouter en BD
 	 * 
 	 * @return La chambre ajoutée dans la BD.
      */
@@ -116,7 +95,7 @@ public class Chambres
     /**
 	 * Fonction pour supprimer une chambre dans la BD.
 	 * 
-	 * @param idChambre  l'id de la chambre.
+	 * @param chambre La chambre à supprimer de la BD
 	 * 
 	 * @return vrai si supprimées dans la BD faux sinon.
      */
@@ -130,33 +109,4 @@ public class Chambres
     	return false;
     }
     
-    /**
-	 * Fonction pour inclure une commodité dans une chambre.
-	 * 
-	 * @param idChambre  l'id de la chambre.
-	 * @param idCommodite  l'id de la commodité.
-	 * 
-	 * @return Le nombre de lignes ajoutées dans la BD.
-     */
-    /*public int inclureCommodite(int idChambre,int idCommodite) throws SQLException
-    {
-    	stmInclude.setInt(1, idChambre);
-    	stmInclude.setInt(2, idCommodite);
-    	return stmInclude.executeUpdate();
-    }*/
-    
-    /**
-	 * Fonction pour retirer une commodité d'une chambre.
-	 * 
-	 * @param idChambre  l'id de la chambre.
-	 * @param idCommodite  l'id de la commodité.
-	 * 
-	 * @return Le nombre de lignes supprimées dans la BD.
-     */
-    /*public int enleverCommodite(int idChambre,int idCommodite) throws SQLException
-    {
-    	stmRemoveCommodite.setInt(1, idChambre);
-    	stmRemoveCommodite.setInt(2, idCommodite);
-    	return stmRemoveCommodite.executeUpdate();
-    }*/
 }

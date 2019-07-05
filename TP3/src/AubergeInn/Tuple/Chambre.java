@@ -108,7 +108,8 @@ public class Chambre
 		this.reservations = reservations;
 	}
 
-	public int getPrixTotal() {
+	public int getPrixTotal() 
+	{
 		int prixTotal = this.prix;
 		for (Commodite commodite : this.commodites)
 			prixTotal += commodite.getPrix();

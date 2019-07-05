@@ -19,11 +19,6 @@ public class Commodites
 		this.cx = cx;
 		stmExist = cx.getConnection().createQuery(
 				"select c from Commodite c where c.idCommodite = :idCommodite", Commodite.class);
-		
-		/*stmListeCommodites = cx.getConnection().prepareStatement(
-				"select c.idCommodite, c.description, c.prix FROM Commodite as c\r\n" + 
-				"INNER JOIN CommoditeOfferte as co ON c.idCommodite = co.idCommodite\r\n" + 
-				"where idChambre = ?");*/
 	}
 	
     public Connexion getConnexion()
@@ -32,10 +27,10 @@ public class Commodites
     }
     
     /**
-	 * Fonction pour savoir si une chambre possède une commodité.
+	 * Fonction pour savoir si une commodité existe.
 	 * @param idCommodite  l'id de la commodité.
 	 * 
-	 * @return Vrai si elle fait partie de la chambre, faux sinon..
+	 * @return Vrai si elle fait existe en BD, faux sinon..
      */
     public boolean existe(int idCommodite)
     {
@@ -48,7 +43,7 @@ public class Commodites
 	 * Fonction pour aller chercher une commodité en BD.
 	 * @param idCommodite  l'id de la commodité.
 	 * 
-	 * @return un tuple de la commodité contenant les données de celle-ci.
+	 * @return un object commodité contenant les données de celle-ci.
      */
     public Commodite getCommodite(int idCommodite)
     {
@@ -65,36 +60,10 @@ public class Commodites
     }
     
     /**
-	 * Fonction pour connaitre les commodités incluses dans une chambre.
-	 * @param idChambre  l'id de la chambre qu'on veut savoir les commodités.
-	 * 
-	 * @return une liste des commodités inclues avec la chambre.
-     */
-    /*public List<TupleCommodite> getCommoditesChambre(int idChambre) throws SQLException
-    {
-    	stmListeCommodites.setInt(1, idChambre);
-    	ResultSet rset = stmListeCommodites.executeQuery();
-        List<TupleCommodite> listeCommodites = new LinkedList<TupleCommodite>();
-        
-        while (rset.next())
-        {
-        	TupleCommodite tupleCommodite = new TupleCommodite(rset.getInt("idCommodite"),
-        													   rset.getString("description"),
-        													   rset.getInt("prix"));
-        	
-        	listeCommodites.add(tupleCommodite);
-        }
-        rset.close();
-        return listeCommodites;
-    }*/
-    
-    /**
 	 * Fonction pour ajouter une commodité.
-	 * @param idCommodite  l'id de la commodité.
-	 * @param description  la description de la commodité.
-	 * @param prix  le prix de la commodité.
+	 * @param commodite l'objet commodité à ajouter.
 	 * 
-	 * @return retourne la commodité.
+	 * @return retourne l'objet commodité ajouté.
      */
     public Commodite ajouter(Commodite commodite)
     {
