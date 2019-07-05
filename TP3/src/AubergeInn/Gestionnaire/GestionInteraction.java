@@ -12,7 +12,6 @@ public class GestionInteraction
 {
 
 	public GestionInteraction() 
-			throws IFT287Exception
 	{
 
 	}
