@@ -6,6 +6,7 @@ import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.Chambres;
 import AubergeInn.Table.Clients;
+import AubergeInn.Table.Commodites;
 import AubergeInn.Table.Reservations;
 import AubergeInn.Tuple.Chambre;
 import AubergeInn.Tuple.Client;
@@ -17,6 +18,7 @@ public class GestionReservation
 	private Chambres chambres;
 	private Reservations reservations;
 	private Clients clients;
+	private Commodites commodites;
 	
 	public GestionReservation(Chambres chambres, Reservations reservations, Clients clients) throws IFT287Exception
 	{
@@ -46,9 +48,7 @@ public class GestionReservation
 			throws IFT287Exception
 	{
 		try
-		{
-			cx.demarreTransaction();
-			
+		{			
 			// Vérifie que les date sont des dates valides
 			if (dateDebut.compareTo(dateFin) >= 0)
 	            throw new IFT287Exception("La date de début doit être au moins un jour avant la date de fin.");
@@ -68,6 +68,7 @@ public class GestionReservation
 				if (!(dateFin.compareTo(reservation.getDateDebut()) <= 0 || dateDebut.compareTo(reservation.getDateFin()) >= 0))
 					throw new IFT287Exception("Chambre déjà réservé pendant ces dates.");		
 			}
+			
 			Reservation reservation = new Reservation(tupleClient,tupleChambre,dateDebut,dateFin);
 			// Ajout d'une réservation, erreur si la requête retourne 0
 			if (reservations.ajouter(reservation) != reservation)
@@ -75,12 +76,9 @@ public class GestionReservation
 			
 			tupleClient.ajouterReservation(reservation);
 			tupleChambre.ajouterReservation(reservation);
-			// Commit
-            cx.commit();
 		}
 		catch(Exception e)
 		{
-			cx.rollback();
 			throw e;
 		}
 	}

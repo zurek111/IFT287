@@ -3,28 +3,29 @@ package AubergeInn.Tuple;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.*;
+import org.bson.Document;
 
 // Classe de données pour un client.
-@Entity
 public class Client 
 {
-	@Id
-	@GeneratedValue
-	private long id;
 	
 	private int idClient;
 	private String prenom;
 	private String nom;
 	private int age;
-	
-	@OneToMany(mappedBy = "client")
-	@OrderBy("dateDebut")
-	private List<Reservation> reservations;
+
 	
 	public Client()
 	{
 	}
+	
+	public Client(Document d)
+    {
+		setIdClient(d.getInteger("idClient"));
+		setPrenom(d.getString("prenom"));
+		setNom(d.getString("nom"));
+		setAge(d.getInteger("age"));
+    }
 	
 	public Client(int idClient, String prenom, String nom, int age) 
 	{
@@ -102,5 +103,12 @@ public class Client
 	{
 		this.reservations = reservations;
 	}
-
+	
+	public Document toDocument()
+    {
+    	return new Document().append("idClient", getIdClient())
+    			             .append("prenom", getPrenom())
+    			             .append("nom", getNom())
+    			             .append("age", getAge());
+    }
 }

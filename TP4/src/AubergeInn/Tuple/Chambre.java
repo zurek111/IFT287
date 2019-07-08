@@ -3,26 +3,18 @@ package AubergeInn.Tuple;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.*;
 
 //Classe de données pour une chambre.
-@Entity
 public class Chambre 
 {
-	@Id
-	@GeneratedValue
-	private long id;
+
 
 	private int idChambre;
 	private String nom;
 	private String typeLit;
 	private int prix;
 	
-	private List<Commodite> commodites;
-
-	@OneToMany(mappedBy = "chambre")
-	@OrderBy("dateDebut")
-	private List<Reservation> reservations;
+	private List<Integer> idCommodites;
 	
 	public Chambre()
 	{

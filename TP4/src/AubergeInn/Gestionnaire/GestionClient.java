@@ -3,21 +3,19 @@ package AubergeInn.Gestionnaire;
 import java.sql.Date;
 import java.time.LocalDate;
 
-import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.Clients;
+import AubergeInn.Table.Reservations;
 import AubergeInn.Tuple.Client;
 import AubergeInn.Tuple.Reservation;
 
 public class GestionClient 
 {
-	private Connexion cx;
 	private Clients clients;
+	private Reservations reservations;
 	
 	public GestionClient(Clients clients) throws IFT287Exception
 	{
-		this.cx = clients.getConnexion();
-        
 		this.clients = clients;
 	}
 	
@@ -35,8 +33,6 @@ public class GestionClient
 	{
 		try
         {
-			cx.demarreTransaction();
-			
 			// Vérifie les informations du client
 			if (age < 0 || prenom.isEmpty() || nom.isEmpty())
                 throw new IFT287Exception("Le client doit avoir des informations personnelles valides.");
@@ -47,15 +43,11 @@ public class GestionClient
             
             Client newClient = new Client(idClient,prenom,nom,age);
             // Ajout du client
-            if (clients.ajouter(newClient) != newClient)
-            	throw new IFT287Exception("Erreur lors de l'ajout d'un client à la table.");
             
-            // Commit
-            cx.commit();
+            clients.ajouter(newClient);
         }
         catch (Exception e)
         {
-            cx.rollback();
             throw e;
         }
 	}
@@ -72,22 +64,18 @@ public class GestionClient
 	{
 		try
 		{
-			cx.demarreTransaction();
+			Client client = clients.getClient(idClient);
 			
-			Client tupleClient = clients.getClient(idClient);
-			
-			if (tupleClient == null)
+			if (client == null)
 				throw new IFT287Exception("Le client n'existe pas : " + idClient);
 
-			cx.commit();
-			return tupleClient;
+			return client;
 		}
 		catch(Exception e)
 		{
-			cx.rollback();
 			throw e;
 		}
-	}	
+	}
 	
 	/**
 	 * Fonction pour supprimer un client de la BD.
@@ -100,16 +88,14 @@ public class GestionClient
 	{
 		try
 		{
-		 	cx.demarreTransaction();
-		 	
-		    Client tupleClient = clients.getClient(idClient);
+		    Client client = clients.getClient(idClient);
 		    
 		    // Verifie si le client est existant
-		    if (tupleClient == null)
+		    if (client == null)
 		        throw new IFT287Exception("Client inexistant: " + idClient);
 		    
 		    // Verifie si le client a des réservations
-		    for (Reservation reservation : tupleClient.getReservations())
+		    for (Reservation reservation : client.getReservations())
 		    {
 		    	LocalDate localDate = LocalDate.now();
 				Date date = Date.valueOf(localDate);
@@ -118,15 +104,11 @@ public class GestionClient
 		    }
 		
 		    // Suppression du membre
-		    if (!clients.supprimer(tupleClient))
+		    if (!clients.supprimer(idClient))
 		        throw new IFT287Exception("Erreur lors de la suppression d'un client.");
-		    
-		    // Commit
-		    cx.commit();
 		}
 		catch (Exception e)
 		{
-		    cx.rollback();
 		    throw e;
 		}
 	}

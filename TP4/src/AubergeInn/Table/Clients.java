@@ -1,22 +1,21 @@
 package AubergeInn.Table;
 
-import java.util.List;
-
-import javax.persistence.TypedQuery;
-
 import AubergeInn.Connexion;
 import AubergeInn.Tuple.Client;
 
+import static com.mongodb.client.model.Filters.eq;
+import org.bson.Document;
+import com.mongodb.client.MongoCollection;
+
 public class Clients 
 {
-    private TypedQuery<Client> stmClient;
+	private MongoCollection<Document> clientsCollection;
     private Connexion cx;
     
 	public Clients(Connexion cx)
 	{
 		this.cx = cx;
-		stmClient = cx.getConnection().createQuery(
-				"select c from Client c where c.idClient = :idClient",Client.class);
+		clientsCollection = cx.getDatabase().getCollection("Clients");
 	}
 	
     public Connexion getConnexion()
@@ -33,8 +32,7 @@ public class Clients
      */
     public boolean existe(int idClient)
     {
-    	stmClient.setParameter("idClient", idClient);
-    	return !stmClient.getResultList().isEmpty();
+    	return clientsCollection.find(eq("idClient", idClient)).first() != null;
     }
     
     /**
@@ -46,16 +44,12 @@ public class Clients
      */
     public Client getClient(int idClient)
     {
-    	stmClient.setParameter("idClient", idClient);
-    	List<Client> clients = stmClient.getResultList();
-        if(!clients.isEmpty())
-        {
-            return clients.get(0);
-        }
-        else
-        {
-            return null;
-        }
+    	Document d = clientsCollection.find(eq("idClient", idClient)).first();
+    	if(d != null)
+    	{
+    		return new Client(d);
+    	}
+        return null;
     }
     
     /**
@@ -65,10 +59,9 @@ public class Clients
 	 * 
 	 * @return L'objet client ajouté dans la BD.
      */
-    public Client ajouter(Client client)
+    public void ajouter(Client client)
     {
-    	cx.getConnection().persist(client);
-    	return client;
+    	clientsCollection.insertOne(client.toDocument());
     }
     
     /**
@@ -78,13 +71,8 @@ public class Clients
 	 * 
 	 * @return retourne vrai si supprimer dans la BD faux sinon.
      */
-    public boolean supprimer(Client client)
+    public boolean supprimer(int idClient)
     {
-    	if(client != null)
-        {
-            cx.getConnection().remove(client);
-            return true;
-        }
-        return false;
+    	return clientsCollection.deleteOne(eq("idClient", idClient)).getDeletedCount() > 0;
     }
 }
