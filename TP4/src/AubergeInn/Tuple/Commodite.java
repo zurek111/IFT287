@@ -1,15 +1,10 @@
 package AubergeInn.Tuple;
 
-import javax.persistence.*;
+import org.bson.Document;
 
 // Classe de données pour une commodité.
-@Entity
 public class Commodite 
 {
-	@Id
-	@GeneratedValue
-	private long id;
-
 	private int idCommodite;
 	private String description;
 	private int prix;
@@ -17,6 +12,13 @@ public class Commodite
 	public Commodite()
 	{
 	}
+	
+    public Commodite(Document d)
+    {
+    	setIdCommodite(d.getInteger("idCommodite"));
+    	setDescription(d.getString("description"));
+    	setPrix(d.getInteger("prix"));
+    }
 	
 	public Commodite(int idCommodite, String description, int prix) 
 	{
@@ -54,41 +56,11 @@ public class Commodite
 	{
 		this.prix = prix;
 	}
-
-	@Override
-	public int hashCode() 
-	{
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + idCommodite;
-		result = prime * result + prix;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) 
-	{
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Commodite other = (Commodite) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id != other.id)
-			return false;
-		if (idCommodite != other.idCommodite)
-			return false;
-		if (prix != other.prix)
-			return false;
-		return true;
-	}
-
+	
+    public Document toDocument()
+    {
+    	return new Document().append("idCommodite", idCommodite)
+    			             .append("description", description)
+    			             .append("prix", prix);
+    }
 }

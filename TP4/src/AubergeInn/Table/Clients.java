@@ -45,10 +45,10 @@ public class Clients
     public Client getClient(int idClient)
     {
     	Document d = clientsCollection.find(eq("idClient", idClient)).first();
+    	
     	if(d != null)
-    	{
     		return new Client(d);
-    	}
+    	
         return null;
     }
     

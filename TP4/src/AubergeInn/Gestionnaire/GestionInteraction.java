@@ -29,16 +29,23 @@ public class GestionInteraction
 		try
 		{		
 			Chambre c = gestionAubergeInn.getGestionChambre().getChambre(idChambre);
+			
+			int prixTotal = c.getPrix();
+			String descriptionCommodites = "";
+			for (Commodite commodite : gestionAubergeInn.getGestionCommodite().getCommodites(c))
+			{
+				prixTotal += commodite.getPrix();
+				descriptionCommodites += commodite.getDescription() + "\n";
+			}
 
 			System.out.println("idChambre nom typeLit prix");
-			System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrixTotal());
+			System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + prixTotal);
 			
 			System.out.println("Commodités offertes : ");
-			if (c.getCommodites().isEmpty())
+			if (descriptionCommodites.isEmpty())
 				System.out.println("Aucune");
-
-			for (Commodite commodite : c.getCommodites())
-				System.out.println(commodite.getDescription());
+			else
+				System.out.println(descriptionCommodites);
 		}
 		catch(Exception e)
 		{
@@ -62,7 +69,13 @@ public class GestionInteraction
 			System.out.println("idChambre nom typeLit prixTotal");
 
 			for (Chambre c : listeChambres)
-				System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + c.getPrixTotal());	
+			{
+				int prixTotal = c.getPrix();
+				for (Commodite commodite : gestionAubergeInn.getGestionCommodite().getCommodites(c))
+					prixTotal += commodite.getPrix();
+				
+				System.out.println(c.getIdChambre() + " " + c.getNom() + " " + c.getTypeLit() + " " + prixTotal);	
+			}			
 		}
 		catch(Exception e)
 		{
@@ -87,15 +100,18 @@ public class GestionInteraction
 			System.out.println("idClient prenom nom age");
 			System.out.println(c.getIdClient() + " " + c.getPrenom() + " " + c.getNom() + " " + c.getAge());
 			
-			if (c.getReservations().isEmpty())
+			// Liste de réservation du client
+			List<Reservation> listeReservation = gestionAubergeInn.getGestionReservation().getReservationsClient(idClient);	
+			
+			if (listeReservation.isEmpty())
 				System.out.println("Le client n'a jamais fait de réservation");
 			else
 			{
 				System.out.println("Réservations :");
 				
-				for (Reservation r : c.getReservations())
+				for (Reservation r : listeReservation)
 				{
-					System.out.printf("Chambre #%d - %d$ | %tF au %tF %n", r.getChambre().getIdChambre(), r.getPrixTotal(), r.getDateDebut(), r.getDateFin());
+					System.out.printf("Chambre #%d - %d$ | %tF au %tF %n", r.getIdChambre(), r.getPrixTotal(), r.getDateDebut(), r.getDateFin());
 				}
 			}
 		}

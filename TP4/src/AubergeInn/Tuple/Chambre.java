@@ -3,12 +3,12 @@ package AubergeInn.Tuple;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.bson.Document;
+
 
 //Classe de données pour une chambre.
 public class Chambre 
 {
-
-
 	private int idChambre;
 	private String nom;
 	private String typeLit;
@@ -20,14 +20,21 @@ public class Chambre
 	{
 	}
 	
+	public Chambre(Document d)
+    {
+		setIdChambre(d.getInteger("idChambre"));
+		setNom(d.getString("nom"));
+		setTypeLit(d.getString("typeLit"));
+		setPrix(d.getInteger("prix"));
+    }
+	
 	public Chambre(int idChambre, String nom, String typeLit, int prix) 
 	{
 		this.setIdChambre(idChambre);
 		this.setNom(nom);
 		this.setTypeLit(typeLit);
 		this.setPrix(prix);
-		this.setCommodites(new LinkedList<Commodite>());
-		this.setReservations(new LinkedList<Reservation>());
+		this.setIdCommodites(new LinkedList<Integer>());
 	}
 
 	public int getIdChambre() 
@@ -69,55 +76,32 @@ public class Chambre
 	{
 		this.prix = prix;
 	}
-
-	public List<Commodite> getCommodites() 
+	
+	public List<Integer> getIdCommodites() 
 	{
-		return commodites;
+		return idCommodites;
 	}
 
-	public void setCommodites(List<Commodite> commodites) 
+	public void setIdCommodites(List<Integer> idCommodites) 
 	{
-		this.commodites = commodites;
+		this.idCommodites = idCommodites;
 	}
 	
-	public void ajouterCommodite(Commodite commodite)
+	public void enleverCommodite(int idCommodite)
 	{
-		this.commodites.add(commodite);
+		this.getIdCommodites().remove(new Integer(idCommodite));
 	}
 	
-	public void enleverCommodite(Commodite commodite)
+	public void ajouterCommodite(int idCommodite)
 	{
-		this.commodites.remove(commodite);
+		this.getIdCommodites().add(idCommodite);
 	}
 	
-	public List<Reservation> getReservations() 
-	{
-		return reservations;
-	}
-
-	public void setReservations(List<Reservation> reservations) 
-	{
-		this.reservations = reservations;
-	}
-
-	public int getPrixTotal() 
-	{
-		int prixTotal = this.prix;
-		for (Commodite commodite : this.commodites)
-			prixTotal += commodite.getPrix();
-		return prixTotal;
-	}
-
-	public void ajouterReservation(Reservation reservation) 
-	{
-		this.reservations.add(reservation); 
-		
-	}
-	
-	public void enleverReservation(Reservation reservation) 
-	{
-		this.reservations.remove(reservation); 
-		
-	}
-
+    public Document toDocument()
+    {
+    	return new Document().append("idChambre", getIdChambre())
+    			             .append("nom", getNom())
+    			             .append("typeLit", getTypeLit())
+    			             .append("prix", getPrix());
+    }
 }

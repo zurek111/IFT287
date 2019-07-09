@@ -14,9 +14,13 @@ public class GestionClient
 	private Clients clients;
 	private Reservations reservations;
 	
-	public GestionClient(Clients clients) throws IFT287Exception
+	public GestionClient(Clients clients, Reservations reservations) throws IFT287Exception
 	{
+		if (clients.getConnexion() != reservations.getConnexion())
+            throw new IFT287Exception("Les collections d'objets n'utilisent pas la même connexion au serveur");
+
 		this.clients = clients;
+		this.reservations = reservations;
 	}
 	
 	/**
@@ -42,8 +46,8 @@ public class GestionClient
                 throw new IFT287Exception("Client existe déjà: " + idClient);
             
             Client newClient = new Client(idClient,prenom,nom,age);
-            // Ajout du client
             
+            // Ajout du client
             clients.ajouter(newClient);
         }
         catch (Exception e)
@@ -88,14 +92,12 @@ public class GestionClient
 	{
 		try
 		{
-		    Client client = clients.getClient(idClient);
-		    
 		    // Verifie si le client est existant
-		    if (client == null)
+		    if (!clients.existe(idClient))
 		        throw new IFT287Exception("Client inexistant: " + idClient);
 		    
 		    // Verifie si le client a des réservations
-		    for (Reservation reservation : client.getReservations())
+		    for (Reservation reservation : reservations.getReservationsClient(idClient))
 		    {
 		    	LocalDate localDate = LocalDate.now();
 				Date date = Date.valueOf(localDate);

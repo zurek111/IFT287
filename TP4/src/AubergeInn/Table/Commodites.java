@@ -1,15 +1,20 @@
 package AubergeInn.Table;
 
+import AubergeInn.Connexion;
+import AubergeInn.Tuple.Chambre;
+import AubergeInn.Tuple.Commodite;
+
+import static com.mongodb.client.model.Filters.eq;
+
+import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.TypedQuery;
-
-import AubergeInn.Connexion;
-import AubergeInn.Tuple.Commodite;
+import org.bson.Document;
+import com.mongodb.client.MongoCollection;
 
 public class Commodites 
 {
-    private TypedQuery<Commodite> stmExist;
+	private MongoCollection<Document> commoditesCollection;
 
     private Connexion cx;
     
@@ -17,8 +22,7 @@ public class Commodites
 	public Commodites(Connexion cx) 
 	{
 		this.cx = cx;
-		stmExist = cx.getConnection().createQuery(
-				"select c from Commodite c where c.idCommodite = :idCommodite", Commodite.class);
+		commoditesCollection = cx.getDatabase().getCollection("Commodites");
 	}
 	
     public Connexion getConnexion()
@@ -34,9 +38,7 @@ public class Commodites
      */
     public boolean existe(int idCommodite)
     {
-    	stmExist.setParameter("idCommodite", idCommodite);
-   
-    	return !stmExist.getResultList().isEmpty();
+    	return commoditesCollection.find(eq("idCommodite", idCommodite)).first() != null;
     }
     
     /**
@@ -47,16 +49,12 @@ public class Commodites
      */
     public Commodite getCommodite(int idCommodite)
     {
-    	stmExist.setParameter("idCommodite", idCommodite);
-    	List<Commodite> commodites = stmExist.getResultList();
-        if (!commodites.isEmpty())
-        {
-            return commodites.get(0);
-        }
-        else
-        {
-            return null;
-        }
+    	Document d = commoditesCollection.find(eq("idCommodite", idCommodite)).first();
+    	
+    	if(d != null)
+    		return new Commodite(d);
+
+        return null;
     }
     
     /**
@@ -65,9 +63,19 @@ public class Commodites
 	 * 
 	 * @return retourne l'objet commodité ajouté.
      */
-    public Commodite ajouter(Commodite commodite)
+    public void ajouter(Commodite commodite)
     {
-    	cx.getConnection().persist(commodite);
-    	return commodite;
+    	commoditesCollection.insertOne(commodite.toDocument());
+    }
+    
+    public List<Commodite> getCommodites(Chambre chambre)
+    {
+    	List<Commodite> listeCommodites = new LinkedList<Commodite>();
+		for (int idCommodite : chambre.getIdCommodites())
+		{
+			listeCommodites.add(getCommodite(idCommodite));
+		}
+		
+		return listeCommodites;
     }
 }

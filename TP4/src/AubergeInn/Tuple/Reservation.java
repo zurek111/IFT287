@@ -1,6 +1,8 @@
 package AubergeInn.Tuple;
 
-import java.sql.Date;
+import java.util.Date;
+
+import org.bson.Document;
 
 // Classe de données pour une réservation.
 public class Reservation 
@@ -15,10 +17,19 @@ public class Reservation
 	{
 	}
 	
-	public Reservation( Client client, int idChambre, Date dateDebut, Date dateFin, int prixTotal)
+	public Reservation(Document d)
+    {
+		setIdChambre(d.getInteger("idChambre"));
+		setIdClient(d.getInteger("idClient"));
+		setDateDebut(d.getDate("dateDebut"));
+		setDateFin(d.getDate("dateFin"));
+		setPrixTotal(d.getInteger("prixTotal"));
+    }
+	
+	public Reservation(int idClient, int idChambre, Date dateDebut, Date dateFin, int prixTotal)
 	{
 		this.setIdChambre(idChambre);
-		this.setClient(client);
+		this.setIdClient(idClient);
 		this.setDateDebut(dateDebut);
 		this.setDateFin(dateFin);
 		this.setPrixTotal(prixTotal);
@@ -32,6 +43,16 @@ public class Reservation
 	public void setIdChambre(int idChambre) 
 	{
 		this.idChambre = idChambre;
+	}
+	
+	public int getIdClient() 
+	{
+		return idClient;
+	}
+
+	public void setIdClient(int idClient) 
+	{
+		this.idClient = idClient;
 	}
 
 	public Date getDateDebut() 
@@ -64,14 +85,12 @@ public class Reservation
 		this.prixTotal = prixTotal;
 	}
 
-	public Client getClient() 
-	{
-		return client;
-	}
-
-	public void setClient(Client client) 
-	{
-		this.client = client;
-	}
-
+    public Document toDocument()
+    {
+    	return new Document().append("idChambre", idChambre)
+    			             .append("idClient", idClient)
+    			             .append("dateDebut", dateDebut)
+    			             .append("dateFin", dateFin)
+    			             .append("prixTotal", prixTotal);
+    }
 }

@@ -1,38 +1,37 @@
 package AubergeInn.Gestionnaire;
 
 import java.sql.Date;
+import java.util.List;
 
-import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.Chambres;
 import AubergeInn.Table.Clients;
 import AubergeInn.Table.Commodites;
 import AubergeInn.Table.Reservations;
 import AubergeInn.Tuple.Chambre;
-import AubergeInn.Tuple.Client;
+import AubergeInn.Tuple.Commodite;
 import AubergeInn.Tuple.Reservation;
 
 public class GestionReservation 
 {
-	private Connexion cx;
 	private Chambres chambres;
 	private Reservations reservations;
 	private Clients clients;
 	private Commodites commodites;
 	
-	public GestionReservation(Chambres chambres, Reservations reservations, Clients clients) throws IFT287Exception
+	public GestionReservation(Chambres chambres, Reservations reservations, Clients clients, Commodites commodites) throws IFT287Exception
 	{
-		this.cx = reservations.getConnexion();
-		
-		if (cx != chambres.getConnexion())
-            throw new IFT287Exception("Les instances de TableReservations et de TableChambres n'utilisent pas la même connexion au serveur");
-		
-		if (cx != clients.getConnexion())
-            throw new IFT287Exception("Les instances de TableReservations et de TableClients n'utilisent pas la même connexion au serveur");
-        
+		if (chambres.getConnexion() != reservations.getConnexion() 
+			|| reservations.getConnexion() != clients.getConnexion()
+			|| clients.getConnexion() != commodites.getConnexion())
+		{
+            throw new IFT287Exception("Les collections d'objets n'utilisent pas la même connexion au serveur");
+		}
+
 		this.chambres = chambres;
         this.reservations = reservations;
         this.clients = clients;
+        this.commodites = commodites;
 	}
 	
 	/**
@@ -53,33 +52,41 @@ public class GestionReservation
 			if (dateDebut.compareTo(dateFin) >= 0)
 	            throw new IFT287Exception("La date de début doit être au moins un jour avant la date de fin.");
 			
-			Chambre tupleChambre = chambres.getChambre(idChambre);
+			Chambre chambre = chambres.getChambre(idChambre);
 			
 			// Vérifie si la chambre existe
-			if (tupleChambre == null)
+			if (chambre == null)
 	            throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
-			Client tupleClient = clients.getClient(idClient);
+			
 			// Vérifie si le client existe
-			if (tupleClient == null)
+			if (!clients.existe(idClient))
 	            throw new IFT287Exception("Le client n'existe pas : " + idClient);
 
-			for (Reservation reservation : tupleChambre.getReservations())
+			// Vérifie si la chambre est déjà réservée
+			for (Reservation reservation : reservations.getReservationsChambre(idChambre))
 			{
 				if (!(dateFin.compareTo(reservation.getDateDebut()) <= 0 || dateDebut.compareTo(reservation.getDateFin()) >= 0))
 					throw new IFT287Exception("Chambre déjà réservé pendant ces dates.");		
 			}
 			
-			Reservation reservation = new Reservation(tupleClient,tupleChambre,dateDebut,dateFin);
-			// Ajout d'une réservation, erreur si la requête retourne 0
-			if (reservations.ajouter(reservation) != reservation)
-				throw new IFT287Exception("Erreur lors de l'ajout de la réservation.");
+			// Calcul du prix total de la chambre (prix de base + commodités)
+			int prixTotal = chambre.getPrix();
+			for (Commodite commodite : commodites.getCommodites(chambre))
+				prixTotal += commodite.getPrix();
 			
-			tupleClient.ajouterReservation(reservation);
-			tupleChambre.ajouterReservation(reservation);
+			Reservation reservation = new Reservation(idClient,idChambre,dateDebut,dateFin, prixTotal);
+			
+			// Ajout d'une réservation
+			reservations.ajouter(reservation);
 		}
 		catch(Exception e)
 		{
 			throw e;
 		}
+	}
+	
+	public List<Reservation> getReservationsClient(int idClient)
+	{
+		return reservations.getReservationsClient(idClient);
 	}
 }

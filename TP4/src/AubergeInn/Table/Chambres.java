@@ -1,31 +1,34 @@
 package AubergeInn.Table;
 
+import static com.mongodb.client.model.Filters.eq;
+
+import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.TypedQuery;
+import org.bson.Document;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 
 import AubergeInn.Connexion;
 import AubergeInn.Tuple.Chambre;
 
 public class Chambres 
 {
-    private TypedQuery<Chambre> stmSelect;
-    private TypedQuery<Chambre> stmExist;
-
-
+    private MongoCollection<Document> chambresCollection;
     private Connexion cx;
     
-    // fonctions de connexion
+    /**
+     * Creation d'une instance.
+     */
 	public Chambres(Connexion cx)
 	{
 		this.cx = cx;
-		
-		stmSelect = cx.getConnection().createQuery(
-				"select c from Chambre c", Chambre.class);
-		stmExist = cx.getConnection().createQuery(
-				"select c from Chambre c where c.idChambre = :idChambre", Chambre.class);
+		chambresCollection = cx.getDatabase().getCollection("Chambres");
 	}
 	
+    /**
+     * Retourner la connexion associée.
+     */
     public Connexion getConnexion()
     {
         return cx;
@@ -40,9 +43,7 @@ public class Chambres
      */
     public boolean existe(int idChambre)
     {
-    	stmExist.setParameter("idChambre", idChambre);
-    	
-    	return !stmExist.getResultList().isEmpty();
+    	return chambresCollection.find(eq("idChambre", idChambre)).first() != null;
     }
 
     /**
@@ -52,8 +53,20 @@ public class Chambres
      */
     public List<Chambre> getAllChambre()
     {
-    	
-    	List<Chambre> listeChambres = stmSelect.getResultList();
+    	List<Chambre> listeChambres = new LinkedList<Chambre>();
+    	 MongoCursor<Document> chambres = chambresCollection.find().iterator();
+         try
+         {
+             while (chambres.hasNext())
+             {
+             	Chambre c = new Chambre(chambres.next());
+             	listeChambres.add(c);
+             }
+         }
+         finally
+         {
+        	 chambres.close();
+         }
         
         return listeChambres;
     }
@@ -67,46 +80,33 @@ public class Chambres
      */
     public Chambre getChambre(int idChambre)
     {
-    	stmExist.setParameter("idChambre", idChambre);
-        List<Chambre> chambres = stmExist.getResultList();
-        if (!chambres.isEmpty())
-        {
-            return chambres.get(0);
-        }
-        else
-        {
-            return null;
-        }
+    	Document d = chambresCollection.find(eq("idChambre", idChambre)).first();
+    	
+    	if(d != null)
+    		return new Chambre(d);
+    	
+        return null;
     }
     
     /**
 	 * Fonction pour ajouter une chambre dans la BD.
 	 * 
 	 * @param chambre La chambre à ajouter en BD
-	 * 
-	 * @return La chambre ajoutée dans la BD.
      */
-    public Chambre ajouter(Chambre chambre)
+    public void ajouter(Chambre chambre)
     {
-    	cx.getConnection().persist(chambre);
-    	return chambre;
+        chambresCollection.insertOne(chambre.toDocument());
     }
     
     /**
 	 * Fonction pour supprimer une chambre dans la BD.
 	 * 
-	 * @param chambre La chambre à supprimer de la BD
+	 * @param idChambre Le id de la chambre à supprimer de la BD
 	 * 
 	 * @return vrai si supprimées dans la BD faux sinon.
      */
-    public boolean supprimer(Chambre chambre)
+    public boolean supprimer(int idChambre)
     {
-    	if (chambre != null)
-    	{
-    		cx.getConnection().remove(chambre);
-    		return true;
-    	}
-    	return false;
-    }
-    
+    	return chambresCollection.deleteOne(eq("idChambre", idChambre)).getDeletedCount() > 0;
+    }    
 }
