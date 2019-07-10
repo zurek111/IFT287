@@ -32,6 +32,7 @@ public class Commodites
     
     /**
 	 * Fonction pour savoir si une commodité existe.
+	 * 
 	 * @param idCommodite  l'id de la commodité.
 	 * 
 	 * @return Vrai si elle fait existe en BD, faux sinon..
@@ -43,6 +44,7 @@ public class Commodites
     
     /**
 	 * Fonction pour aller chercher une commodité en BD.
+	 * 
 	 * @param idCommodite  l'id de la commodité.
 	 * 
 	 * @return un object commodité contenant les données de celle-ci.
@@ -59,15 +61,22 @@ public class Commodites
     
     /**
 	 * Fonction pour ajouter une commodité.
+	 * 
 	 * @param commodite l'objet commodité à ajouter.
 	 * 
-	 * @return retourne l'objet commodité ajouté.
      */
     public void ajouter(Commodite commodite)
     {
     	commoditesCollection.insertOne(commodite.toDocument());
     }
     
+    /**
+	 * Fonction pour aller chercher les commodité d'une chambre.
+	 * 
+	 * @param chambre  la chambre dont nous voulons les commodités.
+	 * 
+	 * @return une liste de commodités qui sont inclus dans la chambre.
+     */
     public List<Commodite> getCommodites(Chambre chambre)
     {
     	List<Commodite> listeCommodites = new LinkedList<Commodite>();

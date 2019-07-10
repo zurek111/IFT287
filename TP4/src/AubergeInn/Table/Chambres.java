@@ -1,6 +1,7 @@
 package AubergeInn.Table;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -84,7 +85,6 @@ public class Chambres
     	
     	if(d != null)
     		return new Chambre(d);
-    	
         return null;
     }
     
@@ -108,5 +108,32 @@ public class Chambres
     public boolean supprimer(int idChambre)
     {
     	return chambresCollection.deleteOne(eq("idChambre", idChambre)).getDeletedCount() > 0;
-    }    
+    }
+
+    /**
+	 * Fonction pour ajouter une commodité dans une chambre.
+	 * 
+	 * @param chambre La chambre qui possèdera la commodité
+	 * @param idCommodite Le id de la commodité à ajouter
+	 * 
+     */
+	public void ajouterCommodite(Chambre chambre, int idCommodite) 
+	{
+		chambre.ajouterCommodite(idCommodite);
+		chambresCollection.updateOne(eq("idChambre", chambre.getIdChambre()), set("idCommodites", chambre.getIdCommodites()));
+	}
+
+	/**
+	 * Fonction pour enlever une commodité dans une chambre.
+	 * 
+	 * @param chambre La chambre qui possèdera la commodité
+	 * @param idCommodite Le id de la commodité à enlever
+	 * 
+     */
+	public void enleverCommodite(Chambre chambre, int idCommodite) 
+	{
+		chambre.enleverCommodite(idCommodite);
+		chambresCollection.updateOne(eq("idChambre", chambre.getIdChambre()), set("idCommodites", chambre.getIdCommodites()));
+		
+	}    
 }

@@ -70,6 +70,11 @@ public class Client
 		this.age = age;
 	}
 	
+	/**
+	 * Fonction pour créer un document à partir d'un client.
+	 * 
+	 * @return un document qui contient les données du client.
+     */
 	public Document toDocument()
     {
     	return new Document().append("idClient", getIdClient())

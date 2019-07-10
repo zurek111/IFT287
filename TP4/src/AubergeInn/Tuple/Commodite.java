@@ -57,6 +57,11 @@ public class Commodite
 		this.prix = prix;
 	}
 	
+	/**
+	 * Fonction pour créer un document à partir d'une commodité.
+	 * 
+	 * @return un document qui contient les données de la commodité.
+     */
     public Document toDocument()
     {
     	return new Document().append("idCommodite", idCommodite)

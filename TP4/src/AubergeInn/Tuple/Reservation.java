@@ -85,6 +85,11 @@ public class Reservation
 		this.prixTotal = prixTotal;
 	}
 
+	/**
+	 * Fonction pour créer un document à partir d'une réservation.
+	 * 
+	 * @return un document qui contient les données de la réservation.
+     */
     public Document toDocument()
     {
     	return new Document().append("idChambre", idChambre)

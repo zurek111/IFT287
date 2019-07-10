@@ -35,7 +35,7 @@ public class GestionReservation
 	}
 	
 	/**
-	 * Fonction pour reserver une chambre à un client.
+	 * Fonction pour réserver une chambre à un client.
 	 * 
 	 * @param idClient  l'id du client.
 	 * @param idChambre  l'id de la chambre.

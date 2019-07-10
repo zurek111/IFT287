@@ -40,13 +40,19 @@ public class Reservations
 	 * 
 	 * @param reservation l'objet contenant les informations de la réservation à ajouter
 	 * 
-	 * @return L'objet réservation ajouté.
      */
 	public void ajouter(Reservation reservation)
 	{
         reservationsCollection.insertOne(reservation.toDocument());
 	}
 	
+	/**
+	 * Fonction pour aller chercher les réservations d'un client.
+	 * 
+	 * @param idClient  l'id du client dont nous voulons les réservations.
+	 * 
+	 * @return une liste de réservations du client.
+     */
 	public List<Reservation> getReservationsClient(int idClient)
 	{
 		List<Reservation> listeReservations = new LinkedList<Reservation>();
@@ -67,6 +73,13 @@ public class Reservations
         return listeReservations;
 	}
 	
+	/**
+	 * Fonction pour aller chercher les réservations d'une chambre.
+	 * 
+	 * @param idChambre  l'id de la chambre dont nous voulons les réservations.
+	 * 
+	 * @return une liste de réservations de la chambre.
+     */
 	public List<Reservation> getReservationsChambre(int idChambre)
 	{
 		List<Reservation> listeReservations = new LinkedList<Reservation>();

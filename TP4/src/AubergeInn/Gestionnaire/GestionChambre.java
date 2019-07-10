@@ -15,7 +15,7 @@ public class GestionChambre
 {
 	private Chambres chambres;
 	private Commodites commodites;
-	private Reservations reservations; // TODO - est-ce qu'on veut cette variable pour savoir les reservations d'une chambre ou il y aurait une autre facon de faire ??
+	private Reservations reservations; 
 	
 	// Fonction de connexion pour la chambre
 	public GestionChambre(Chambres chambres, Commodites commodites, Reservations reservations) throws IFT287Exception
@@ -127,7 +127,7 @@ public class GestionChambre
 	        	throw new IFT287Exception("La chambre " + idChambre + " possède déjà la commodité " + idCommodite + ".");      
 	        
 	        // Inclus la commodité à la chambre
-            chambre.ajouterCommodite(idCommodite);
+            chambres.ajouterCommodite(chambre, idCommodite);
 		}
 		catch(Exception e)
 		{
@@ -161,7 +161,7 @@ public class GestionChambre
 	            throw new IFT287Exception("La chambre " + idChambre + " ne possède pas la commodité " + idCommodite + ".");
             
 	        // Enlève la commodite de la chambre
-	        chambre.enleverCommodite(idCommodite);
+	        chambres.enleverCommodite(chambre, idCommodite);
 		}
 		catch(Exception e)
 		{

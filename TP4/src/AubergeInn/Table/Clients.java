@@ -57,7 +57,6 @@ public class Clients
 	 * 
 	 * @param client L'objet client à ajouter dans la BD.
 	 * 
-	 * @return L'objet client ajouté dans la BD.
      */
     public void ajouter(Client client)
     {

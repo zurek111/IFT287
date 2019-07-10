@@ -1,6 +1,6 @@
 package AubergeInn.Tuple;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
@@ -26,6 +26,8 @@ public class Chambre
 		setNom(d.getString("nom"));
 		setTypeLit(d.getString("typeLit"));
 		setPrix(d.getInteger("prix"));
+		this.setIdCommodites((List<Integer>) d.get("idCommodites"));
+
     }
 	
 	public Chambre(int idChambre, String nom, String typeLit, int prix) 
@@ -34,7 +36,7 @@ public class Chambre
 		this.setNom(nom);
 		this.setTypeLit(typeLit);
 		this.setPrix(prix);
-		this.setIdCommodites(new LinkedList<Integer>());
+		this.setIdCommodites(new ArrayList<Integer>());
 	}
 
 	public int getIdChambre() 
@@ -97,11 +99,18 @@ public class Chambre
 		this.getIdCommodites().add(idCommodite);
 	}
 	
+	/**
+	 * Fonction pour créer un document à partir d'une chambre.
+	 * 
+	 * @return un document qui contient les données de la chambre.
+     */
     public Document toDocument()
     {
     	return new Document().append("idChambre", getIdChambre())
     			             .append("nom", getNom())
     			             .append("typeLit", getTypeLit())
-    			             .append("prix", getPrix());
+    			             .append("prix", getPrix())
+    			             .append("idCommodites", getIdCommodites());
+    	
     }
 }
