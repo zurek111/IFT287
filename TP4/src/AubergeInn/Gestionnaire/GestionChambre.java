@@ -238,7 +238,7 @@ public class GestionChambre
 			{
 				for (Reservation reservation : reservations.getReservationsChambre(listeChambres.get(i).getIdChambre()))
 				{
-					if (!(date.compareTo(reservation.getDateFin()) >= 0))
+					if (date.compareTo(reservation.getDateFin()) < 0 && date.compareTo(reservation.getDateDebut()) >= 0)
 					{
 						listeChambres.remove(i);
 						--i;

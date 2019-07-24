@@ -2,6 +2,7 @@ package AubergeInn.Gestionnaire;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import AubergeInn.Connexion;
@@ -55,9 +56,15 @@ public class GestionReservation
 	{
 		try
 		{
+			LocalDate localDate = LocalDate.now();
+			Date date = Date.valueOf(localDate);
+			
 			// Vérifie que les date sont des dates valides
 			if (dateDebut.compareTo(dateFin) >= 0)
 	            throw new IFT287Exception("La date de début doit être au moins un jour avant la date de fin.");
+			
+			if (dateDebut.compareTo(date) < 0)
+				throw new IFT287Exception("La date de début ne peut pas être avant la date d'aujourd'hui.");
 			
 			TupleChambre tupleChambre = chambres.getChambre(idChambre);
 			

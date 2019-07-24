@@ -277,7 +277,7 @@ public class GestionChambre
 				
 				for (TupleReservation reservation : listeReservation)
 				{
-					if (!(date.compareTo(reservation.getDateFin()) >= 0))
+					if (date.compareTo(reservation.getDateFin()) < 0 && date.compareTo(reservation.getDateDebut()) >= 0)
 					{
 						listeChambres.remove(i);
 						--i;
