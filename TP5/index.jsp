@@ -2,15 +2,15 @@
 <%
     if(getServletContext().getAttribute("serveur") != null)
 	{%>
-        <jsp:forward page="/WEB-INF/login.jsp" />
+        <jsp:forward page="/WEB-INF/client.jsp" />
 	<%}
 %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>IFT287 - Système de gestion de bibliothèque</title>
-		<meta name="author" content="Vincent Ducharme">
-		<meta name="description" content="Page d'accueil du système de gestion de la bilbiothèque.">
+		<title>IFT287 - Système de gestion de l'AubergeInn</title>
+		<meta name="author" content="Maxime Paré et Simon Cesare-Zurek">
+		<meta name="description" content="Page d'accueil du système de gestion de l'AubergeInn.">
 		
 		<!-- Required meta tags -->
 	    <meta charset="utf-8">
@@ -21,7 +21,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1 class="text-center">Système de gestion de la bibliothèque</h1>
+			<h1 class="text-center">Système de gestion de l'AubergeInn</h1>
 			<div class="col-md-4 offset-md-4">
 			<form action="Login" method="POST">
 			    <div class="form-group">

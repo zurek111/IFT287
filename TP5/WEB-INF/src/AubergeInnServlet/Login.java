@@ -39,14 +39,14 @@ public class Login extends HttpServlet
         try
         {
             System.out.println("Servlet Login : POST");
-            // Si on a d�j� entr� les informations de connexion valide
-            if (BiblioHelper.infoBDValide(getServletContext()))
+            // Si on déjà entré les informations de connexion valide
+            if (AubergeInnHelper.infoBDValide(getServletContext()))
             {
-                BiblioHelper.DispatchToLogin(request, response);
+                AubergeInnHelper.DispatchToLogin(request, response);
                 return;
             }
             
-            // lecture des param�tres du formulaire login.jsp
+            // lecture des paramètres du formulaire login.jsp
             String userId = request.getParameter("userIdBD");
             String motDePasse = request.getParameter("motDePasseBD");
             String serveur = request.getParameter("serveur");
@@ -73,12 +73,12 @@ public class Login extends HttpServlet
             
             try
             {
-                // Valider que les informations entr�es sont les bonnes
+                // Valider que les informations entrées sont les bonnes
                 Connexion cx = new Connexion(serveur, bd, userId, motDePasse);
                 cx.fermer();
                 
-                // Sauvegarder les informations de connexion dans le contexte pour les r�utiliser
-                // pour chaque client connect�                    
+                // Sauvegarder les informations de connexion dans le contexte pour les réutiliser
+                // pour chaque client connecté                    
                 getServletContext().setAttribute("serveur", serveur);
                 getServletContext().setAttribute("bd", bd);
                 getServletContext().setAttribute("user", userId);
@@ -96,7 +96,7 @@ public class Login extends HttpServlet
                 request.setAttribute("listeMessageErreur", listeMessageErreur);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
                 dispatcher.forward(request, response);
-                // pour d�boggage seulement : afficher tout le contenu de
+                // pour déboggage seulement : afficher tout le contenu de
                 // l'exception
                 e.printStackTrace();
             }
@@ -109,7 +109,7 @@ public class Login extends HttpServlet
             request.setAttribute("listeMessageErreur", listeMessageErreur);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
-            // pour d�boggage seulement : afficher tout le contenu de
+            // pour déboggage seulement : afficher tout le contenu de
             // l'exception
             e.printStackTrace();
         }
@@ -124,13 +124,13 @@ public class Login extends HttpServlet
     {
         System.out.println("Servlet Login : GET");
         // Si on a d�j� entr� les informations de connexion valide
-        if (BiblioHelper.infoBDValide(getServletContext()))
+        if (AubergeInnHelper.infoBDValide(getServletContext()))
         {
-            BiblioHelper.DispatchToLogin(request, response);
+            AubergeInnHelper.DispatchToLogin(request, response);
         }
         else
         {
-            BiblioHelper.DispatchToBDConnect(request, response);
+            AubergeInnHelper.DispatchToBDConnect(request, response);
         }
     }
 

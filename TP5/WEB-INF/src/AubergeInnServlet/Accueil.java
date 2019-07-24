@@ -10,12 +10,12 @@ import AubergeInn.Gestionnaire.GestionAubergeInn;
 
 
 /**
- * Servlet qui g�re la connexion d'un utilisateur au syst�me de gestion de
- * biblioth�que
+ * Servlet qui gère la connexion d'un utilisateur au système de gestion de
+ * bibliothèque
  * 
  * <pre>
  * Vincent Ducharme
- * Universit� de Sherbrooke
+ * Université de Sherbrooke
  * Version 1.0 - 11 novembre 2018
  * IFT287 - Exploitation de BD relationnelles et OO
  * </pre>
@@ -31,21 +31,21 @@ public class Accueil extends HttpServlet
         System.out.println("Servlet Accueil : POST");
         try
         {
-            if (!BiblioHelper.peutProcederLogin(getServletContext(), request, response))
+            if (!AubergeInnHelper.peutProcederLogin(getServletContext(), request, response))
             {
-                System.out.println("Servlet Accueil : POST ne peut pas proc�der.");
+                System.out.println("Servlet Accueil : POST ne peut pas procéder.");
                 // Le dispatch sera fait par BiblioHelper.peutProceder
                 return;
             }
 
             HttpSession session = request.getSession();
 
-            // Si c'est la premi�re fois qu'on essaie de se logguer, ou
+            // Si c'est la première fois qu'on essaie de se logguer, ou
             // d'inscrire quelqu'un
-            if (!BiblioHelper.gestionnairesCrees(session))
+            if (!AubergeInnHelper.gestionnairesCrees(session))
             {
                 System.out.println("Servlet Accueil : POST Cr�ation des gestionnaires");
-                BiblioHelper.creerGestionnaire(getServletContext(), session);
+                AubergeInnHelper.creerGestionnaire(getServletContext(), session);
             }
 
             if (request.getParameter("connecter") != null)
@@ -53,7 +53,7 @@ public class Accueil extends HttpServlet
                 System.out.println("Servlet Accueil : POST - Connecter");
                 try
                 {
-                    // lecture des param�tres du formulaire login.jsp
+                    // lecture des paramètres du formulaire login.jsp
                     String userId = request.getParameter("userId");
                     String motDePasse = request.getParameter("motDePasse");
 
@@ -84,7 +84,7 @@ public class Accueil extends HttpServlet
                     request.setAttribute("listeMessageErreur", listeMessageErreur);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
                     dispatcher.forward(request, response);
-                    // pour d�boggage seulement : afficher tout le contenu de l'exception
+                    // pour déboggage seulement : afficher tout le contenu de l'exception
                     e.printStackTrace();
                 }
             }
@@ -93,7 +93,7 @@ public class Accueil extends HttpServlet
                 System.out.println("Servlet Accueil : POST - Inscrire");
                 try
                 {
-                    // lecture des param�tres du formulaire de creerCompte.jsp
+                    // lecture des paramètres du formulaire de creerCompte.jsp
                     String userId = request.getParameter("userId");
                     String motDePasse = request.getParameter("motDePasse");
                     String telephoneS = request.getParameter("telephone");
@@ -113,25 +113,25 @@ public class Accueil extends HttpServlet
                     if (nom == null || nom.equals(""))
                         throw new IFT287Exception("Vous devez entrer un nom!");
 
-                    long telephone = BiblioHelper.ConvertirLong(telephoneS, "Le num�ro de t�l�phone");
+                    long telephone = AubergeInnHelper.ConvertirLong(telephoneS, "Le num�ro de t�l�phone");
 
                     String accesS = request.getParameter("acces");
                     int acces = 1;
                     if (accesS != null)
-                        acces = BiblioHelper.ConvertirInt(accesS, "Le niveau d'acc�s");
+                        acces = AubergeInnHelper.ConvertirInt(accesS, "Le niveau d'acc�s");
 
                     String limitePretS = request.getParameter("limite");
                     int limitePret = 5;
                     if (limitePretS != null)
-                        limitePret = BiblioHelper.ConvertirInt(limitePretS, "La limite de pr�t");
+                        limitePret = AubergeInnHelper.ConvertirInt(limitePretS, "La limite de pr�t");
 
-                    GestionAubergeInn biblioUpdate = BiblioHelper.getBiblioUpdate(session);
+                    GestionAubergeInn biblioUpdate = AubergeInnHelper.getBiblioUpdate(session);
                     synchronized (biblioUpdate)
                     {
                         biblioUpdate.getGestionClient().ajouterClient(1,"a" , "b", 5);
                     }
 
-                    // S'il y a d�j� un userID dans la session, c'est parce
+                    // S'il y a déjà un userID dans la session, c'est parce
                     // qu'on est admin et qu'on inscrit un nouveau membre
                     if (session.getAttribute("userID") == null)
                     {
@@ -158,7 +158,7 @@ public class Accueil extends HttpServlet
                     request.setAttribute("listeMessageErreur", listeMessageErreur);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/creerCompte.jsp");
                     dispatcher.forward(request, response);
-                    // pour d�boggage seulement : afficher tout le contenu de l'exception
+                    // pour déboggage seulement : afficher tout le contenu de l'exception
                     e.printStackTrace();
                 }
             }
@@ -170,21 +170,21 @@ public class Accueil extends HttpServlet
             request.setAttribute("listeMessageErreur", listeMessageErreur);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
             dispatcher.forward(request, response);
-            // pour d�boggage seulement : afficher tout le contenu de l'exception
+            // pour déboggage seulement : afficher tout le contenu de l'exception
             e.printStackTrace();
         }
     }
 
-    // Dans les formulaires, on utilise la m�thode POST
-    // donc, si le servlet est appel� avec la m�thode GET
-    // c'est que l'adresse a �t� demand� par l'utilisateur.
-    // On proc�de si la connexion est actives seulement, sinon
+    // Dans les formulaires, on utilise la méthode POST
+    // donc, si le servlet est appelé avec la méthode GET
+    // c'est que l'adresse a été demandé par l'utilisateur.
+    // On procède si la connexion est actives seulement, sinon
     // on retourne au login
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         System.out.println("Servlet Accueil : GET");
-        if (BiblioHelper.peutProceder(getServletContext(), request, response))
+        if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
         {
             System.out.println("Servlet Accueil : GET dispatch vers accueil.jsp");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");

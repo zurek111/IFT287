@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class BiblioHelper
+public class AubergeInnHelper
 {
     public static boolean infoBDValide(ServletContext c)
     {
@@ -24,7 +24,7 @@ public class BiblioHelper
         if(infoBDValide(c))
         {
             HttpSession session = request.getSession(false);
-            if (BiblioHelper.estConnecte(session))
+            if (AubergeInnHelper.estConnecte(session))
             {
                 return true;
             }
@@ -59,7 +59,7 @@ public class BiblioHelper
     public static void DispatchToLoginServlet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession(false);
-        if (BiblioHelper.estConnecte(session))
+        if (AubergeInnHelper.estConnecte(session))
         {
             session.invalidate();
         }
@@ -71,7 +71,7 @@ public class BiblioHelper
     public static void DispatchToLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession(false);
-        if (BiblioHelper.estConnecte(session))
+        if (AubergeInnHelper.estConnecte(session))
         {
             session.invalidate();
         }
@@ -83,7 +83,7 @@ public class BiblioHelper
     public static void DispatchToBDConnect(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession(false);
-        if (BiblioHelper.estConnecte(session))
+        if (AubergeInnHelper.estConnecte(session))
         {
             session.invalidate();
         }
