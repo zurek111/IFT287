@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN" "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+<web-app id="TP5 AubergeInn">
+  <display-name>Système de gestion de AubergeInn WEB</display-name>
+  <context-param>
+    <param-name>exempleParam1</param-name>
+    <param-value>valeurDeExempleParam1</param-value>
+  </context-param>
+  <context-param>
+    <param-name>exempleParam2</param-name>
+    <param-value>valeurDeExempleParam2</param-value>
+  </context-param>
+      <servlet>
+        <servlet-name>jsp</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+        <init-param>
+            <param-name>fork</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>xpoweredBy</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>javaEncoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+  <listener>
+    <listener-class>AubergeInnServlet.AubergeInnSessionListener</listener-class>
+    <listener-class>AubergeInnServlet.AubergeInnContextListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>AubergeInnServlet.Login</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Accueil</servlet-name>
+    <servlet-class>AubergeInnServlet.Accueil</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>AubergeInnServlet.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Accueil</servlet-name>
+    <url-pattern>/Accueil</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+</web-app>
