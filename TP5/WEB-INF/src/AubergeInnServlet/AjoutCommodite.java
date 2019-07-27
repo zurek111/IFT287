@@ -23,7 +23,7 @@ public class AjoutCommodite extends HttpServlet
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         System.out.println("Servlet Inscription : POST");
-        if (!AubergeInnHelper.peutProcederLogin(getServletContext(), request, response))
+        if (!AubergeInnHelper.peutProceder(getServletContext(), request, response))
         {
             // Le dispatch vers le login se fait dans BiblioHelper.peutProceder
             return;

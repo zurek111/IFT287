@@ -2,7 +2,7 @@
 <%
     if(getServletContext().getAttribute("serveur") != null)
 	{%>
-        <jsp:forward page="/WEB-INF/client.jsp" />
+        <jsp:forward page="/WEB-INF/menu.jsp" />
 	<%}
 %>
 <!DOCTYPE html>

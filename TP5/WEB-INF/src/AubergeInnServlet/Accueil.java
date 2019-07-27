@@ -31,10 +31,10 @@ public class Accueil extends HttpServlet
         System.out.println("Servlet Accueil : POST");
         try
         {
-            if (!AubergeInnHelper.peutProcederLogin(getServletContext(), request, response))
+            if (!AubergeInnHelper.peutProceder(getServletContext(), request, response))
             {
                 System.out.println("Servlet Accueil : POST ne peut pas procéder.");
-                // Le dispatch sera fait par BiblioHelper.peutProceder
+                // Le dispatch sera fait par AubergeInnHelper.peutProceder
                 return;
             }
 
@@ -44,17 +44,19 @@ public class Accueil extends HttpServlet
             // d'inscrire quelqu'un
             if (!AubergeInnHelper.gestionnairesCrees(session))
             {
-                System.out.println("Servlet Accueil : POST Cr�ation des gestionnaires");
+                System.out.println("Servlet Accueil : POST Création des gestionnaires");
                 AubergeInnHelper.creerGestionnaire(getServletContext(), session);
             }
 
-            if (request.getParameter("connecter") != null)
+            if (request.getParameter("reservations") != null)
             {
-                System.out.println("Servlet Accueil : POST - Connecter");
+                System.out.println("Servlet Accueil : POST - reservations");
                 try
                 {
+                	// DISPATCH TO RESERVATIONS
+                	
                     // lecture des paramètres du formulaire login.jsp
-                    String userId = request.getParameter("userId");
+                    /*String userId = request.getParameter("userId");
                     String motDePasse = request.getParameter("motDePasse");
 
                     request.setAttribute("userId", userId);
@@ -75,7 +77,7 @@ public class Accueil extends HttpServlet
                     else
                     {
                         throw new IFT287Exception("Les informations de connexion sont erronées.");
-                    }
+                    }*/
                 }
                 catch (Exception e)
                 {
@@ -88,13 +90,15 @@ public class Accueil extends HttpServlet
                     e.printStackTrace();
                 }
             }
-            else if (request.getParameter("inscrire") != null)
+            else if (request.getParameter("chambres") != null)
             {
-                System.out.println("Servlet Accueil : POST - Inscrire");
+                System.out.println("Servlet Accueil : POST - chambres");
                 try
                 {
+                	//DISPATCH CHAMBRES
+                	
                     // lecture des paramètres du formulaire de creerCompte.jsp
-                    String userId = request.getParameter("userId");
+                    /*String userId = request.getParameter("userId");
                     String motDePasse = request.getParameter("motDePasse");
                     String telephoneS = request.getParameter("telephone");
                     String nom = request.getParameter("nom");
@@ -118,7 +122,7 @@ public class Accueil extends HttpServlet
                     String accesS = request.getParameter("acces");
                     int acces = 1;
                     if (accesS != null)
-                        acces = AubergeInnHelper.ConvertirInt(accesS, "Le niveau d'acc�s");
+                        acces = AubergeInnHelper.ConvertirInt(accesS, "Le niveau d'accès");
 
                     String limitePretS = request.getParameter("limite");
                     int limitePret = 5;
@@ -149,7 +153,83 @@ public class Accueil extends HttpServlet
                         // Vers gestionMembre?
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
                         dispatcher.forward(request, response);
+                    }*/
+                }
+                catch (Exception e)
+                {
+                    List<String> listeMessageErreur = new LinkedList<String>();
+                    listeMessageErreur.add(e.getMessage());
+                    request.setAttribute("listeMessageErreur", listeMessageErreur);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/creerCompte.jsp");
+                    dispatcher.forward(request, response);
+                    // pour déboggage seulement : afficher tout le contenu de l'exception
+                    e.printStackTrace();
+                }
+            } 
+            else if (request.getParameter("clients") != null)
+            {
+                System.out.println("Servlet Accueil : POST - chambres");
+                try
+                {
+                	//DISPATCH clients
+                	
+                    // lecture des paramètres du formulaire de creerCompte.jsp
+                    /*String userId = request.getParameter("userId");
+                    String motDePasse = request.getParameter("motDePasse");
+                    String telephoneS = request.getParameter("telephone");
+                    String nom = request.getParameter("nom");
+
+                    request.setAttribute("userId", userId);
+                    request.setAttribute("motDePasse", motDePasse);
+                    request.setAttribute("telephone", telephoneS);
+                    request.setAttribute("nom", nom);
+                    
+                    if (userId == null || userId.equals(""))
+                        throw new IFT287Exception("Vous devez entrer un nom d'utilisateur!");
+                    if (motDePasse == null || motDePasse.equals(""))
+                        throw new IFT287Exception("Vous devez entrer un mot de passe!");
+                    if (telephoneS == null || telephoneS.equals(""))
+                        throw new IFT287Exception("Vous devez entrer un numéro de tél�phone!");
+                    if (nom == null || nom.equals(""))
+                        throw new IFT287Exception("Vous devez entrer un nom!");
+
+                    long telephone = AubergeInnHelper.ConvertirLong(telephoneS, "Le num�ro de t�l�phone");
+
+                    String accesS = request.getParameter("acces");
+                    int acces = 1;
+                    if (accesS != null)
+                        acces = AubergeInnHelper.ConvertirInt(accesS, "Le niveau d'accès");
+
+                    String limitePretS = request.getParameter("limite");
+                    int limitePret = 5;
+                    if (limitePretS != null)
+                        limitePret = AubergeInnHelper.ConvertirInt(limitePretS, "La limite de pr�t");
+
+                    GestionAubergeInn biblioUpdate = AubergeInnHelper.getBiblioUpdate(session);
+                    synchronized (biblioUpdate)
+                    {
+                        biblioUpdate.getGestionClient().ajouterClient(1,"a" , "b", 5);
                     }
+
+                    // S'il y a déjà un userID dans la session, c'est parce
+                    // qu'on est admin et qu'on inscrit un nouveau membre
+                    if (session.getAttribute("userID") == null)
+                    {
+                        session.setAttribute("userID", userId);
+                        if(acces == 0)
+                            session.setAttribute("admin", acces == 0);
+                        session.setAttribute("etat", new Integer(0));
+
+                        System.out.println("Servlet Accueil : POST dispatch vers accueil.jsp");
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                    else
+                    {
+                        // Vers gestionMembre?
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+                        dispatcher.forward(request, response);
+                    }*/
                 }
                 catch (Exception e)
                 {
@@ -186,8 +266,8 @@ public class Accueil extends HttpServlet
         System.out.println("Servlet Accueil : GET");
         if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
         {
-            System.out.println("Servlet Accueil : GET dispatch vers accueil.jsp");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+            System.out.println("Servlet Accueil : GET dispatch vers menu.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menu.jsp");
             dispatcher.forward(request, response);
         }
     }

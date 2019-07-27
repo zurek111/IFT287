@@ -42,7 +42,8 @@ public class Login extends HttpServlet
             // Si on déjà entré les informations de connexion valide
             if (AubergeInnHelper.infoBDValide(getServletContext()))
             {
-                AubergeInnHelper.DispatchToLogin(request, response);
+                AubergeInnHelper.DispatchToMenu(request, response);
+            	//dispatch to menu
                 return;
             }
             
@@ -123,10 +124,11 @@ public class Login extends HttpServlet
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         System.out.println("Servlet Login : GET");
-        // Si on a d�j� entr� les informations de connexion valide
+        // Si on a déjà entré les informations de connexion valide
         if (AubergeInnHelper.infoBDValide(getServletContext()))
         {
-            AubergeInnHelper.DispatchToLogin(request, response);
+            AubergeInnHelper.DispatchToMenu(request, response);
+        	
         }
         else
         {

@@ -23,13 +23,13 @@ public class AubergeInnSessionListener implements HttpSessionListener
     {
         System.out.println("Session détruite pour l'utilisateur " + se.getSession().getAttribute("userID"));
         
-        GestionAubergeInn biblioInterrogation = (GestionAubergeInn)se.getSession().getAttribute("biblioInterrogation");
-        if (biblioInterrogation != null)
+        GestionAubergeInn aubergeInnInterrogation = (GestionAubergeInn)se.getSession().getAttribute("aubergeInnInterrogation");
+        if (aubergeInnInterrogation != null)
         {
             try
             {
                 System.out.println("Fermeture de la connexion d'interrogation...");
-                biblioInterrogation.fermer();
+                aubergeInnInterrogation.fermer();
             }
             catch (SQLException e)
             {
@@ -42,13 +42,13 @@ public class AubergeInnSessionListener implements HttpSessionListener
             System.out.println("Aucun gestionnaire d'interrogation n'avait encore été créé.");
         }
         
-        GestionAubergeInn biblioUpdate = (GestionAubergeInn)se.getSession().getAttribute("biblioUpdate");
-        if (biblioUpdate != null)
+        GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn)se.getSession().getAttribute("aubergeInnUpdate");
+        if (aubergeInnUpdate != null)
         {
             try
             {
                 System.out.println("Fermeture de la connexion de mise à jour...");
-                biblioUpdate.fermer();
+                aubergeInnUpdate.fermer();
             }
             catch (SQLException e)
             {

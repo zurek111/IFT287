@@ -23,13 +23,14 @@ public class AubergeInnHelper
     {
         if(infoBDValide(c))
         {
-            HttpSession session = request.getSession(false);
+        	return true;
+            /*HttpSession session = request.getSession(false);
             if (AubergeInnHelper.estConnecte(session))
             {
                 return true;
             }
             DispatchToLogin(request, response);
-            return false;
+            return false;*/
         }
         else
         {
@@ -38,7 +39,7 @@ public class AubergeInnHelper
         }
     }
     
-    public static boolean peutProcederLogin(ServletContext c, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    /*public static boolean peutProcederLogin(ServletContext c, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         if(infoBDValide(c))
         {
@@ -54,9 +55,9 @@ public class AubergeInnHelper
             DispatchToBDConnect(request, response);
             return false;
         }
-    }
+    }*/
     
-    public static void DispatchToLoginServlet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    /*public static void DispatchToLoginServlet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession(false);
         if (AubergeInnHelper.estConnecte(session))
@@ -77,6 +78,14 @@ public class AubergeInnHelper
         }
         // Afficher le menu de connexion principal de l'application
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
+        dispatcher.forward(request, response);
+    }*/
+    
+    public static void DispatchToMenu(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    {
+        
+        // Afficher le menu principal de l'application
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menu.jsp");
         dispatcher.forward(request, response);
     }
     
@@ -103,7 +112,7 @@ public class AubergeInnHelper
     {
         if(session == null)
             return false;
-        return session.getAttribute("biblioInterrogation") != null;
+        return session.getAttribute("aubergeInnInterrogation") != null;
     }
     
     public static void creerGestionnaire(ServletContext c, HttpSession s) throws SQLException, IFT287Exception
@@ -113,21 +122,21 @@ public class AubergeInnHelper
         String userIdBD = (String) c.getAttribute("user");
         String pass = (String) c.getAttribute("pass");
 
-        GestionAubergeInn biblioInterrogation = new GestionAubergeInn(serveur, bd, userIdBD, pass);
-        biblioInterrogation.getConnexion().setIsolationReadCommited();
-        s.setAttribute("biblioInterrogation", biblioInterrogation);
-        GestionAubergeInn biblioUpdate = new GestionAubergeInn(serveur, bd, userIdBD, pass);
-        s.setAttribute("biblioUpdate", biblioUpdate);
+        GestionAubergeInn aubergeInnInterrogation = new GestionAubergeInn(serveur, bd, userIdBD, pass);
+        aubergeInnInterrogation.getConnexion().setIsolationReadCommited();
+        s.setAttribute("aubergeInnInterrogation", aubergeInnInterrogation);
+        GestionAubergeInn aubergeInnUpdate = new GestionAubergeInn(serveur, bd, userIdBD, pass);
+        s.setAttribute("aubergeInnUpdate", aubergeInnUpdate);
     }
     
     public static GestionAubergeInn getBiblioInterro(HttpSession session)
     {
-        return (GestionAubergeInn)session.getAttribute("biblioInterrogation");
+        return (GestionAubergeInn)session.getAttribute("aubergeInnInterrogation");
     }
     
     public static GestionAubergeInn getBiblioUpdate(HttpSession session)
     {
-        return (GestionAubergeInn)session.getAttribute("biblioUpdate");
+        return (GestionAubergeInn)session.getAttribute("aubergeInnUpdate");
     }
     
     
@@ -139,7 +148,7 @@ public class AubergeInnHelper
         }
         catch(Exception e)
         {
-            throw new IFT287Exception(nom + " ne doit �tre compos� que de chiffre.");
+            throw new IFT287Exception(nom + " ne doit être composé que de chiffre.");
         }
     }
     
@@ -151,7 +160,7 @@ public class AubergeInnHelper
         }
         catch(Exception e)
         {
-            throw new IFT287Exception(nom + " ne doit �tre compos� que de chiffre.");
+            throw new IFT287Exception(nom + " ne doit être composé que de chiffre.");
         }
     }
 }
