@@ -11,7 +11,7 @@ import AubergeInn.IFT287Exception;
 
 /**
  * Servlet qui gère l'accès à la base de donnée
- * du système de gestion de bibliothèque
+ * du système de gestion de l'aubergeInn
  * 
  * Si les informations entrées sont erronnées, on retourne à la page de connexion
  * Sinon, on affiche la page principale de l'application
@@ -65,7 +65,7 @@ public class Login extends HttpServlet
                 throw new IFT287Exception("Vous devez entrer un mot de passe.");
             
             if(bd == null || bd.equals(""))
-                throw new IFT287Exception("Vous devez entrer un nom de base de donn�e.");
+                throw new IFT287Exception("Vous devez entrer un nom de base de donnée.");
 
             if (serveur == null || serveur.equals(""))
             {
@@ -92,7 +92,7 @@ public class Login extends HttpServlet
             catch(Exception e)
             {
                 List<String> listeMessageErreur = new LinkedList<String>();
-                listeMessageErreur.add("Erreur de connexion au serveur de base de donn�e");
+                listeMessageErreur.add("Erreur de connexion au serveur de base de donnée");
                 listeMessageErreur.add(e.getMessage());
                 request.setAttribute("listeMessageErreur", listeMessageErreur);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");

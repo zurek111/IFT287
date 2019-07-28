@@ -5,10 +5,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 /**
- * Classe pour logout système de gestion de bibliotèque
+ * Classe pour logout système de gestion de l'aubergeInn
  * <P>
- * Système de gestion de bibliothèque &copy; 2004 Marc Frappier, Université de
+ * Système de gestion de l'aubergeInn &copy; 2004 Marc Frappier, Université de
  * Sherbrooke
+ * Adapté Par Maxime Paré et Simon Cesare-Zurek
  */
 
 public class Logout extends HttpServlet
@@ -20,6 +21,10 @@ public class Logout extends HttpServlet
         // invalider la session pour libérer les ressources associées à la
         // session
         request.getSession().invalidate();
+        getServletContext().removeAttribute("serveur");
+        getServletContext().removeAttribute("bd");
+        getServletContext().removeAttribute("user");
+        getServletContext().removeAttribute("pass");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Login");
         dispatcher.forward(request, response);
     }

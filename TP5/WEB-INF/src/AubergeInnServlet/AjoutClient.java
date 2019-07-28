@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 
 
 /**
- * Servlet qui g�re l'ajout d'un client au syst�me de gestion d'aubergeInn
+ * Servlet qui gère l'ajout d'un client au système de gestion d'aubergeInn
  * 
  * <pre>
  * Simon Cesare-Zurek et Maxime Paré

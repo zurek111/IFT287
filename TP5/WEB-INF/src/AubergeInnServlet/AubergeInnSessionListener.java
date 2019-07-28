@@ -9,8 +9,10 @@ import java.sql.*;
 /**
  * Classe pour gestion des sessions
  * <P>
- * Système de gestion de bibliothèque &copy; 2004 Marc Frappier, Université de
+ * Système de gestion de l'aubergeInn &copy; 2004 Marc Frappier, Université de
  * Sherbrooke
+ * 
+ * Adapté Par Maxime Paré et Simon Cesare-Zurek
  */
 
 public class AubergeInnSessionListener implements HttpSessionListener

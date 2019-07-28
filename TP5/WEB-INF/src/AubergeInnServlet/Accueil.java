@@ -31,12 +31,12 @@ public class Accueil extends HttpServlet
         System.out.println("Servlet Accueil : POST");
         try
         {
-            if (!AubergeInnHelper.peutProceder(getServletContext(), request, response))
+            /*if (!AubergeInnHelper.peutProceder(getServletContext(), request, response))
             {
                 System.out.println("Servlet Accueil : POST ne peut pas procéder.");
                 // Le dispatch sera fait par AubergeInnHelper.peutProceder
                 return;
-            }
+            }*/
 
             HttpSession session = request.getSession();
 
@@ -264,11 +264,15 @@ public class Accueil extends HttpServlet
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         System.out.println("Servlet Accueil : GET");
-        if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
+        // Si on a déjà entré les informations de connexion valide
+        if (AubergeInnHelper.infoBDValide(getServletContext()))
         {
-            System.out.println("Servlet Accueil : GET dispatch vers menu.jsp");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/menu.jsp");
-            dispatcher.forward(request, response);
+            AubergeInnHelper.DispatchToMenu(request, response);
+        	
+        }
+        else
+        {
+            AubergeInnHelper.DispatchToBDConnect(request, response);
         }
     }
 
