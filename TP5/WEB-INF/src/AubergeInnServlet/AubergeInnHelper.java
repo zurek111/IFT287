@@ -24,13 +24,6 @@ public class AubergeInnHelper
         if(infoBDValide(c))
         {
         	return true;
-            /*HttpSession session = request.getSession(false);
-            if (AubergeInnHelper.estConnecte(session))
-            {
-                return true;
-            }
-            DispatchToLogin(request, response);
-            return false;*/
         }
         else
         {
@@ -89,6 +82,14 @@ public class AubergeInnHelper
         dispatcher.forward(request, response);
     }
     
+    public static void DispatchToReservations(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    {
+        
+        // Amène aux réservations
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/reservations.jsp");
+        dispatcher.forward(request, response);
+    }
+    
     public static void DispatchToBDConnect(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession(false);
@@ -129,12 +130,12 @@ public class AubergeInnHelper
         s.setAttribute("aubergeInnUpdate", aubergeInnUpdate);
     }
     
-    public static GestionAubergeInn getBiblioInterro(HttpSession session)
+    public static GestionAubergeInn getAubergeInnInterro(HttpSession session)
     {
         return (GestionAubergeInn)session.getAttribute("aubergeInnInterrogation");
     }
     
-    public static GestionAubergeInn getBiblioUpdate(HttpSession session)
+    public static GestionAubergeInn getAubergeInnUpdate(HttpSession session)
     {
         return (GestionAubergeInn)session.getAttribute("aubergeInnUpdate");
     }

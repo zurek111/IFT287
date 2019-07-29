@@ -43,6 +43,10 @@
     <servlet-name>Logout</servlet-name>
     <servlet-class>AubergeInnServlet.Logout</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Reservations</servlet-name>
+    <servlet-class>AubergeInnServlet.Reservations</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
@@ -54,5 +58,9 @@
   <servlet-mapping>
     <servlet-name>Logout</servlet-name>
     <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Reservations</servlet-name>
+    <url-pattern>/Reservations</url-pattern>
   </servlet-mapping>
 </web-app>

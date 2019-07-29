@@ -85,6 +85,18 @@ public class Login extends HttpServlet
                 getServletContext().setAttribute("user", userId);
                 getServletContext().setAttribute("pass", motDePasse);
                 
+                // créer la session
+                HttpSession session = request.getSession();
+
+                // Si c'est la première fois qu'on essaie de se logguer, ou
+                // d'inscrire quelqu'un
+                if (!AubergeInnHelper.gestionnairesCrees(session))
+                {
+                    System.out.println("Servlet Login : POST Création des gestionnaires");
+                    AubergeInnHelper.creerGestionnaire(getServletContext(), session);
+                }
+                // On se log toujours en admin.
+                session.setAttribute("admin", userId);
                 // Afficher le menu de connexion principal de l'application 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/Login");
                 dispatcher.forward(request, response);
@@ -123,16 +135,12 @@ public class Login extends HttpServlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        System.out.println("Servlet Login : GET");
+    	System.out.println("Servlet Login : GET");
         // Si on a déjà entré les informations de connexion valide
-        if (AubergeInnHelper.infoBDValide(getServletContext()))
+        if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
         {
             AubergeInnHelper.DispatchToMenu(request, response);
         	
-        }
-        else
-        {
-            AubergeInnHelper.DispatchToBDConnect(request, response);
         }
     }
 
