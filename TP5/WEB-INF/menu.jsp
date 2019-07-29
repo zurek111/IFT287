@@ -16,12 +16,20 @@
 	<body>
 		<div class="container">
 			<h1 class="text-center">Système de gestion de l'AubergeInn</h1>
-			<div class="offset-md-4">
-				<a href="/tp5/Reservations" class="btn btn-primary">Réserver une chambre</a>
-				<a href="/tp5/Chambres" class="btn btn-primary">Gérer les chambres</a>
-				<a href="/tp5/Clients" class="btn btn-primary">Gérer les clients</a>
-				<a href="/tp5/Logout" class="btn btn-primary">Quitter</a>
-			</div>
+
+				<div class="row mt-5">
+					<a href="/tp5/Reservations" class="btn btn-primary col-sm-2 offset-sm-5">Réserver une chambre</a>
+				</div>
+				<div class="row mt-3">
+					<a href="/tp5/Chambres" class="btn btn-primary col-sm-2 offset-sm-5">Gérer les chambres</a>
+				</div>
+				<div class="row mt-3">
+					<a href="/tp5/Clients" class="btn btn-primary col-sm-2 offset-sm-5">Gérer les clients</a>
+				</div>
+				<div class="row mt-3">
+					<a href="/tp5/Logout" class="btn btn-primary col-sm-2 offset-sm-5">Quitter</a>
+				</div>
+
 		</div>
 		<br>
 		<%-- inclusion d'une autre page pour l'affichage des messages d'erreur--%>

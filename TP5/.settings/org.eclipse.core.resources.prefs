@@ -5,6 +5,7 @@ encoding//WEB-INF/src/AubergeInnServlet/Accueil.java=UTF-8
 encoding//WEB-INF/src/AubergeInnServlet/AubergeInnContextListener.java=UTF-8
 encoding//WEB-INF/src/AubergeInnServlet/AubergeInnHelper.java=UTF-8
 encoding//WEB-INF/src/AubergeInnServlet/AubergeInnSessionListener.java=UTF-8
+encoding//WEB-INF/src/AubergeInnServlet/Chambres.java=UTF-8
 encoding//WEB-INF/src/AubergeInnServlet/Clients.java=UTF-8
 encoding//WEB-INF/src/AubergeInnServlet/Login.java=UTF-8
 encoding//WEB-INF/src/AubergeInnServlet/Logout.java=UTF-8
