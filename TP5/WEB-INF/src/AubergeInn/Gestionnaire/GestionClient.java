@@ -147,4 +147,17 @@ public class GestionClient
 	            throw e;
 	        }
 	}
+	
+	public boolean existe(int idClient)  throws SQLException 
+	{
+	    try
+	    {
+	        return clients.existe(idClient);
+	    }
+	    catch(Exception e)
+	    {
+	        throw e;
+	    }
+	    
+	}
 }

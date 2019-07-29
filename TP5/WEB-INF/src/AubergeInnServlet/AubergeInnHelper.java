@@ -90,6 +90,14 @@ public class AubergeInnHelper
         dispatcher.forward(request, response);
     }
     
+    public static void DispatchToClientDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    {
+        
+        // Amène aux réservations
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/clientDetails.jsp");
+        dispatcher.forward(request, response);
+    }
+    
     public static void DispatchToClients(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         

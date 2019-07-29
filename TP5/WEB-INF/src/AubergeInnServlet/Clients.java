@@ -1,6 +1,5 @@
 package AubergeInnServlet;
 
-import java.sql.Date;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -108,8 +107,33 @@ public class Clients extends HttpServlet
         // Si on a déjà entré les informations de connexion valide
         if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
         {
-            AubergeInnHelper.DispatchToClients(request, response);
-        	
+            if (request.getParameter("idClient") != null)
+            {
+                try
+                {
+                    if (AubergeInnHelper.getAubergeInnInterro(request.getSession()).getGestionClient().existe(Integer.parseInt(request.getParameter("idClient"))))
+                        AubergeInnHelper.DispatchToClientDetails(request, response);
+                    else
+                    {
+                        List<String> listeMessageErreur = new LinkedList<String>();
+                        listeMessageErreur.add("Le client " + Integer.parseInt(request.getParameter("idClient")) + " n'existe pas !");
+                        request.setAttribute("listeMessageErreur", listeMessageErreur);
+                        AubergeInnHelper.DispatchToClients(request, response);
+                    }
+                }
+                catch(Exception e)
+                {
+                    List<String> listeMessageErreur = new LinkedList<String>();
+                    listeMessageErreur.add(e.getMessage());
+                    request.setAttribute("listeMessageErreur", listeMessageErreur);
+                    AubergeInnHelper.DispatchToClients(request, response); 
+                    e.printStackTrace();
+                }
+            } 
+            else
+            {
+                AubergeInnHelper.DispatchToClients(request, response);    
+            }
         }
     }
 
