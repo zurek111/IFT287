@@ -6,6 +6,7 @@ import java.util.List;
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableCommodites;
+import AubergeInn.Tuple.TupleClient;
 import AubergeInn.Tuple.TupleCommodite;
 
 public class GestionCommodite 
@@ -54,7 +55,28 @@ public class GestionCommodite
             throw e;
         }
 	}
-	
+	/**
+	 * Fonction pour aller chercher toutes les clients dans la BD.
+	 * 
+	 * @return la listes des clients et les données de ceux-ci.
+     */
+	public List<TupleCommodite> getAllCommodites()
+			throws SQLException, IFT287Exception
+	{
+		try
+		{
+			List<TupleCommodite> listeCommodites = commodites.getAllCommodites();
+			
+			/*if (listeClients.isEmpty())
+				throw new IFT287Exception("Aucun client");*/
+			
+			return listeCommodites;
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+	}
 	/**
 	 * Fonction pour obtenir les commodités offertes dans une chambres.
 	 * 

@@ -5,10 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import AubergeInn.Connexion;
+import AubergeInn.Tuple.TupleClient;
 import AubergeInn.Tuple.TupleCommodite;
 
 public class TableCommodites 
 {
+	private PreparedStatement stmSelect;
     private PreparedStatement stmExist;
     private PreparedStatement stmInsert;
     private PreparedStatement stmListeCommodites;
@@ -19,6 +21,8 @@ public class TableCommodites
 	public TableCommodites(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
+		stmSelect = cx.getConnection().prepareStatement(
+				"select * from Commodite");
 		stmExist = cx.getConnection().prepareStatement(
 				"select idCommodite, description, prix from Commodite where idCommodite = ?");
 		
@@ -77,7 +81,27 @@ public class TableCommodites
             return null;
         }
     }
-    
+    /**
+	 * Fonction pour obtenir toutes les commodités de la BD.
+	 * 
+	 * @return La liste des commodités.
+     */
+    public List<TupleCommodite> getAllCommodites() throws SQLException
+    {
+    	ResultSet rset = stmSelect.executeQuery();
+    	List<TupleCommodite> listeCommodite = new LinkedList<TupleCommodite>();
+        while (rset.next())
+        {
+        	TupleCommodite tupleCommodite = new TupleCommodite();
+        	tupleCommodite.setIdCommodite(rset.getInt(1));
+        	tupleCommodite.setDescription(rset.getString(2));
+        	tupleCommodite.setPrix(rset.getInt(3));
+            
+        	listeCommodite.add(tupleCommodite);
+        }
+        rset.close();
+        return listeCommodite;
+    }
     /**
 	 * Fonction pour connaitre les commodités incluses dans une chambre.
 	 * @param idChambre  l'id de la chambre qu'on veut savoir les commodités.
