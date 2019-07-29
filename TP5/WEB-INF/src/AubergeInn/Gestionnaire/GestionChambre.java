@@ -264,8 +264,6 @@ public class GestionChambre
 		{
 			List<TupleChambre> listeChambres = chambres.getAllChambre();
 
-			if (listeChambres.isEmpty())
-				throw new IFT287Exception("Aucune chambre n'existe");
 			
 			LocalDate localDate = LocalDate.now();
 			Date date = Date.valueOf(localDate);
@@ -286,8 +284,6 @@ public class GestionChambre
 				}
 			}
 					
-			if (listeChambres.isEmpty())
-				throw new IFT287Exception("Aucune chambre n'est libre");
 			
 			for (TupleChambre chambre : listeChambres)
 			{

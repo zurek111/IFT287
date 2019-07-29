@@ -1,11 +1,13 @@
 package AubergeInn.Gestionnaire;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableClients;
 import AubergeInn.Table.TableReservations;
+import AubergeInn.Tuple.TupleChambre;
 import AubergeInn.Tuple.TupleClient;
 
 public class GestionClient 
@@ -59,6 +61,29 @@ public class GestionClient
             cx.rollback();
             throw e;
         }
+	}
+	
+	/**
+	 * Fonction pour aller chercher toutes les clients dans la BD.
+	 * 
+	 * @return la listes des clients et les données de ceux-ci.
+     */
+	public List<TupleClient> getAllClients()
+			throws SQLException, IFT287Exception
+	{
+		try
+		{
+			List<TupleClient> listeClients = clients.getAllClients();
+			
+			/*if (listeClients.isEmpty())
+				throw new IFT287Exception("Aucun client");*/
+			
+			return listeClients;
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 	}
 	
 	/**

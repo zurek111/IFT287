@@ -1,11 +1,16 @@
 package AubergeInn.Table;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
+
 import AubergeInn.Connexion;
+import AubergeInn.Tuple.TupleChambre;
 import AubergeInn.Tuple.TupleClient;
 
 public class TableClients 
 {
+	private PreparedStatement stmSelect;
     private PreparedStatement stmExist;
     private PreparedStatement stmInsert;
     private PreparedStatement stmDelete;
@@ -15,6 +20,8 @@ public class TableClients
 	public TableClients(Connexion cx) throws SQLException 
 	{
 		this.cx = cx;
+		stmSelect = cx.getConnection().prepareStatement(
+				"select * from Client");
 		stmExist = cx.getConnection().prepareStatement(
 				"select idClient, prenom, nom, age from Client where idClient = ?");
 		stmInsert = cx.getConnection().prepareStatement(
@@ -43,6 +50,28 @@ public class TableClients
     	rst.close();
    
     	return clientExist;
+    }
+    /**
+	 * Fonction pour obtenir toutes les clients de la BD.
+	 * 
+	 * @return La liste des clients.
+     */
+    public List<TupleClient> getAllClients() throws SQLException
+    {
+    	ResultSet rset = stmSelect.executeQuery();
+    	List<TupleClient> listeClients = new LinkedList<TupleClient>();
+        while (rset.next())
+        {
+        	TupleClient tupleClient = new TupleClient();
+            tupleClient.setIdClient(rset.getInt(1));
+            tupleClient.setPrenom(rset.getString(2));
+            tupleClient.setNom(rset.getString(3));
+            tupleClient.setAge(rset.getInt(4));
+            
+            listeClients.add(tupleClient);
+        }
+        rset.close();
+        return listeClients;
     }
     
     /**
