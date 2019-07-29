@@ -98,6 +98,14 @@ public class AubergeInnHelper
         dispatcher.forward(request, response);
     }
     
+    public static void DispatchToChambres(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    {
+        
+        // Amène aux réservations
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/chambres.jsp");
+        dispatcher.forward(request, response);
+    }
+    
     public static void DispatchToBDConnect(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession(false);
