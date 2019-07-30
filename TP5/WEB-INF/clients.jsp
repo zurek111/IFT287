@@ -72,7 +72,7 @@
 					      <td><%=c.getPrenom()%></td>
 					      <td><%=c.getNom()%></td>
 					      <td><%=c.getAge()%> ans</td>
-					      <td><a href="/tp5/Clients?idClient=<%=c.getIdClient()%>" class="btn btn-primary">Afficher</a><td>
+					      <td><a href="/tp5/Clients?idClient=<%=c.getIdClient()%>" class="btn btn-primary">Afficher</a></td>
 					      <td><button class="btn btn-primary" type="SUBMIT" name="supprimer" value="<%=c.getIdClient()%>">Supprimer</button></td>
 					    </tr>
 				    <%

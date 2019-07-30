@@ -15,19 +15,51 @@
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	</head>
 	<body>
-	
+	<%
+	    List<TupleChambre> chambresDispo = AubergeInnHelper.getAubergeInnInterro(session).getGestionChambre()
+	                .getChambresLibres();
+        List<TupleChambre> chambres = AubergeInnHelper.getAubergeInnInterro(session).getGestionChambre()
+	                .getAllChambres();
+        List<TupleClient> clients = AubergeInnHelper.getAubergeInnInterro(session).getGestionClient()
+	                .getAllClients();
+
+%>
 		<div class="container">
 			<jsp:include page="/WEB-INF/menuBar.jsp" />
 			<h1 class="text-center">Réservations d'une chambre</h1>
 			<form action="Reservations" method="POST">
 				<div class="row">
 					<div class="form-group col-sm-3">
-				    	<label for="idClient">IdClient</label>
-				    	<input class="form-control" type="NUMBER" name="idClient" min="0" value="<%= request.getAttribute("idClient") != null ? (String)request.getAttribute("idClient") : "" %>" required>
+				    	<label for="idClient">Client</label>
+				    	<select class="form-control" name="idClient">
+							<option selected>Choisir...</option>
+						<%
+					        for (TupleClient client : clients)
+				        	{
+
+		%>
+							<option value="<%=client.getIdClient()%>"><%=client.getIdClient()%> - <%=client.getPrenom()%> <%=client.getNom()%></option>
+						<%
+			        		} //fin clients
+		%>
+											 
+						</select>
 				    </div>
 				    <div class="form-group col-sm-3">
-				    	<label for="idChambre">IdChambre</label>
-				    	<input class="form-control" type="NUMBER" name="idChambre" min="0" value="<%= request.getAttribute("idChambre") != null ? (String)request.getAttribute("idChambre") : "" %>" required>
+				    	<label for="idChambre">Chambre</label>
+				    	<select class="form-control" name="idChambre">
+							<option selected>Choisir...</option>
+						<%
+					        for (TupleChambre chambre : chambres)
+				        	{
+
+		%>
+							<option value="<%=chambre.getIdChambre()%>"><%=chambre.getIdChambre()%> - <%=chambre.getNom()%></option>
+						<%
+			        		} //fin chambres
+		%>
+											 
+						</select>
 				    </div>
 				    <div class="form-group col-sm-2">
 					    <label for="dateDebut">Date d'arrivé</label>
@@ -46,9 +78,7 @@
 			<h1 class="text-center">Chambres libres aujourd'hui</h1>
 			
 				<%
-						    List<TupleChambre> chambres = AubergeInnHelper.getAubergeInnInterro(session).getGestionChambre()
-						                .getChambresLibres();
-						        if (!chambres.isEmpty())
+						        if (!chambresDispo.isEmpty())
 						        {
 %>
 			<table class="table">
@@ -62,7 +92,7 @@
 				</thead>
 				<tbody>
 					<%
-							        for (TupleChambre c : chambres)
+							        for (TupleChambre c : chambresDispo)
 							        {
 	%>
 					<tr>
@@ -73,7 +103,7 @@
 				    </tr>
 				    <%
 	     							
-	         						} // end for chambres
+	         						} // end for chambresDispo
 	%>
 				</tbody>
 			</table>
