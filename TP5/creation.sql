@@ -35,7 +35,7 @@ CREATE TABLE CommoditeOfferte(
 	
 	CONSTRAINT pk_idCommoditeOfferte   PRIMARY KEY (idCommoditeOfferte),
 	CONSTRAINT uk_idChambreIdCommodite UNIQUE      (idChambre, idCommodite),
-	CONSTRAINT fk_idChambre            FOREIGN KEY (idChambre) REFERENCES Chambre,
+	CONSTRAINT fk_idChambre            FOREIGN KEY (idChambre) REFERENCES Chambre ON DELETE CASCADE,
 	CONSTRAINT fk_idCommodite          FOREIGN KEY (idCommodite) REFERENCES Commodite
 );
 

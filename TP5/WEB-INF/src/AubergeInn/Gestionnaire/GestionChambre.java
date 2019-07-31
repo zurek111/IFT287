@@ -241,9 +241,6 @@ public class GestionChambre
 		{
 			List<TupleChambre> listeChambres = chambres.getAllChambre();
 			
-			if (listeChambres.isEmpty())
-				throw new IFT287Exception("Aucune chambre");
-			
 			return listeChambres;
 		}
 		catch(Exception e)

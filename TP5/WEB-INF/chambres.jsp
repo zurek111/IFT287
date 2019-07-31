@@ -30,18 +30,18 @@
 					<div class="row">
 					    <div class="form-group col-sm-6 offset-sm-3">
 					    	<label for="nom">Nom</label>
-					    	<input class="form-control" type="TEXT" name="nom" min="0" value="<%= request.getAttribute("nom") != null ? (String)request.getAttribute("nom") : "" %>" required>
+					    	<input class="form-control" type="TEXT" name="nom" value="<%= request.getAttribute("nom") != null ? (String)request.getAttribute("nom") : "" %>" required>
 					    </div>
 				    </div>
 					<div class="row">
 					    <div class="form-group col-sm-4 offset-sm-3">
 					    	<label for="typeLit">Type de lit</label>
-					    	<input class="form-control" type="TEXT" name="typeLit" min="0" value="<%= request.getAttribute("typeLit") != null ? (String)request.getAttribute("typeLit") : "" %>" required>
+					    	<input class="form-control" type="TEXT" name="typeLit" value="<%= request.getAttribute("typeLit") != null ? (String)request.getAttribute("typeLit") : "" %>" required>
 					    </div>
 
 					    <div class="form-group col-sm-2">
 					    	<label for="prix">Prix</label>
-					    	<input class="form-control" type="NUMBER" name="prix" value="<%= request.getAttribute("prix") != null ? (String)request.getAttribute("prix") : "" %>" required>
+					    	<input class="form-control" type="NUMBER" name="prix" min="0" value="<%= request.getAttribute("prix") != null ? (String)request.getAttribute("prix") : "" %>" required>
 					    </div>
 					</div>
 					<div class="row">
@@ -161,7 +161,7 @@
 					<div class="row">
 					    <div class="form-group col-sm-6 offset-sm-3">
 					    	<label for="prix">Prix</label>
-					    	<input class="form-control" type="NUMBER" name="prix" value="<%= request.getAttribute("prix") != null ? (String)request.getAttribute("prix") : "" %>" required>
+					    	<input class="form-control" type="NUMBER" name="prix" min="0" value="<%= request.getAttribute("prix") != null ? (String)request.getAttribute("prix") : "" %>" required>
 					    </div>
 					</div>
 					

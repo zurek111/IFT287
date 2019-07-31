@@ -67,9 +67,6 @@ public class GestionCommodite
 		{
 			List<TupleCommodite> listeCommodites = commodites.getAllCommodites();
 			
-			/*if (listeClients.isEmpty())
-				throw new IFT287Exception("Aucun client");*/
-			
 			return listeCommodites;
 		}
 		catch(Exception e)

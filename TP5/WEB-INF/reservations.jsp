@@ -61,17 +61,20 @@
 											 
 						</select>
 				    </div>
-				    <div class="form-group col-sm-2">
+				    <div class="form-group col-sm-3">
 					    <label for="dateDebut">Date d'arrivé</label>
 					    <input class="form-control" type="DATE" name="dateDebut" value="<%= request.getAttribute("dateDebut") != null ? (String)request.getAttribute("dateDebut") : "" %>" required>
 				    </div>
-				    <div class="form-group col-sm-2">
+				    <div class="form-group col-sm-3">
 				    	<label for="dateFin">Date du départ</label>
 				    	<input class="form-control col-sm" type="DATE" name="dateFin" value="<%= request.getAttribute("dateFin") != null ? (String)request.getAttribute("dateFin") : "" %>" required>
 				    </div>
-				    <input class="btn mt-4 mb-3  btn-primary col-sm-2" type="SUBMIT" name="reserver" value="Réserver">
-				    
+
 			    </div>
+			    
+			    <div style="text-align:center;">
+				<input class="btn btn-primary" type="SUBMIT" name="reserver" value="Réserver">
+				</div>
 			     
 				
 			</form>

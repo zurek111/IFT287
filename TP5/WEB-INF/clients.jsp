@@ -26,15 +26,15 @@
 				    </div>
 				    <div class="form-group col-sm-3">
 				    	<label for="prenom">Prénom</label>
-				    	<input class="form-control" type="TEXT" name="prenom" min="0" value="<%= request.getAttribute("prenom") != null ? (String)request.getAttribute("prenom") : "" %>" required>
+				    	<input class="form-control" type="TEXT" name="prenom" value="<%= request.getAttribute("prenom") != null ? (String)request.getAttribute("prenom") : "" %>" required>
 				    </div>
 				    <div class="form-group col-sm-3">
 				    	<label for="nom">Nom</label>
-				    	<input class="form-control" type="TEXT" name="nom" min="0" value="<%= request.getAttribute("nom") != null ? (String)request.getAttribute("nom") : "" %>" required>
+				    	<input class="form-control" type="TEXT" name="nom" value="<%= request.getAttribute("nom") != null ? (String)request.getAttribute("nom") : "" %>" required>
 				    </div>
 				    <div class="form-group col-sm-2">
 				    	<label for="age">Âge</label>
-				    	<input class="form-control" type="NUMBER" name="age" value="<%= request.getAttribute("age") != null ? (String)request.getAttribute("age") : "" %>" required>
+				    	<input class="form-control" type="NUMBER" name="age" min="0" value="<%= request.getAttribute("age") != null ? (String)request.getAttribute("age") : "" %>" required>
 				    </div>
 				    <input class="btn mt-4 mb-3  btn-primary col-sm-2" type="SUBMIT" name="ajouter" value="Ajouter">
 				    
@@ -72,7 +72,21 @@
 					      <td><%=c.getPrenom()%></td>
 					      <td><%=c.getNom()%></td>
 					      <td><%=c.getAge()%> ans</td>
+					      <%
+						    List<TupleReservation> reservations = AubergeInnHelper.getAubergeInnInterro(session).getGestionClient().getClient(c.getIdClient()).getReservations();
+						        if (!reservations.isEmpty())
+						        {
+						  %>
 					      <td><a href="/tp5/Clients?idClient=<%=c.getIdClient()%>" class="btn btn-primary">Afficher</a></td>
+					      <%    
+					      		} // end if
+						        else
+						        {
+					      %>
+					      <td>Aucune</td>
+					       <%    
+					      		} // end else
+					      %>
 					      <td><button class="btn btn-primary" type="SUBMIT" name="supprimer" value="<%=c.getIdClient()%>">Supprimer</button></td>
 					    </tr>
 				    <%
