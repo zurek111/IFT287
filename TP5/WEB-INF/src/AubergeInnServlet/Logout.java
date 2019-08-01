@@ -25,6 +25,8 @@ public class Logout extends HttpServlet
         getServletContext().removeAttribute("bd");
         getServletContext().removeAttribute("user");
         getServletContext().removeAttribute("pass");
+        
+        // Dispatch vers le login
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Login");
         dispatcher.forward(request, response);
     }

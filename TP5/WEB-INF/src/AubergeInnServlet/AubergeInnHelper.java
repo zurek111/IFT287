@@ -32,48 +32,6 @@ public class AubergeInnHelper
         }
     }
     
-    /*public static boolean peutProcederLogin(ServletContext c, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-    {
-        if(infoBDValide(c))
-        {
-            HttpSession session = request.getSession(false);
-            if (session != null)
-            {
-                session.invalidate();
-            }
-            return true;
-        }
-        else
-        {
-            DispatchToBDConnect(request, response);
-            return false;
-        }
-    }*/
-    
-    /*public static void DispatchToLoginServlet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-    {
-        HttpSession session = request.getSession(false);
-        if (AubergeInnHelper.estConnecte(session))
-        {
-            session.invalidate();
-        }
-        // Afficher le menu de connexion principal de l'application
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Login");
-        dispatcher.forward(request, response);
-    }
-    
-    public static void DispatchToLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-    {
-        HttpSession session = request.getSession(false);
-        if (AubergeInnHelper.estConnecte(session))
-        {
-            session.invalidate();
-        }
-        // Afficher le menu de connexion principal de l'application
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
-        dispatcher.forward(request, response);
-    }*/
-    
     public static void DispatchToMenu(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         
@@ -93,7 +51,7 @@ public class AubergeInnHelper
     public static void DispatchToClientDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         
-        // Amène aux réservations
+        // Amène aux détails du clients (réservations et autres informations)
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/clientDetails.jsp");
         dispatcher.forward(request, response);
     }
@@ -101,7 +59,7 @@ public class AubergeInnHelper
     public static void DispatchToClients(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         
-        // Amène aux réservations
+        // Amène aux clients
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/clients.jsp");
         dispatcher.forward(request, response);
     }
@@ -109,7 +67,7 @@ public class AubergeInnHelper
     public static void DispatchToChambres(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         
-        // Amène aux réservations
+        // Amène aux chambres
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/chambres.jsp");
         dispatcher.forward(request, response);
     }

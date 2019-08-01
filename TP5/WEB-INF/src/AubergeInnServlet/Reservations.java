@@ -31,7 +31,7 @@ public class Reservations extends HttpServlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-    	// ajouter reservation
+    	// Ajouter reservation
         System.out.println("Servlet Reservations : POST");
         try
         {
@@ -41,6 +41,7 @@ public class Reservations extends HttpServlet
 	            {
 	                System.out.println("Servlet Reservations : POST - reservations");
 
+	                // Params : idClient, idChambre, dateDebut et dateFin
                 	String idClientParam = request.getParameter("idClient");
                 	String idChambreParam = request.getParameter("idChambre");
                 	String dateDebutParam = request.getParameter("dateDebut");
@@ -67,6 +68,7 @@ public class Reservations extends HttpServlet
                 		throw new IFT287Exception("Les dates ne peuvent être vide et elle doivent être de la forme dd/MM/yyyy exemple: 25/12/2020");
                 	}
                 	
+                	// On réserve la chambre pour le client aux dates spécifiées
                 	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionReservation().reserver(idClient, idChambre, dateDebut, dateFin);

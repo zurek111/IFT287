@@ -30,16 +30,17 @@ public class Clients extends HttpServlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-    	// ajouter client
         System.out.println("Servlet Clients : POST");
         try
         {
         	if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
             {
+        		// Ajouter client
 	            if (request.getParameter("ajouter") != null)
 	            {
 	                System.out.println("Servlet Clients : POST - ajouter");
 
+	                // Params : idClient, prenom, nom et age
                 	String idClientParam = request.getParameter("idClient");
                 	String prenom = request.getParameter("prenom");
                 	String nom = request.getParameter("nom");
@@ -56,11 +57,13 @@ public class Clients extends HttpServlet
                 		throw new IFT287Exception("L'id et l'âge doivent être un nombre.");
                 	}
                 	
+                	// Paramètres vides ?
                 	if (prenom.length() == 0)
                 		throw new IFT287Exception("Le client doit avoir un prenom.");
                 	if (nom.length() == 0)
                 		throw new IFT287Exception("Le client doit avoir un nom.");
                 	
+                	// On ajoute le client dans la BD
                 	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionClient().ajouterClient(idClient, prenom, nom, age);
@@ -69,11 +72,15 @@ public class Clients extends HttpServlet
                 	AubergeInnHelper.DispatchToClients(request, response);
 
 	            } 
+	            // Supprimer client
 	            else if (request.getParameter("supprimer") != null)
 	            {
 	            	System.out.println("Servlet Clients : POST - supprimer");
+	            	
+	            	// Param : idClient
 	            	int idClient = Integer.parseInt(request.getParameter("supprimer"));
 
+	            	// On supprime le client de la BD
 	            	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionClient().supprimerClient(idClient);
@@ -107,13 +114,15 @@ public class Clients extends HttpServlet
         // Si on a déjà entré les informations de connexion valide
         if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
         {
+        	// Si on veut afficher le client
             if (request.getParameter("idClient") != null)
             {
                 try
                 {
+                	// Vérifie si le client existe avec le idClient reçu et dispatch vers ces détails
                     if (AubergeInnHelper.getAubergeInnInterro(request.getSession()).getGestionClient().existe(Integer.parseInt(request.getParameter("idClient"))))
                         AubergeInnHelper.DispatchToClientDetails(request, response);
-                    else
+                    else // Client n'existe pas !
                     {
                         List<String> listeMessageErreur = new LinkedList<String>();
                         listeMessageErreur.add("Le client " + Integer.parseInt(request.getParameter("idClient")) + " n'existe pas !");

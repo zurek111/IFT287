@@ -31,16 +31,17 @@ public class Chambres extends HttpServlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-    	// ajouter chambres
         System.out.println("Servlet Chambres : POST");
         try
         {
         	if (AubergeInnHelper.peutProceder(getServletContext(), request, response))
             {
+        		// Ajouter chambre
 	            if (request.getParameter("ajouterChambre") != null)
 	            {
 	                System.out.println("Servlet Chambres : POST - ajouterChambre");
 
+	                // Params : idChambre, typeLit, nom et prix
                 	String idChambreParam = request.getParameter("idChambre");
                 	String typeLit = request.getParameter("typeLit");
                 	String nom = request.getParameter("nom");
@@ -57,30 +58,36 @@ public class Chambres extends HttpServlet
                 		throw new IFT287Exception("L'id et l'âge doivent être un nombre.");
                 	}
                 	
+                	// Paramètre vide ?
                 	if (typeLit.length() == 0)
                 		throw new IFT287Exception("La chambre doit avoir un type de lit.");
                 	if (nom.length() == 0)
                 		throw new IFT287Exception("La chambre doit avoir un nom.");
                 	
+                	// On ajoute la chambre à la BD
                 	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionChambre().ajouterChambre(idChambre, nom, typeLit, prix);
                 	}
 	            } 
+	            // Supprimer chambre
 	            else if (request.getParameter("supprimerChambre") != null)
 	            {
 	            	System.out.println("Servlet Clients : POST - supprimerChambre");
 	            	int idChambre = Integer.parseInt(request.getParameter("supprimerChambre"));
 
+	            	// On supprime la chambre de la BD
 	            	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionChambre().supprimerChambre(idChambre);
                 	}
 	            }
+	            // Ajouter commodite
 	            else if (request.getParameter("ajouterCommodite") != null)
 	            {
 	                System.out.println("Servlet Chambres : POST - ajouterCommodite");
 
+	                // Params : idCommodite, description et prix
                 	String idCommoditeParam = request.getParameter("idCommodite");
                 	String description = request.getParameter("description");
                 	String prixParam = request.getParameter("prix");
@@ -96,18 +103,22 @@ public class Chambres extends HttpServlet
                 		throw new IFT287Exception("L'id et l'âge doivent être un nombre.");
                 	}
                 	
+                	// Description vide ?
                 	if (description.length() == 0)
                 		throw new IFT287Exception("La chambre doit avoir un type de lit.");
                 	
+                	// On ajoute la commodité à la BD
                 	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionCommodite().ajouterCommodite(idCommodite, description, prix);
                 	}
 	            } 
+	            // Enlever commodite
 	            else if (request.getParameter("enleverCommodite") != null)
 	            {
 	                System.out.println("Servlet Chambres : POST - enleverCommodite");
 	                
+	                // Params : idChambre et idCommodite
 	                String param = request.getParameter("enleverCommodite");
 	                String[] id = param.split("/");
 	                String idChambreParam = id[0];
@@ -125,16 +136,18 @@ public class Chambres extends HttpServlet
                 		throw new IFT287Exception("Les ids doivent être un nombre.");
                 	}
                 	
-                	
+                	// On enleve la commodité de la chambre
                 	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionChambre().enleverCommodite(idChambre, idCommodite);
                 	}
 	            } 
+	            // Inclure commodite
 	            else if (request.getParameter("inclureCommodite") != null)
 	            {
 	                System.out.println("Servlet Chambres : POST - inclureCommodite");
 
+	                // Params : idChambre et idCommodite
                 	String idChambreParam = request.getParameter("inclureCommodite");
                 	String idCommoditeParam = request.getParameter("idCommodite" + idChambreParam);
                 	
@@ -149,7 +162,7 @@ public class Chambres extends HttpServlet
                 		throw new IFT287Exception("Les ids doivent être un nombre.");
                 	}
                 	
-                	
+                	// On inclut la commodité dans la chambre
                 	GestionAubergeInn aubergeInnUpdate = (GestionAubergeInn) request.getSession().getAttribute("aubergeInnUpdate");
                 	synchronized (aubergeInnUpdate) {
                 		aubergeInnUpdate.getGestionChambre().inclureCommodite(idChambre, idCommodite);
