@@ -7,7 +7,6 @@ import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableClients;
 import AubergeInn.Table.TableReservations;
-import AubergeInn.Tuple.TupleChambre;
 import AubergeInn.Tuple.TupleClient;
 
 public class GestionClient 
@@ -74,9 +73,6 @@ public class GestionClient
 		try
 		{
 			List<TupleClient> listeClients = clients.getAllClients();
-			
-			/*if (listeClients.isEmpty())
-				throw new IFT287Exception("Aucun client");*/
 			
 			return listeClients;
 		}

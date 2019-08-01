@@ -6,7 +6,6 @@ import java.util.List;
 import AubergeInn.Connexion;
 import AubergeInn.IFT287Exception;
 import AubergeInn.Table.TableCommodites;
-import AubergeInn.Tuple.TupleClient;
 import AubergeInn.Tuple.TupleCommodite;
 
 public class GestionCommodite 

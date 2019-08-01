@@ -1,23 +1,13 @@
 package AubergeInnServlet;
 
-import java.util.*;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import AubergeInn.IFT287Exception;
-import AubergeInn.Gestionnaire.GestionAubergeInn;
 
 
 /**
- * Servlet qui gère la connexion d'un utilisateur au système de gestion de
- * bibliothèque
- * 
- * <pre>
- * Vincent Ducharme
- * Université de Sherbrooke
- * Version 1.0 - 11 novembre 2018
- * IFT287 - Exploitation de BD relationnelles et OO
+ * Servlet qui gère la page d'accueil
  * </pre>
  */
 
@@ -26,11 +16,7 @@ public class Accueil extends HttpServlet
     private static final long serialVersionUID = 1L;
 
 
-    // Dans les formulaires, on utilise la méthode POST
-    // donc, si le servlet est appelé avec la méthode GET
-    // c'est que l'adresse a été demandé par l'utilisateur.
-    // On procède si la connexion est actives seulement, sinon
-    // on retourne au login
+    // amène au menu sauf si on n'est pas connecté. get de l'adresse tp5/Accueil
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {

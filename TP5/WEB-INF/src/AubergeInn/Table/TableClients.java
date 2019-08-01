@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import AubergeInn.Connexion;
-import AubergeInn.Tuple.TupleChambre;
 import AubergeInn.Tuple.TupleClient;
 
 public class TableClients 

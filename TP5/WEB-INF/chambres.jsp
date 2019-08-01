@@ -5,7 +5,7 @@
 	<head>
 		<title>IFT287 - Système de gestion de l'AubergeInn</title>
 		<meta name="author" content="Maxime Paré et Simon Cesare-Zurek">
-		<meta name="description" content="Page d'accueil du système de gestion de l'AubergeInn.">
+		<meta name="description" content="Page des chambres du système de gestion de l'AubergeInn.">
 		
 		<!-- Required meta tags -->
 	    <meta charset="utf-8">

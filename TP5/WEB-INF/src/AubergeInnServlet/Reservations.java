@@ -13,15 +13,9 @@ import AubergeInn.Gestionnaire.GestionAubergeInn;
 
 
 /**
- * Servlet qui gère la connexion d'un utilisateur au système de gestion de
- * bibliothèque
+ * Servlet qui gère la page des réservations
  * 
- * <pre>
- * Vincent Ducharme
- * Université de Sherbrooke
- * Version 1.0 - 11 novembre 2018
- * IFT287 - Exploitation de BD relationnelles et OO
- * </pre>
+ * 
  */
 
 public class Reservations extends HttpServlet
@@ -91,11 +85,7 @@ public class Reservations extends HttpServlet
         }
     }
 
-    // Dans les formulaires, on utilise la méthode POST
-    // donc, si le servlet est appelé avec la méthode GET
-    // c'est que l'adresse a été demandé par l'utilisateur.
-    // On procède si la connexion est actives seulement, sinon
-    // on retourne au login
+    // Get de l'adresse /tp5/Reservations
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
